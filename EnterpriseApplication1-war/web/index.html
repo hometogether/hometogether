@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>HomeTogether!!!</title>
+<title>HomeTogether</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="APPMO Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -20,13 +20,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!---- start-smoth-scrolling---->
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
+<script type='text/javascript' src='js/jquery.simple-text-rotator.min.js'></script>
+<link rel="stylesheet" href="css/simpletextrotator.css" type="text/css">
+
 <script type="text/javascript">
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){		
 					event.preventDefault();
 					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
 				});
+                                $(".text-rotate").textrotator({
+                                    animation: "flipUp", // You can pick the way it animates when rotating through words. Options are dissolve (default), fade, flip, flipUp, flipCube, flipCubeUp and spin.
+                                    separator: ",", // If you don't want commas to be the separator, you can define a new separator (|, &, * etc.) by yourself using this field.
+                                    speed: 2000 // How many milliseconds until the next word show.
+                                });
 			});
+                        
 		</script>
 
 <!---- start-smoth-scrolling---->
@@ -62,8 +71,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="banner">
 		<div class="container">
 			<div class="banner-top">
-				<h1>Lorem ipsum dolor sit</h1>
-				<p>sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec.</p>
+				<h1>
+                                    <strong>
+                                        <span class="text-rotate" style="color:#f1c40f;">Find,Live,Share,Home
+                                        </span>
+                                    </strong>
+                                <span >Together</span> 
+                                </h1>
 			</div>
 			<div class="banner-bottom">
 				<div class="col-md-4 banner-left">
