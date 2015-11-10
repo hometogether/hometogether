@@ -7,8 +7,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 html, body{
     font-size: 100%;
 	background:	rgba(228, 131, 18, 0.6);
-	font-family: 'Exo', sans-serif;
+	font-family: fabrik;
 }
+@font-face {
+    font-family: fabrik;
+    src: url(font\fabrik.ttf);
+}
+
 body a{
 	transition: 0.5s all ease;
 	-webkit-transition: 0.5s all ease;
