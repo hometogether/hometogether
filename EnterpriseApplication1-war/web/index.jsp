@@ -1,9 +1,9 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<%-- 
+    Document   : index
+    Created on : 14-nov-2015, 18.19.35
+    Author     : Andrea22
+--%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="banner-top">
 				<h1>
                                     <strong>
-                                        <span class="text-rotate" style="color:#f1c40f;">  Find,  Live,Share,Home
+                                        <span class="text-rotate" style="color:#f1c40f;">Find,Live,Share,Home
                                         </span>
                                     </strong>
                                 <span >Together</span> 
@@ -98,8 +98,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="feature" id="features">
 		<div class="container">
 			<div class="feature-main">
-				<h3>Awesome Features</h3>
-				<P>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur</P>
+				<h3>Registrati</h3>
+                                <P>
+                                    <form action="RegistrationServlet" class="form-horizontal" role="form" method="post">
+                                        <input type="hidden" name="action" value="registration">
+
+                                        <div class="form-group">
+                                             <label for="username" class="col-sm-2 control-label" >Username</label>
+                                             <div class="col-sm-10">
+                                               <input type="text" class="form-control" name="username" maxlength="30" required placeholder="Username">
+                                             </div>
+                                         </div>
+                                        <div class="form-group">
+                                            <label for="password" class="col-sm-2 control-label">Password</label>
+                                            <div class="col-sm-10">
+                                              <input type="password" class="form-control" name="password" maxlength="30" required placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <!--<div class="form-group">
+                                            <label for="email" class="col-sm-2 control-label">Email</label>
+                                            <div class="col-sm-10">
+                                              <input type="email" class="form-control" name="email" maxlength="50" required placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone_number" class="col-sm-2 control-label">Phone Number</label>
+                                            <div class="col-sm-10">
+                                              <input type="text" class="form-control" name="phone_number" maxlength="30" required placeholder="Phone_number">
+                                            </div>
+                                        </div>-->
+               
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-primary">Registrati</button>
+                                        </div>
+               
+           
+           
+                                    </form>
+                                    
+                                </P>
 			</div>
 				<div class="feature-bottom">
 					<div class="col-md-6 feature-bottom-left">
@@ -214,14 +251,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<ul class="rslides" id="slider4">
 								<li>
 									<div class="new-slid">
-										<p>“  dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ”</p>
+										<p>?  dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ?</p>
 										<h4>Mohamed Saed</h4>
 										<img src="images/slide-1.png" alt="">
 									</div>
 								</li>
 								<li>
 									<div class="new-slid">
-										<p>“  sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ”</p>
+										<p>?  sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ?</p>
 										<h4>Cylon</h4>
 										<img src="images/slide-2.png" alt="">
 									</div>
