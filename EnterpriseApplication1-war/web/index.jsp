@@ -100,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
                                     </div>
                                     <div class="col-md-6 feature-main">
-                                        <form action="RegistrationServlet"  role="form" >
+                                        <form action="RegistrationServlet"  role="form" method="post">
                                             <input type="hidden" name="action" value="registration">
                                         <h3>Iscriviti</h3>
                                         <br>
