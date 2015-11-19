@@ -100,38 +100,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
                                     </div>
                                     <div class="col-md-6 feature-main">
-                                        <form action="RegistrationServlet"  role="form" method="post">
+                                        <form action="RegistrationServlet"  role="form" >
+                                            <input type="hidden" name="action" value="registration">
                                         <h3>Iscriviti</h3>
                                         <br>
                                         <div class="form-group col-lg-6">
                                                 <!--<label>Password</label>-->
-                                                <input type="text" name="" class="form-control" id="" value="" placeholder="Nome">
+                                                <input type="text" name="nome" class="form-control"   placeholder="Nome">
                                         </div>
                                         
                                         <div class="form-group col-lg-6">
                                                 <!--<label>Password</label>-->
-                                                <input type="text" name="" class="form-control" id="" value="" placeholder="Cognome">
+                                                <input type="text" name="cognome" class="form-control"  placeholder="Cognome">
                                         </div>
                                         
                                         <div class="form-group col-lg-12">
                                                 <!--<label>Username</label>-->
-                                                <input type="email" name="" class="form-control" id="" value="" placeholder="Email">
+                                                <input type="email" name="email" class="form-control"  placeholder="Email">
                                         </div>
                                         
                                         <div class="form-group col-lg-12">
                                                 <!--<label>Repeat Email Address</label>-->
-                                                <input type="email" name="" class="form-control" id="" value="" placeholder="Ripeti email">
+                                                <input type="email" name="r_email" class="form-control" id="" value="" placeholder="Ripeti email">
                                         </div>
 				
                                         <div class="form-group col-lg-12">
                                                 <!--<label>Password</label>-->
-                                                <input type="password" name="" class="form-control" id="" value="" placeholder="Nuova password">
+                                                <input type="password" name="password" class="form-control" id="" value="" placeholder="Nuova password">
+                                        </div>
+                                        
+                                        <div class="form-group col-lg-12">
+                                                <!--<label>Password</label>-->
+                                                <input type="password" name="r_password" class="form-control" id="" value="" placeholder="Reinserisci la password">
                                         </div>
                                         <h4 style="color: white">Data di nascita</h4>
                                         <br>
                                         <div class="form-group col-lg-4">
                                                 
-                                                <select aria-label="Giorno" title="Giorno" class="form-control">
+                                                <select aria-label="Giorno" title="Giorno" name="giorno" class="form-control">
                                                     <option value="0" selected="1">Giorno</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -168,7 +174,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         
                                         <div class="form-group col-lg-4">
-                                            <select aria-label="Mese" title="Mese" class="form-control">
+                                            <select aria-label="Mese" title="Mese" name="mese" class="form-control">
                                                 <option value="0" selected="1">Mese</option>
                                                 <option value="1">gen</option>
                                                 <option value="2">feb</option>
@@ -186,7 +192,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         
                                         <div class="form-group col-lg-4">
-                                            <select aria-label="Anno" title="Anno" class="form-control">
+                                            <select aria-label="Anno" title="Anno" name="anno" class="form-control">
                                                 <option value="0" selected="1">Anno</option>
                                                 <option value="2015">2015</option>
                                                 <option value="2014">2014</option>
@@ -306,11 +312,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
                                         <div data-type="radio" data-name="gender_wrapper">
                                             <div class="form-group col-lg-3">
-                                                <input type="radio" name="sex" value="1">
+                                                <input type="radio" name="sesso" value="1">
                                                 <label style="color: white">Donna</label>
                                             </div>
                                             <div class="form-group col-lg-3">
-                                                <input type="radio" name="sex" value="2">
+                                                <input type="radio" name="sesso" value="2">
                                                 <label style="color: white">Uomo</label>
                                             </div>
                                             <div class="form-group col-lg-3">
@@ -358,44 +364,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="feature" id="features">
 		<div class="container">
 			<div class="feature-main">
-				<h3>Registrati</h3>
-                                <P>
-                                    <form action="RegistrationServlet" class="form-horizontal" role="form" method="post">
-                                        <input type="hidden" name="action" value="registration">
-
-                                        <div class="form-group">
-                                             <label for="username" class="col-sm-2 control-label" >Username</label>
-                                             <div class="col-sm-10">
-                                               <input type="text" class="form-control" name="username" maxlength="30" required placeholder="Username">
-                                             </div>
-                                         </div>
-                                        <div class="form-group">
-                                            <label for="password" class="col-sm-2 control-label">Password</label>
-                                            <div class="col-sm-10">
-                                              <input type="password" class="form-control" name="password" maxlength="30" required placeholder="Password">
-                                            </div>
-                                        </div>
-                                        <!--<div class="form-group">
-                                            <label for="email" class="col-sm-2 control-label">Email</label>
-                                            <div class="col-sm-10">
-                                              <input type="email" class="form-control" name="email" maxlength="50" required placeholder="Email">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="phone_number" class="col-sm-2 control-label">Phone Number</label>
-                                            <div class="col-sm-10">
-                                              <input type="text" class="form-control" name="phone_number" maxlength="30" required placeholder="Phone_number">
-                                            </div>
-                                        </div>-->
-               
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-primary">Registrati</button>
-                                        </div>
-               
-           
-           
-                                    </form>
-                                    
                                 </P>
 			</div>
 				<div class="feature-bottom">
