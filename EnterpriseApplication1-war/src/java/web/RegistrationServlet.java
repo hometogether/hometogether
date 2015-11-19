@@ -44,36 +44,51 @@ public class RegistrationServlet extends HttpServlet {
             String action = request.getParameter("action");
             System.out.println("entro");
             if (action.equals("registration")) {
-                String username = request.getParameter("username");
-                System.out.println(username);
+                //String username = request.getParameter("username");
+                String nome = request.getParameter("nome");
+                String cognome = request.getParameter("cognome");
                 String password = request.getParameter("password");
-                System.out.println(password);
-
-                gestoreUtenti.aggiungiUser(username, password);
+                String r_password = request.getParameter("r_password");
+                String email = request.getParameter("email");
+                String r_email = request.getParameter("r_email");
+                String giorno = request.getParameter("giorno");
+                String mese = request.getParameter("mese");
+                String anno = request.getParameter("anno");
+                String sesso = request.getParameter("sesso");
+                
+                System.out.println(sesso);
+                int res = gestoreUtenti.aggiungiUser(nome, cognome, password, r_password, email, r_email, giorno, mese, anno, sesso);
+                if (res == 0){
+                    List<Utente> lista = gestoreUtenti.getUsers();
+                    Utente[] arLibro = lista.toArray(new Utente[lista.size()]);
+                    String gsonList = buildGson(lista);
+                    
+                    out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title>Servlet RegistrationServlet</title>");            
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
+                    out.println("<h1>"+gsonList+"</h1>");
+                    out.println("</body>");
+                    out.println("</html>");
+                } else  {
+                    out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title>Servlet RegistrationServlet</title>");            
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<h1>Errore!</h1>");
+                    out.println("</body>");
+                    out.println("</html>");
+                }
                 
             } else {
                 System.out.println("Action OTHER");
             }
             
-             List<Utente> lista = gestoreUtenti.getUsers();
-            Utente[] arLibro = lista.toArray(new Utente[lista.size()]);
-            String gsonList = buildGson(lista);
-            
-            
-            
-            
-            
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegistrationServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
-            out.println("<h1>"+gsonList+"</h1>");
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 private String buildGson(List<Utente> u) {

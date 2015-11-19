@@ -23,12 +23,35 @@ public class GestoreUtenti {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
-    public void aggiungiUser(String username, String password) {
-        System.out.println("entro in aggiungiUser!!!!");
+    public int aggiungiUser(String nome,String cognome,String password,String r_password,String email,String r_email,String giorno,String mese,String anno,String sesso) {
+        
+        if (nome == null || cognome == null || password == null || r_password == null || email == null || 
+                r_email == null || giorno == null || mese == null || anno == null || sesso == null){
+            return -1;
+        }
         Utente u = new Utente();
-        u.setUsername(username);
-        u.setPassword(password);
+        u.setNome(nome);
+        u.setCognome(cognome);
+        if (password.equals(r_password)){
+            u.setPassword(password);
+        } else {
+            return -1;
+        }
+        if (email.equals(r_email)){
+            u.setEmail(email);
+        } else {
+            return -1;
+        }
+        u.setData_nascita(anno+"-"+mese+"-"+giorno);
+        u.setSesso(sesso);
+        u.setUsername(nome+cognome);
+        u.setTipo("0");
+        u.setIdComune("0");
+                
+        u.setFoto_profilo("");
         utenteFacade.create(u);
+        
+        return 0;
     }
 
     public List<Utente> getUsers() {
