@@ -106,22 +106,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <br>
                                         <div class="form-group col-lg-6">
                                                 <!--<label>Password</label>-->
-                                                <input type="text" name="nome" class="form-control"   placeholder="Nome">
+                                                <input type="text" name="nome" class="form-control" required placeholder="Nome">
                                         </div>
                                         
                                         <div class="form-group col-lg-6">
                                                 <!--<label>Password</label>-->
-                                                <input type="text" name="cognome" class="form-control"  placeholder="Cognome">
+                                                <input type="text" name="cognome" class="form-control" required placeholder="Cognome">
                                         </div>
                                         
                                         <div class="form-group col-lg-12">
                                                 <!--<label>Username</label>-->
-                                                <input type="email" name="email" class="form-control"  placeholder="Email">
+                                                <input type="email" name="email" class="form-control" required placeholder="Email">
                                         </div>
                                         
                                         <div class="form-group col-lg-12">
                                                 <!--<label>Repeat Email Address</label>-->
-                                                <input type="email" name="r_email" class="form-control" id="" value="" placeholder="Ripeti email">
+                                                <input type="email" name="r_email" class="form-control" required placeholder="Ripeti email">
                                         </div>
 				
                                         <div class="form-group col-lg-12">
@@ -131,13 +131,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         
                                         <div class="form-group col-lg-12">
                                                 <!--<label>Password</label>-->
-                                                <input type="password" name="r_password" class="form-control" id="" value="" placeholder="Reinserisci la password">
+                                                <input type="password" name="r_password" class="form-control" required placeholder="Reinserisci la password">
                                         </div>
+                                        
+                                        <div class="form-group col-lg-12">
+                                                <!--<label>Password</label>-->
+                                                <input type="password" name="località" class="form-control" required placeholder="Inserisci la tua località">
+                                        </div>
+                                        
                                         <h4 style="color: white">Data di nascita</h4>
                                         <br>
                                         <div class="form-group col-lg-4">
                                                 
-                                                <select aria-label="Giorno" title="Giorno" name="giorno" class="form-control">
+                                                <select aria-label="Giorno" title="Giorno" name="giorno" required class="form-control">
                                                     <option value="0" selected="1">Giorno</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -174,7 +180,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         
                                         <div class="form-group col-lg-4">
-                                            <select aria-label="Mese" title="Mese" name="mese" class="form-control">
+                                            <select aria-label="Mese" title="Mese" name="mese" required class="form-control">
                                                 <option value="0" selected="1">Mese</option>
                                                 <option value="1">gen</option>
                                                 <option value="2">feb</option>
@@ -192,7 +198,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         
                                         <div class="form-group col-lg-4">
-                                            <select aria-label="Anno" title="Anno" name="anno" class="form-control">
+                                            <select aria-label="Anno" title="Anno" name="anno" required class="form-control">
                                                 <option value="0" selected="1">Anno</option>
                                                 <option value="2015">2015</option>
                                                 <option value="2014">2014</option>
@@ -312,11 +318,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
                                         <div data-type="radio" data-name="gender_wrapper">
                                             <div class="form-group col-lg-3">
-                                                <input type="radio" name="sesso" value="1">
+                                                <input type="radio" name="sesso" required value="1">
                                                 <label style="color: white">Donna</label>
                                             </div>
                                             <div class="form-group col-lg-3">
-                                                <input type="radio" name="sesso" value="2">
+                                                <input type="radio" name="sesso" required value="2">
                                                 <label style="color: white">Uomo</label>
                                             </div>
                                             <div class="form-group col-lg-3">
