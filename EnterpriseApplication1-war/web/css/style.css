@@ -202,15 +202,21 @@ ul.navig li:nth-of-type(3) {
 /*--Header-Part-Ends-Here --*/
 /*--banner-part-starts-here --*/
 .banner{
-	background:url(../images/banner.png) no-repeat;
+	background:url(../images/banner2.png) no-repeat;
 	background-size:100% 100%;
 	min-height: 1100px;
 }
-.banner-top {
+
+.banner-orange{
+	background:url(../images/background-orange.png) no-repeat;
+	background-size:100% 100%;
+	min-height: 1100px;
+}.banner-top {
 	text-align: center;
 	width: 75%;
 	padding: 1.5em 0px;
-	background: rgba(228, 131, 18, 0.6);
+	/*background: rgba(228, 131, 18, 0.6);*/
+        background: #de5749;
 	margin: 8em auto 0;
 	border-radius: 0.3em;
 	-webkit-transition: border-radius: 0.3em;
@@ -286,7 +292,7 @@ ul.navig li:nth-of-type(3) {
 	text-align: center;
 }
 /*--banner-part-ends-here --*/
-/*--feature-part-starts-here --*/
+/*---part-starts-here --*/
 .feature{
 	padding:5em 0px;
 }
