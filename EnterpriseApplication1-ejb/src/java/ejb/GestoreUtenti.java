@@ -17,21 +17,22 @@ import javax.ejb.LocalBean;
 @LocalBean
 public class GestoreUtenti {
     @EJB
-    private UtenteFacadeLocal userFacade;
+    private UtenteFacadeLocal utenteFacade;
+   
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
     public void aggiungiUser(String username, String password) {
-        System.out.println("entro in aggiungiUser");
+        System.out.println("entro in aggiungiUser!!!!");
         Utente u = new Utente();
         u.setUsername(username);
         u.setPassword(password);
-        userFacade.create(u);
+        utenteFacade.create(u);
     }
 
     public List<Utente> getUsers() {
-        List<Utente> listaUser = userFacade.findAll();
+        List<Utente> listaUser = utenteFacade.findAll();
         
         return listaUser;
     }
