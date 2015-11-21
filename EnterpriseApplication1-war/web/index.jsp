@@ -49,12 +49,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="navigation">
 			 <span class="menu"></span> 
 				<ul class="navig">
-					<li><a href="index.html" class="scroll">HOME</a><span> </span></li>
-					<li><a href="#features" class="scroll">FEATURES</a><span> </span></li>
-					<li><a href="#countdown" class="scroll">COUNTDOWN</a><span> </span></li>
-					<li><a href="#pricing" class="scroll">PRICING</a><span> </span></li>
-					<li><a href="#testimonials" class="scroll">TESTIMONIALS</a><span> </span></li>
-					<li><a href="#contact" class="scroll">CONTACT</a><span> </span></li>
+					<li><a href="index.html" class="scroll">HOME</a></li>
+					<li><a href="#features" class="scroll">AAAAAA</a></li>
+					<li><a href="#countdown" class="scroll">COUNTDOWN</a></li>
+                                        <li><input type="email" class="form-control" placeholder="Email"></li>
+                                        <li><input type="password" class="form-control" placeholder="Password"></li>
+                                        <li><button type="submit" class="btn btn-primary" style="background: red;">Login</button></li>
+                                        
+					
+					
 				</ul>
 			</div>
 				 <!-- script-for-menu -->
