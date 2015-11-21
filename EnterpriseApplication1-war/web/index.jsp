@@ -52,12 +52,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li><a href="index.html" class="scroll">HOME</a></li>
 					<li><a href="#features" class="scroll">AAAAAA</a></li>
 					<li><a href="#countdown" class="scroll">COUNTDOWN</a></li>
-                                        <li><input type="email" class="form-control" placeholder="Email"></li>
-                                        <li><input type="password" class="form-control" placeholder="Password"></li>
-                                        <li><button type="submit" class="btn btn-primary" style="background: red;">Login</button></li>
-                                        
-					
-					
+                                        <form action="LoginServlet" method="post">
+                                            <li><input type="email" class="form-control" placeholder="Email"></li>
+                                            <li><input type="password" class="form-control" placeholder="Password"></li>
+                                            <li><button type="submit" class="btn btn-primary" style="background: red;">Login</button></li>
+                                            <input type="hidden" name="action" value="login">
+                                        </form>
 				</ul>
 			</div>
 				 <!-- script-for-menu -->
