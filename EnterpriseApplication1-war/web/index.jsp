@@ -48,17 +48,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="navigation">
 			 <span class="menu"></span> 
-				<ul class="navig">
+				<ul class="navig navbar-left">
 					<li><a href="index.html" class="scroll">HOME</a></li>
 					<li><a href="#features" class="scroll">AAAAAA</a></li>
 					<li><a href="#countdown" class="scroll">COUNTDOWN</a></li>
-                                        <form action="LoginServlet" method="post">
-                                            <li><input type="email" class="form-control" placeholder="Email"></li>
-                                            <li><input type="password" class="form-control" placeholder="Password"></li>
-                                            <li><button type="submit" class="btn btn-primary" style="background: red;">Login</button></li>
-                                            <input type="hidden" name="action" value="login">
-                                        </form>
 				</ul>
+                                
+                         <form class="navbar-form navbar-right" action="LoginSrvlet" method="post">
+                             <input type="email" name="email" class="form-control" placeholder="Email">
+                             <input type="password" name="password" class="form-control" placeholder="Password">
+                             <button type="submit" class="btn btn-primary" style="background: red;">Login</button>
+                             <input type="hidden" name="action" value="login">
+                         </form>
 			</div>
 				 <!-- script-for-menu -->
 		 <script>
