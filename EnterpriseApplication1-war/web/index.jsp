@@ -46,9 +46,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="logo">
 				<a href="index.html"><img src="images/logoProva.png" alt=""></a>
 			</div>
-			<div class="navigation">
+			<div class="navbar navbar-fixed-top col-md-12 col-lg-12 col-sm-12" role="navigation">
 			 <span class="menu"></span> 
-				<ul class="navig navbar-left">
+				<ul class="navig navbar-left navbar-link">
 					<li><a href="index.html" class="scroll">HOME</a></li>
 					<li><a href="#features" class="scroll">AAAAAA</a></li>
 					<li><a href="#countdown" class="scroll">COUNTDOWN</a></li>
