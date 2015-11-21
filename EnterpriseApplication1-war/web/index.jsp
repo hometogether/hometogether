@@ -36,8 +36,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 });
 			});
                         
+                        
 		</script>
-
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#myModal').modal('show');
+    });
+</script>
 <!---- start-smoth-scrolling---->
 </head>
 <body>
@@ -48,18 +53,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="navigation">
 			 <span class="menu"></span> 
-				<ul class="navig navbar-left ">
-					<li><a href="index.html" class="scroll">HOME</a></li>
-					<li><a href="#features" class="scroll">AAAAAA</a></li>
-					<li><a href="#countdown" class="scroll">COUNTDOWN</a></li>
+				<ul class="navig">
+					<li><a href="index.html" class="scroll">HOME</a><span> </span></li>
+					<li><a href="#features" class="scroll">FEATURES</a><span> </span></li>
+					<li><a href="#countdown" class="scroll">COUNTDOWN</a><span> </span></li>
+					<li><a href="#pricing" class="scroll">PRICING</a><span> </span></li>
+					<li><a href="#testimonials" class="scroll">TESTIMONIALS</a><span> </span></li>
+                                        <li><a class="btn" data-toggle="modal" href="#myModal" >Launch Modal</a><span> </span></li>
 				</ul>
-                         <form class="navbar-form navbar-right" action="LoginServlet" method="post">
-                             <input type="email" name="email" class="form-control" placeholder="Email">
-                             <input type="password" name="password" class="form-control" placeholder="Password">
-                             <button type="submit" class="btn btn-primary" style="background: red;">Login</button>
-                             <input type="hidden" name="action" value="login">
-                         </form>
 			</div>
+                    
+                   <div class="modal hide fade" id="myModal">
+                    <div class="modal-header">
+                      <a class="close" data-dismiss="modal">×</a>
+                      <h3>Modal header</h3>
+                    </div>
+                    <div class="modal-body">
+                      <p>One fine body?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="#" class="btn">Close</a>
+                      <a href="#" class="btn btn-primary">Save changes</a>
+                    </div>
+                  </div>
 				 <!-- script-for-menu -->
 		 <script>
 				$("span.menu").click(function(){
@@ -104,12 +120,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                     <div class="col-md-6 feature-main">
                                         <form action="RegistrationServlet"  role="form" method="post">
-                                            <input type="hidden" name="action" value="registration">
                                         <h3>Iscriviti</h3>
                                         <br>
                                         <div class="form-group col-lg-6">
                                                 <!--<label>Password</label>-->
-                                                <input type="text" name="nome" class="form-control"  placeholder="Nome">
+                                                <input type="text" name="" class="form-control" id="" value="" placeholder="Nome">
                                         </div>
                                         
                                         <div class="form-group col-lg-6">
