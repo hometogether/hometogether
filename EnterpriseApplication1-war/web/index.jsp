@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li><a href="#countdown" class="scroll">COUNTDOWN</a></li>
 				</ul>
                                 
-                         <form class="navbar-form navbar-right" action="LoginSrvlet" method="post">
+                         <form class="navbar-form navbar-right" action="LoginServlet" method="post">
                              <input type="email" name="email" class="form-control" placeholder="Email">
                              <input type="password" name="password" class="form-control" placeholder="Password">
                              <button type="submit" class="btn btn-primary" style="background: red;">Login</button>
