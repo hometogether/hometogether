@@ -11,7 +11,7 @@ html, body{
 }
 @font-face {
     font-family: fabrik;
-    src: url(font\fabrik.ttf);
+    src: url(font/fabrik.ttf);
 }
 
 body a{
@@ -52,7 +52,7 @@ ul.navig{
 }
 ul.navig li{
 	display: inline-block;
-	margin: 0 12px;
+	margin: 2% 12px;
 	position:relative;
 }
 ul.navig li:nth-of-type(3) {
