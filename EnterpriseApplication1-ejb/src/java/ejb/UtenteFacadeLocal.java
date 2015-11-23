@@ -25,5 +25,7 @@ public interface UtenteFacadeLocal {
     List<Utente> findRange(int[] range);
 
     int count();
+
+    public Utente getUtente(String email, String password);
     
 }

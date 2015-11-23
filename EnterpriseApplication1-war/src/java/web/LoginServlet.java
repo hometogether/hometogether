@@ -7,13 +7,14 @@ package web;
 
 import com.google.gson.Gson;
 import ejb.GestoreUtenti;
+import ejb.Sessione;
 import ejb.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,8 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Andrea22
  */
-@WebServlet(name = "RegistrationServlet", urlPatterns = {"/RegistrationServlet"})
-public class RegistrationServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,44 +34,46 @@ public class RegistrationServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-   @EJB
-   private GestoreUtenti gestoreUtenti;
-    
+    @EJB
+    private GestoreUtenti gestoreUtenti;
+    @EJB
+    private Sessione sessione;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
             System.out.println("action is:"+action);
-            if (action.equals("registration")) {
+            if (action.equals("login")) {
                 //String username = request.getParameter("username");
-                String nome = request.getParameter("nome");
-                String cognome = request.getParameter("cognome");
-                String password = request.getParameter("password");
-                String r_password = request.getParameter("r_password");
                 String email = request.getParameter("email");
-                String r_email = request.getParameter("r_email");
-                String giorno = request.getParameter("giorno");
-                String mese = request.getParameter("mese");
-                String anno = request.getParameter("anno");
-                String sesso = request.getParameter("sesso");
+                String password = request.getParameter("password");
                 
-                System.out.println(sesso);
-                int res = gestoreUtenti.aggiungiUser(nome, cognome, password, r_password, email, r_email, giorno, mese, anno, sesso);
-                if (res == 0){
-                    List<Utente> lista = gestoreUtenti.getUsers();
-                    String gsonList = buildGson(lista);
-                    
-                    out.println("<!DOCTYPE html>");
+                Utente u = gestoreUtenti.loginUtente(email, password);
+                if (u != null){
+                    //List<Utente> lista = gestoreUtenti.getUsers();
+                    //Utente[] arLibro = lista.toArray(new Utente[lista.size()]);
+                    //String gsonList = buildGson(lista);
+                    sessione.setId(u.getId());
+                    sessione.setNome(u.getNome());
+                    sessione.setCognome(u.getCognome());
+                    sessione.setUsername(u.getUsername());
+                    sessione.setTipo(u.getTipo());
+                    sessione.setEmail(u.getEmail());
+                    sessione.setFoto_profilo(u.getFoto_profilo());
+                            
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
+                    rd.forward(request,response);
+                    /*out.println("<!DOCTYPE html>");
                     out.println("<html>");
                     out.println("<head>");
                     out.println("<title>Servlet RegistrationServlet</title>");            
                     out.println("</head>");
                     out.println("<body>");
                     out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
-                    out.println("<h1>"+gsonList+"</h1>");
+                    out.println("<h1>Benvenuto, "+sessione.getNome()+" "+sessione.getCognome()+"!</h1>");
                     out.println("</body>");
-                    out.println("</html>");
+                    out.println("</html>");*/
                 } else  {
                     out.println("<!DOCTYPE html>");
                     out.println("<html>");
@@ -90,7 +92,8 @@ public class RegistrationServlet extends HttpServlet {
             
         }
     }
-private String buildGson(List<Utente> u) {
+    
+    private String buildGson(List<Utente> u) {
 
         Gson gson = new Gson();
         String json = gson.toJson(u);

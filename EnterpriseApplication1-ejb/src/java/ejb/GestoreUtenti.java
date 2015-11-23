@@ -27,6 +27,7 @@ public class GestoreUtenti {
         
         if (nome == null || cognome == null || password == null || r_password == null || email == null || 
                 r_email == null || giorno == null || mese == null || anno == null || sesso == null){
+            System.out.println("qualcosa è null");
             return -1;
         }
         Utente u = new Utente();
@@ -35,11 +36,13 @@ public class GestoreUtenti {
         if (password.equals(r_password)){
             u.setPassword(password);
         } else {
+            System.out.println("Le password non corrispondono!");
             return -1;
         }
         if (email.equals(r_email)){
             u.setEmail(email);
         } else {
+            System.out.println("Le email non corrispondono!");
             return -1;
         }
         u.setData_nascita(anno+"-"+mese+"-"+giorno);
@@ -47,7 +50,7 @@ public class GestoreUtenti {
         u.setUsername(nome+cognome);
         u.setTipo("0");
         u.setIdComune("0");
-                
+         //      
         u.setFoto_profilo("");
         utenteFacade.create(u);
         
@@ -59,4 +62,14 @@ public class GestoreUtenti {
         
         return listaUser;
     }
+
+    public Utente loginUtente(String email, String password) {
+        System.out.println("entro in loginUtente");
+
+        Utente u = utenteFacade.getUtente(email, password);
+        
+        return u;
+    
+    }
+
 }

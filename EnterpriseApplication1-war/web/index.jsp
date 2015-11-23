@@ -103,6 +103,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             </strong>
                                             <span style="color : white">Together</span> 
                                         </h1>
+                                            
+                                        <form action="LoginServlet"  role="form" method="post">
+                                        <br>
+                                        <input type="hidden" name="action" value="login">
+
+                                        <div class="form-group col-lg-12">
+                                                <!--<label>email</label>-->
+                                                <input type="email" name="email" class="form-control"  placeholder="Email">
+                                        </div>
+                                        
+                                        <div class="form-group col-lg-12">
+                                                <!--<label>password</label>-->
+                                                <input type="password" name="password" class="form-control"  placeholder="Password">
+                                        </div>
+                                        
+                                         <div class="form-group col-lg-12">
+                                            <button type="submit" class="btn btn-primary form-group col-lg-4" style="font-size: 150%; background-color: red;  ">Login</button>
+                                        </div>
+                                        </form>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
                                         </div>
                                         <p>
                                                 Via da casa per qualche giorno? Problema di alloggio per breve periodo?
@@ -122,9 +153,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <form action="RegistrationServlet"  role="form" method="post">
                                         <h3>Iscriviti</h3>
                                         <br>
+                                        <input type="hidden" name="action" value="registration">
                                         <div class="form-group col-lg-6">
                                                 <!--<label>Password</label>-->
-                                                <input type="text" name="" class="form-control" id="" value="" placeholder="Nome">
+                                                <input type="text" name="nome" class="form-control" id="" value="" placeholder="Nome">
                                         </div>
                                         
                                         <div class="form-group col-lg-6">
