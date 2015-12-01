@@ -7,7 +7,8 @@ package web;
 
 import com.google.gson.Gson;
 import ejb.GestoreUtenti;
-import ejb.Utente;
+import ejb.UtenteApp;
+import ejb.UtenteGoogle;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -44,22 +45,19 @@ public class RegistrationServlet extends HttpServlet {
             String action = request.getParameter("action");
             System.out.println("action is:"+action);
             if (action.equals("registration")) {
-                //String username = request.getParameter("username");
                 String nome = request.getParameter("nome");
                 String cognome = request.getParameter("cognome");
                 String password = request.getParameter("password");
                 String r_password = request.getParameter("r_password");
                 String email = request.getParameter("email");
                 String r_email = request.getParameter("r_email");
-                String giorno = request.getParameter("giorno");
-                String mese = request.getParameter("mese");
-                String anno = request.getParameter("anno");
+                String data_nascita = request.getParameter("data_nascita");
                 String sesso = request.getParameter("sesso");
-                
+                System.out.println(data_nascita);
                 System.out.println(sesso);
-                int res = gestoreUtenti.aggiungiUser(nome, cognome, password, r_password, email, r_email, giorno, mese, anno, sesso);
+                int res = gestoreUtenti.aggiungiUser(nome, cognome, password, r_password, email, r_email, data_nascita, sesso);
                 if (res == 0){
-                    List<Utente> lista = gestoreUtenti.getUsers();
+                    List<UtenteApp> lista = gestoreUtenti.getUsers();
                     String gsonList = buildGson(lista);
                     
                     out.println("<!DOCTYPE html>");
@@ -90,7 +88,7 @@ public class RegistrationServlet extends HttpServlet {
             
         }
     }
-private String buildGson(List<Utente> u) {
+private String buildGson(List<UtenteApp> u) {
 
         Gson gson = new Gson();
         String json = gson.toJson(u);

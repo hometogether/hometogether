@@ -4,8 +4,6 @@
     Author     : Andrea22
 --%>
 
-<%@page import="javax.ejb.EJB"%>
-<%@page import="ejb.Sessione"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -100,8 +98,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="col-md-6 feature-main">
                                         <p>
                                         Sei loggato come 
-                                        <%Sessione sessione = new Sessione(); 
-                                        out.print(sessione.getNome()+" "+sessione.getCognome());%>
+                                        <%HttpSession s= request.getSession();
+                                        out.print(s.getAttribute("nome")+" "+s.getAttribute("cognome"));%>
                                         
                                                 
                                         </p>

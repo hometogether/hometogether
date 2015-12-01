@@ -7,22 +7,25 @@ package web;
 
 import com.google.gson.Gson;
 import ejb.GestoreUtenti;
-import ejb.Sessione;
-import ejb.Utente;
+import ejb.UtenteApp;
+import ejb.UtenteGoogle;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Andrea22
  */
+@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 
     /**
@@ -36,8 +39,7 @@ public class LoginServlet extends HttpServlet {
      */
     @EJB
     private GestoreUtenti gestoreUtenti;
-    @EJB
-    private Sessione sessione;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -48,32 +50,32 @@ public class LoginServlet extends HttpServlet {
                 //String username = request.getParameter("username");
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
-                
-                Utente u = gestoreUtenti.loginUtente(email, password);
+                System.out.println("prima della query loginutente");
+                UtenteApp u = gestoreUtenti.loginUtente(email, password);
                 if (u != null){
                     //List<Utente> lista = gestoreUtenti.getUsers();
                     //Utente[] arLibro = lista.toArray(new Utente[lista.size()]);
                     //String gsonList = buildGson(lista);
-                    sessione.setId(u.getId());
-                    sessione.setNome(u.getNome());
+                    HttpSession session = request.getSession();
+                    session.setAttribute("id", u.getId());
+                    session.setAttribute("id profilo", u.getIdProfilo());
+                    //session.setAttribute("cognome", u.getCognome());
+                    //session.setAttribute("username", u.getUsername());
+                    //session.setAttribute("tipo", u.getTipo());
+                    //session.setAttribute("email", u.getEmail());
+                    //session.setAttribute("foto_profilo", u.getFoto_profilo());
+                    //sessione.setId(u.getId());
+                    /*sessione.setNome(u.getNome());
                     sessione.setCognome(u.getCognome());
                     sessione.setUsername(u.getUsername());
                     sessione.setTipo(u.getTipo());
                     sessione.setEmail(u.getEmail());
-                    sessione.setFoto_profilo(u.getFoto_profilo());
-                            
+                    sessione.setFoto_profilo(u.getFoto_profilo());*/
+                   // System.out.println("attributi:"+s.getAttribute("idSessione"));
+                    
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
                     rd.forward(request,response);
-                    /*out.println("<!DOCTYPE html>");
-                    out.println("<html>");
-                    out.println("<head>");
-                    out.println("<title>Servlet RegistrationServlet</title>");            
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
-                    out.println("<h1>Benvenuto, "+sessione.getNome()+" "+sessione.getCognome()+"!</h1>");
-                    out.println("</body>");
-                    out.println("</html>");*/
+                    
                 } else  {
                     out.println("<!DOCTYPE html>");
                     out.println("<html>");
@@ -93,7 +95,7 @@ public class LoginServlet extends HttpServlet {
         }
     }
     
-    private String buildGson(List<Utente> u) {
+    private String buildGson(List<UtenteGoogle> u) {
 
         Gson gson = new Gson();
         String json = gson.toJson(u);

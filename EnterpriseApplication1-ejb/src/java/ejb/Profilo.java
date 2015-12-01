@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ejb;
 
 import java.io.Serializable;
@@ -14,10 +13,11 @@ import javax.persistence.Id;
 
 /**
  *
- * @author giovanna
+ * @author Andrea22
  */
 @Entity
-public class Utente implements Serializable {
+public class Profilo implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,49 +26,31 @@ public class Utente implements Serializable {
     public Long getId() {
         return id;
     }
-     public void setId(Long id) {
+
+    public void setId(Long id) {
         this.id = id;
     }
-     
-    private String username;
+
+    private String email;
 
     /**
-     * Get the value of username
+     * Get the value of nome
      *
-     * @return the value of username
+     * @return the value of nome
      */
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * Set the value of username
+     * Set the value of nome
      *
-     * @param username new value of username
+     * @param email new value of nome
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
-    private String password;
-
-    /**
-     * Get the value of password
-     *
-     * @return the value of password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * Set the value of password
-     *
-     * @param password new value of password
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    
     private String nome;
 
     /**
@@ -108,28 +90,6 @@ public class Utente implements Serializable {
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
-
-    
-       private String email;
-
-    /**
-     * Get the value of email
-     *
-     * @return the value of email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * Set the value of email
-     *
-     * @param email new value of email
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     private String sesso;
 
     /**
@@ -170,14 +130,14 @@ public class Utente implements Serializable {
         this.data_nascita = data_nascita;
     }
 
-    private String tipo;
+    private int tipo;
 
     /**
      * Get the value of tipo
      *
      * @return the value of tipo
      */
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
@@ -186,7 +146,7 @@ public class Utente implements Serializable {
      *
      * @param tipo new value of tipo
      */
-    public void setTipo(String tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 
@@ -210,14 +170,14 @@ public class Utente implements Serializable {
         this.foto_profilo = foto_profilo;
     }
 
-    private String idComune;
+    private int idComune;
 
     /**
      * Get the value of idComune
      *
      * @return the value of idComune
      */
-    public String getIdComune() {
+    public int getIdComune() {
         return idComune;
     }
 
@@ -226,33 +186,9 @@ public class Utente implements Serializable {
      *
      * @param idComune new value of idComune
      */
-    public void setIdComune(String idComune) {
+    public void setIdComune(int idComune) {
         this.idComune = idComune;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Utente)) {
-            return false;
-        }
-        Utente other = (Utente) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "ejb.Utente[ id=" + id + " ]";
-    }
-    
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
 }

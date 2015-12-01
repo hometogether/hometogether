@@ -3,21 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ejb;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
  *
- * @author giovanna
+ * @author Andrea22
  */
 @Stateless
-public class UtenteFacade extends AbstractFacade<Utente> implements UtenteFacadeLocal {
+@LocalBean
+public class ProfiloFacade extends AbstractFacade<Profilo> implements ProfiloFacadeLocal{
+
     @PersistenceContext(unitName = "EnterpriseApplication1-ejbPU")
     
     private EntityManager em;
@@ -28,36 +30,36 @@ public class UtenteFacade extends AbstractFacade<Utente> implements UtenteFacade
         return em;
     }
 
-    public UtenteFacade() {
-        super(Utente.class);
+    public ProfiloFacade() {
+        super(Profilo.class);
     }
     
     @Override
-    public Utente getUtente(String email, String password){
+    public Profilo getProfilo(String email){
         //Query q = em.createNativeQuery(query);
-        System.out.println("entro in getutente");
-        Query q = em.createQuery("SELECT u FROM Utente u WHERE u.email =:custEmail AND u.password =:custPassword");
+        Query q = em.createQuery("SELECT p FROM Profilo p WHERE p.email =:custEmail");
         q.setParameter("custEmail", email);
-        q.setParameter("custPassword", password);
         List l = q.getResultList();
         System.out.println(l);
         if (l.isEmpty()){
             return null;
         } else {
-            System.out.println("prima del find");
-
-            Utente u = em.find(Utente.class, ((Utente)l.get(0)).getId());
-            
-            System.out.println("dopo il find");
-            
-            System.out.println(u);
-
-
-            return u;
+            Profilo p = em.find(Profilo.class, ((Profilo)l.get(0)).getId());
+            return p;
         }
         
     }
     
-    
-    
+    @Override
+    public int checkEmailEsistente(String email){
+        Query q = em.createQuery("SELECT p FROM Profilo p WHERE p.email =:custEmail");
+        q.setParameter("custEmail", email);
+        List l = q.getResultList();
+        if (l.isEmpty()){
+            return 0;
+        } else {
+            return -1;
+        }
+        
+    }
 }
