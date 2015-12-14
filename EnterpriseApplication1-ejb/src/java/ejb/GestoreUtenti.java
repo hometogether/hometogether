@@ -135,5 +135,14 @@ public class GestoreUtenti {
         return u;
 
     }
+    
+    public UtenteGoogle loginGoogle(String email, String idGoogle) {
+        System.out.println("entro in loginUtente");
+
+        UtenteGoogle u = utenteGoogleFacade.getUtente(email, idGoogle);
+
+        return u;
+
+    }
 
 }

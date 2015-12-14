@@ -44,15 +44,7 @@ public class UtenteGoogleFacade extends AbstractFacade<UtenteGoogle> implements 
         if (l.isEmpty()){
             return null;
         } else {
-            System.out.println("prima del find");
-
             UtenteGoogle u = em.find(UtenteGoogle.class, ((UtenteGoogle)l.get(0)).getId());
-            
-            System.out.println("dopo il find");
-            
-            System.out.println(u);
-
-
             return u;
         }
         
