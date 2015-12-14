@@ -70,21 +70,22 @@ public class GoogleServlet extends HttpServlet {
             // (Receive idTokenString by HTTPS POST)
                 String idTokenString = request.getParameter("token");
                 System.out.println("idTokenString:" + idTokenString);
-                System.out.println("verifier is:" + verifier.toString());
+              //  System.out.println("verifier is:" + verifier.toString());
                 GoogleIdToken idToken = verifier.verify(idTokenString);
 
                 if (idToken != null) {
-                    System.out.println("id token:" + idToken.toString());
                     Payload payload = idToken.getPayload();
-                    System.out.println("hosted domain:" + payload.getHostedDomain());
-
                     String id = request.getParameter("id");
-
-                    System.out.println("user token id:" + idToken.getPayload().getUserId());
-                    System.out.println("user id:" + id);
-                    if (id.equals(idToken.getPayload().getUserId())) {
+                    if (id.equals(payload.getUserId())) {
                         System.out.println("id utente e id del token uguali");
-                        out.println("0");
+                        String email = request.getParameter("email");
+                        String idgoogle = request.getParameter("idgoogle");
+                        UtenteGoogle u = gestoreUtenti.loginGoogle(email, idgoogle);
+                        if (u!=null){
+                            System.out.println("son loggato!");
+                        } else {
+                            out.println("0");
+                        }
                     } else {
                         System.out.println("id utente e id del token non uguali");
                         out.println("-1");

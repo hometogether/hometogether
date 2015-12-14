@@ -22,7 +22,8 @@ public class GestoreUtenti {
     private UtenteGoogleFacadeLocal utenteGoogleFacade;
     @EJB
     private UtenteAppFacadeLocal utenteAppFacade;
-
+     @EJB
+    private UtenteFacebookFacadeLocal utenteFacebookFacade;
     @EJB
     private ProfiloFacadeLocal profiloFacade;
 
@@ -76,7 +77,7 @@ public class GestoreUtenti {
         return 0;
     }
     
-    public int aggiungiUserGoogle(String nome, String cognome, String idGoogle, String email, String r_email, String data_nascita, String sesso) {
+    public int aggiungiUserGoogle(String nome, String cognome, String idGoogle, String email, String r_email, String data_nascita, String sesso, String foto) {
         System.out.println("entro in aggiungi user, con la persistance spettacolari!!!wowowow");
         if (nome == null || cognome == null || idGoogle == null || email == null
                 || r_email == null || data_nascita == null || sesso == null) {
@@ -100,7 +101,7 @@ public class GestoreUtenti {
         p.setSesso(sesso);
         p.setTipo(0);
         p.setIdComune(0); //da sistemare
-        p.setFoto_profilo("");
+        p.setFoto_profilo(foto);
         profiloFacade.create(p);
         Profilo profilo = profiloFacade.getProfilo(email);
         Long idProfilo = profilo.getId();
@@ -120,9 +121,65 @@ public class GestoreUtenti {
 
         return 0;
     }
+    
+    public int aggiungiUserFacebook(String nome, String cognome, String idFacebook, String email, String r_email, String data_nascita, String sesso,String foto) {
+        
+        if (nome == null || cognome == null || idFacebook == null || email == null
+                || r_email == null || data_nascita == null || sesso == null || foto==null) {
+            System.out.println("Non sono stati compilati tutti i campi!");
+            return -1;
+        } else if (!email.equals(r_email)) {
+            System.out.println("Le email non corrispondono!");
+            return -3;
+        } else {
+            int emailesistente = profiloFacade.checkEmailEsistente(email);
+            if (emailesistente != 0) {
+                System.out.println("Email già presente nel DB!");
+                return -4;
+            }
+        }
+        Profilo p = new Profilo();
+        p.setNome(nome);
+        p.setCognome(cognome);
+        p.setEmail(email);
+        p.setData_nascita(data_nascita);
+        p.setSesso(sesso);
+        p.setTipo(0);
+        p.setIdComune(0); //da sistemare
+        p.setFoto_profilo(foto);
+        profiloFacade.create(p);
+        Profilo profilo = profiloFacade.getProfilo(email);
+        Long idProfilo = profilo.getId();
+        UtenteFacebook u = new UtenteFacebook();
+        u.setIdFacebook(idFacebook);
+        u.setIdProfilo(idProfilo);
+        u.setEmail(email);
+
+       // UtenteApp u = new UtenteApp();
+        /*u.setNome(nome);
+         u.setCognome(cognome);*/
+        //u.setIdUtente("0");
+        // utenteAppFacade.create(u);
+        //System.out.println("la data è:"+data_nascita);
+        // String[] data = data_nascita.split("/");
+        utenteFacebookFacade.create(u);
+
+        return 0;
+    }
+    
 
     public List<UtenteApp> getUsers() {
         List<UtenteApp> listaUser = utenteAppFacade.findAll();
+
+        return listaUser;
+    }
+    public List<UtenteFacebook> getUserFacebook() {
+        List<UtenteFacebook> listaUser = utenteFacebookFacade.findAll();
+
+        return listaUser;
+    }
+    public List<UtenteGoogle> getUserGoogle() {
+        List<UtenteGoogle> listaUser = utenteGoogleFacade.findAll();
 
         return listaUser;
     }
@@ -144,5 +201,15 @@ public class GestoreUtenti {
         return u;
 
     }
+    
+    public UtenteFacebook loginFacebook(String email, String idFacebook) {
+        System.out.println("entro in loginUtente");
+
+        UtenteFacebook u = utenteFacebookFacade.getUtente(email, idFacebook);
+
+        return u;
+
+    }
+    
 
 }

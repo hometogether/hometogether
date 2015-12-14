@@ -15,21 +15,27 @@
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
         <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
         <link href="css/style.css" rel='stylesheet' type='text/css' />
-        <link rel="stylesheet" type="text/css" href="bootstrap.min.css"/>
-        <script type="text/javascript" src="bootstrap.min.js"></script>
-        <script type="text/javascript" src="bootstrap.js"></script>
+        
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic' rel='stylesheet' type='text/css'>
         <script type="text/javascript" src="js/googleLogin.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
-
         <script src="js/jquery-1.11.0.min.js"></script>
         <!---- start-smoth-scrolling---->
         <script type="text/javascript" src="js/move-top.js"></script>
         <script type="text/javascript" src="js/easing.js"></script>
         <script type='text/javascript' src='js/jquery.simple-text-rotator.min.js'></script>
+        
+        
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Philosopher' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/style_1.css" />
+        <link rel="stylesheet" href="css/font-awesome.min.css"/>
+        
+        
         <link rel="stylesheet" href="css/simpletextrotator.css" type="text/css">
 
         <script type="text/javascript">
@@ -46,46 +52,17 @@
             });
 
         </script>
-
+        
         <!---- start-smoth-scrolling---->
     </head>
     <body>
-
         <!--FACEBOOK SDK-->  
         <div id="fb-root"></div>
-        <script>
-            window.fbAsyncInit = function () {
-                FB.init({
-                    appId: '518776728298231',
-                    xfbml: true,
-                    version: 'v2.5'
-                });
-            };
-
-            (function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {
-                    return;
-                }
-                js = d.createElement(s);
-                js.id = id;
-                js.src = "//connect.facebook.net/en_US/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
 
         <script src="js/Facebook.js">
-
+            
         </script>
-        <!--
-          Below we include the Login Button social plugin. This button uses
-          the JavaScript SDK to present a graphical Login button that triggers
-          the FB.login() function when clicked.
-        -->
-
-
-       
-        <!--END FACEBOOK LOGIN-->  
+<!--END FACEBOOK LOGIN-->
         <div class="header" id="home">
             <div class="container">
                 <div class="logo">
@@ -94,59 +71,90 @@
                 <div class="navigation">
                     <span class="menu"></span> 
                     <ul class="navig">
-                        <li><a href="index.html" class="scroll">HOME</a><span> </span></li>
-                        <li><a href="#features" class="scroll">FEATURES</a><span> </span></li>
+                        <li><a href="index.jsp" class="scroll">HOME</a><span> </span></li>
                         <li><a href="#countdown" class="scroll">COUNTDOWN</a><span> </span></li>
-                        <li>
-                            <div id="signin-button" class="show">
-                                <div class="g-signin"
-                                     data-callback="loginFinished"
-                                     data-approvalprompt="force"
-                                     data-clientid="914513079502-evc4u51vs3mijtfebssfqr0mjpk7cs2l.apps.googleusercontent.com"
-                                     data-requestvisibleactions="http://schemas.google.com/CommentActivity"
-                                     data-cookiepolicy="single_host_origin"
-                                     data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email">
-                                </div>
-                            </div>
+                        <li><a href="#" class="scroll"></a><span></span></li>
+                        <li><a href="#iscriviti" class="scroll" id="iscriviti-link">ISCRIVITI</a><span> </span></li>
+                        <li><a href="#LoginModal" data-toggle="modal" data-target="#login-modal" id="login-link">LOGIN</a><span> </span></li>
+                        <li><a href="#" class="scroll"></a><span></span></li>
 
-
-                        </li>
-                        <li><a href="#registration" class="scroll"><fb:login-button scope="public_profile,email,user_friends,user_photos,user_birthday,user_location" onlogin="testAPI()"></fb:login-button></a><span> </span></li>
-                        <li><a href="#myModal" data-toggle="modal" data-target="#myModal">LOGIN</a><span> </span></li>
 
                     </ul>
                 </div>
-
-                <div class="modal fade" id="myModal">
-                    <div class="modal-dialog">
+                
+                
+                <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title">Log-in</h4>
-                            </div>
-                            <form action="LoginServlet" method="post">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input class="form-control" id="Email1" placeholder="Inserisci email" name="email" type="email">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input class="form-control" id="Password1" placeholder="Password" name="password" type="password">
-                                    </div>
-
-                                    <p class="text-right"><a href="#">Password dimenticata?</a></p>
+                                <div class="modal-header login_modal_header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h2 class="modal-title" id="myModalLabel">Accedi col tuo Account</h2>
                                 </div>
-                                <div class="modal-footer">
-                                    <a href="#" data-dismiss="modal" class="btn">Close</a>
-                                    <input type="hidden" name="action" value="login"/>
-                                    <button type="submit" class="btn btn-primary" style="background: red">Login</button>
+                                <div class="modal-body login-modal">
+                                        <p>HomeTogether è il miglior social per l'house sharing. È  al 100% gratuito e lo sarà sempre</p>
+                                        <br/>
+                                        <div class="clearfix"></div>
+                                        <div id='social-icons-conatainer'>
+                                                <div class='modal-body-left'>
+                                                        <div class="form-group">
+                                                        <input type="text" id="" placeholder="Inserisci la tua email" value="" class="form-control login-field">
+                                                        <i class="fa fa-user login-field-icon"></i>
+                                                </div>
+
+                                                <div class="form-group">
+                                                        <input type="password" id="login-pass" placeholder="Password" value="" class="form-control login-field">
+                                                        <i class="fa fa-lock login-field-icon"></i>
+                                                </div>
+
+                                                <a href="#" class="btn btn-success modal-login-btn">Login</a>
+                                                <a href="#" class="login-link text-center">Password dimenticata?</a>
+                                                </div>
+
+                                                <div class='modal-body-right'>
+                                                        <div class="modal-social-icons">
+                                                                <a href='#' class="btn btn-default facebook" onclick="myFacebookLogin()"> <i class="fa fa-facebook modal-icons"></i> Accedi con Facebook </a>
+                                                                <div class="g-signin btn btn-default google" data-callback="loginFinished"
+                                                                         data-approvalprompt="force"
+                                                                         data-clientid="914513079502-evc4u51vs3mijtfebssfqr0mjpk7cs2l.apps.googleusercontent.com"
+                                                                         data-requestvisibleactions="http://schemas.google.com/CommentActivity"
+                                                                         data-cookiepolicy="single_host_origin"
+                                                                         data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email" >
+                                                                    <i class="fa fa-google-plus modal-icons"></i> Accedi con Google
+                                                                </div>
+                                                                
+                                                                
+                                                        </div> 
+                                                </div>	
+                                                <div id='center-line'> OR </div>
+                                        </div>																												
+                                        <div class="clearfix"></div>
+
+                                        <div class="form-group modal-register-btn">
+                                                <button class="btn btn-primary col-md-4" style="background: red;"> Iscriviti</button>
+                                        </div>
                                 </div>
-                            </form>
+                                <div class="clearfix"></div>
+                                <div class="modal-footer login_modal_footer">
+                                </div>
                         </div>
+                        </div>
+                </div>
+                
+                
+                <div id="NotRegModal" class="modal fade">
+                    <div class="modal-dialog">
+                      <div class="alert alert-warning">
+                        <!-- dialog body -->
+                        <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <strong>OPS! </strong>Non risulti iscritto al sito, per favore iscriviti.
+                        </div>
+                        <!-- dialog buttons -->
+                        <div class="modal-footer"><a href="#iscriviti" data-dismiss="modal" class="btn scroll">Iscriviti</a></div>
+                      </div>
                     </div>
                 </div>
+                
                 <!-- script-for-menu -->
                 <script>
                     $("span.menu").click(function () {
@@ -157,8 +165,9 @@
                 <!-- script-for-menu -->
             </div>
         </div>
+
         <!--start-banner-regitration-->
-        <div id="registration" class="banner-orange">
+        <div class="banner-orange">
             <div class="container">
 
                 <div class="banner-bottom">
@@ -191,7 +200,7 @@
 
                                 </div>
 
-                                <div class="col-md-6 feature-main">
+                                <div class="col-md-6 feature-main" id="iscriviti">
                                     <form action="RegistrationServlet"  role="form" method="post">
                                         <h3>Iscriviti</h3>
                                         <br>
@@ -230,7 +239,10 @@
                                             <!--<label>Password</label>-->
                                             <input type="text" name="localita" class="form-control" id="localita" placeholder="Inserisci la tua località">
                                         </div>
-
+                                            <input type="hidden" name="idSocial" class="form-control" id="idSocial" >
+                                            <input type="hidden" name="foto_profilo" class="form-control" id="foto_profilo" >
+                                            <input type="hidden" name="tipo_registrazione" class="form-control" id="tipo_registrazione" value="0">
+                                            
                                         <h4 style="color: white">Data di nascita</h4>
                                         <br>
                                         <div class="form-group col-lg-12">

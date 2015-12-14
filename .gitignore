@@ -4,3 +4,6 @@
 /EnterpriseApplication1-ejb/dist/
 /EnterpriseApplication1-war/dist/
 /dist/
+/nbproject/private/
+/EnterpriseApplication1-ejb/nbproject/private/
+/EnterpriseApplication1-war/nbproject/private/

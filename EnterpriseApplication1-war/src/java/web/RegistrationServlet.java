@@ -8,6 +8,7 @@ package web;
 import com.google.gson.Gson;
 import ejb.GestoreUtenti;
 import ejb.UtenteApp;
+import ejb.UtenteFacebook;
 import ejb.UtenteGoogle;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,60 +36,124 @@ public class RegistrationServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-   @EJB
-   private GestoreUtenti gestoreUtenti;
-    
+    @EJB
+    private GestoreUtenti gestoreUtenti;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
-            System.out.println("action is:"+action);
+            System.out.println("action is:" + action);
             if (action.equals("registration")) {
                 String nome = request.getParameter("nome");
                 String cognome = request.getParameter("cognome");
-                String password = request.getParameter("password");
-                String r_password = request.getParameter("r_password");
                 String email = request.getParameter("email");
                 String r_email = request.getParameter("r_email");
                 String data_nascita = request.getParameter("data_nascita");
                 String sesso = request.getParameter("sesso");
-                System.out.println(data_nascita);
-                System.out.println(sesso);
-                int res = gestoreUtenti.aggiungiUser(nome, cognome, password, r_password, email, r_email, data_nascita, sesso);
-                if (res == 0){
-                    List<UtenteApp> lista = gestoreUtenti.getUsers();
-                    String gsonList = buildGson(lista);
+                String foto = request.getParameter("foto_profilo");
+                String tipo_registrazione = request.getParameter("tipo_registrazione");
+
+                if (tipo_registrazione.equals("0")) {
+                    String password = request.getParameter("password");
+                    String r_password = request.getParameter("r_password");
+                    System.out.println(data_nascita);
+                    System.out.println(sesso);
+                    int res = gestoreUtenti.aggiungiUser(nome, cognome, password, r_password, email, r_email, data_nascita, sesso);
+                    if (res == 0) {
+                        List<UtenteApp> lista = gestoreUtenti.getUsers();
+                        //String gsonList = buildGson(lista);
+
+                        out.println("<!DOCTYPE html>");
+                        out.println("<html>");
+                        out.println("<head>");
+                        out.println("<title>Servlet RegistrationServlet</title>");
+                        out.println("</head>");
+                        out.println("<body>");
+                        out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
+                        //out.println("<h1>" + gsonList + "</h1>");
+                        out.println("</body>");
+                        out.println("</html>");
+                    } else {
+                        out.println("<!DOCTYPE html>");
+                        out.println("<html>");
+                        out.println("<head>");
+                        out.println("<title>Servlet RegistrationServlet</title>");
+                        out.println("</head>");
+                        out.println("<body>");
+                        out.println("<h1>Errore!</h1>");
+                        out.println("</body>");
+                        out.println("</html>");
+                    }
+                } else if (tipo_registrazione.equals("1")) {
+                    String idSocial = request.getParameter("idSocial");
                     
-                    out.println("<!DOCTYPE html>");
-                    out.println("<html>");
-                    out.println("<head>");
-                    out.println("<title>Servlet RegistrationServlet</title>");            
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
-                    out.println("<h1>"+gsonList+"</h1>");
-                    out.println("</body>");
-                    out.println("</html>");
-                } else  {
-                    out.println("<!DOCTYPE html>");
-                    out.println("<html>");
-                    out.println("<head>");
-                    out.println("<title>Servlet RegistrationServlet</title>");            
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<h1>Errore!</h1>");
-                    out.println("</body>");
-                    out.println("</html>");
+                    int res = gestoreUtenti.aggiungiUserFacebook(nome, cognome, idSocial, email, r_email, data_nascita, sesso, foto);
+                    if (res == 0) {
+                        List<UtenteFacebook> lista = gestoreUtenti.getUserFacebook();
+                        String gsonList = buildGson(lista);
+
+                        out.println("<!DOCTYPE html>");
+                        out.println("<html>");
+                        out.println("<head>");
+                        out.println("<title>Servlet RegistrationServlet</title>");
+                        out.println("</head>");
+                        out.println("<body>");
+                        out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
+                        out.println("<h1>" + gsonList + "</h1>");
+                        out.println("</body>");
+                        out.println("</html>");
+                    } else {
+                        out.println("<!DOCTYPE html>");
+                        out.println("<html>");
+                        out.println("<head>");
+                        out.println("<title>Servlet RegistrationServlet</title>");
+                        out.println("</head>");
+                        out.println("<body>");
+                        out.println("<h1>Errore!</h1>");
+                        out.println("</body>");
+                        out.println("</html>");
+                    }
+                } else if (tipo_registrazione.equals("2")) {
+                    String idSocial = request.getParameter("idSocial");
+                    
+                    int res = gestoreUtenti.aggiungiUserGoogle(nome, cognome, idSocial, email, r_email, data_nascita, sesso, foto);
+                    if (res == 0) {
+                        //List<UtenteGoogle> lista = gestoreUtenti.getUserGoogle();
+                        //String gsonList = buildGson(lista);
+
+                        out.println("<!DOCTYPE html>");
+                        out.println("<html>");
+                        out.println("<head>");
+                        out.println("<title>Servlet RegistrationServlet</title>");
+                        out.println("</head>");
+                        out.println("<body>");
+                        out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
+                        out.println("<h1>" + "aaaaaasd" + "</h1>");
+                        out.println("</body>");
+                        out.println("</html>");
+                    } else {
+                        out.println("<!DOCTYPE html>");
+                        out.println("<html>");
+                        out.println("<head>");
+                        out.println("<title>Servlet RegistrationServlet</title>");
+                        out.println("</head>");
+                        out.println("<body>");
+                        out.println("<h1>Errore!</h1>");
+                        out.println("</body>");
+                        out.println("</html>");
+                    }
                 }
-                
+
             } else {
                 System.out.println("Action OTHER");
             }
-            
+
         }
     }
-private String buildGson(List<UtenteApp> u) {
+
+    private String buildGson(List<UtenteFacebook> u) {
 
         Gson gson = new Gson();
         String json = gson.toJson(u);
@@ -100,7 +165,9 @@ private String buildGson(List<UtenteApp> u) {
         }
         return json;
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
