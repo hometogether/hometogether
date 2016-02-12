@@ -70,12 +70,16 @@ window.fbAsyncInit = function() {
                                         $("#sessof").prop("checked", true);
                                     }
                                 }else{
-                                    $('iscriviti-link').remove();
-                                    $('login-link').remove();
-                                    $('#iscriviti').html("<h1>Benvenuto "+nome+"!</h1><img src='"+photo+"'alt='Foto profilo' height='42' width='42'>");
+                                   jQuery.noConflict();
+                                    $('#login-modal').modal('hide');
+                                    $('#iscriviti').remove();
+                                    $('#login-link').remove();
+                                    window.location.href = "/EnterpriseApplication1-war/profile.jsp";
+                                    $('#iscriviti-link').html("<a href='#'>"+nome+"<span>  </span><img src='"+photo+"'alt='Foto profilo' class='img-rounded' height='20%' width='20%'/><a>");
                                 }
                             }
                           };
+                          var idSocial= response.id;
                           var nome= response.first_name;
                           var cognome= response.last_name;
                           var email= response.email;
@@ -91,16 +95,15 @@ window.fbAsyncInit = function() {
                                 
                                 xhttp.open("POST", "FacebookServlet", true);
                                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                                xhttp.send("nome="+ nome +"&cognome="+ cognome+"&email="+ email+"&giorno="+ giorno+"&mese="+ mese+"&anno="+ anno+"&sesso="+ sesso+"&localita="+localita+"&foto="+ encodeURIComponent(foto));
-                                
+                                xhttp.send("idSocial="+idSocial+"&nome="+ nome +"&cognome="+ cognome+"&email="+ email+"&giorno="+ giorno+"&mese="+ mese+"&anno="+ anno+"&sesso="+ sesso+"&localita="+localita+"&foto="+ encodeURIComponent(foto));
+                                console.log(foto);
                                 console.log(encodeURIComponent(foto));
                                 photo=foto;
-                                document.getElementById("bo").src=foto;
                             }
 
                             function get_data_user_login(){
                                 FB.api(                                                
-                                     '/me/picture?type=normal',                     
+                                     '/me/picture?type=large',                     
                                       
                                       function(response){   
                                              sendData(response.data.url);
