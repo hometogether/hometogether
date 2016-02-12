@@ -72,7 +72,7 @@
                     <span class="menu"></span> 
                     <ul class="navig">
                         <li><a href="index.jsp" class="scroll">HOME</a><span> </span></li>
-                        <li><a href="#countdown" class="scroll">COUNTDOWN</a><span> </span></li>
+                        <li><a href="profile.jsp" class="scroll">COUNTDOWN</a><span> </span></li>
                         <li><a href="#" class="scroll"></a><span></span></li>
                         <li><a href="#iscriviti" class="scroll" id="iscriviti-link">ISCRIVITI</a><span> </span></li>
                         <li><a href="#LoginModal" data-toggle="modal" data-target="#login-modal" id="login-link">LOGIN</a><span> </span></li>
@@ -81,14 +81,13 @@
 
                     </ul>
                 </div>
-                
-                
+
                 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                         <div class="modal-content">
                                 <div class="modal-header login_modal_header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h2 class="modal-title" id="myModalLabel">Accedi col tuo Account</h2>
+                                        <h2 class="modal-title" id="myModalLabel" style="color : white">Accedi col tuo Account</h2>
                                 </div>
                                 <div class="modal-body login-modal">
                                         <p>HomeTogether è il miglior social per l'house sharing. È  al 100% gratuito e lo sarà sempre</p>
@@ -112,7 +111,7 @@
 
                                                 <div class='modal-body-right'>
                                                         <div class="modal-social-icons">
-                                                                <a href='#' class="btn btn-default facebook" onclick="myFacebookLogin()"> <i class="fa fa-facebook modal-icons"></i> Accedi con Facebook </a>
+                                                                <a href="#" class="btn btn-default facebook" onclick="myFacebookLogin()"> <i class="fa fa-facebook modal-icons"></i> Accedi con Facebook </a>
                                                                 <div class="g-signin btn btn-default google" data-callback="loginFinished"
                                                                          data-approvalprompt="force"
                                                                          data-clientid="914513079502-evc4u51vs3mijtfebssfqr0mjpk7cs2l.apps.googleusercontent.com"
@@ -125,7 +124,7 @@
                                                                 
                                                         </div> 
                                                 </div>	
-                                                <div id='center-line'> OR </div>
+                                                <div id='center-line'> O </div>
                                         </div>																												
                                         <div class="clearfix"></div>
 
