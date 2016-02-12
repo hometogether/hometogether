@@ -6,12 +6,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 html, body{
     font-size: 100%;
-	background:	rgba(228, 131, 18, 0.6);
+	background: rgba(228, 131, 18, 0.6);
 	font-family: fabrik;
 }
 @font-face {
     font-family: fabrik;
-    src: url(font/fabrik.ttf);
+    src: url(fonts/fabrik.ttf);
 }
 
 body a{
@@ -52,7 +52,7 @@ ul.navig{
 }
 ul.navig li{
 	display: inline-block;
-	margin: 0 12px;
+	margin: 0 20px;
 	position:relative;
 }
 ul.navig li:nth-of-type(3) {

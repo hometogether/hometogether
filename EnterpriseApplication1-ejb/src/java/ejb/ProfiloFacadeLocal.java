@@ -30,7 +30,7 @@ public interface ProfiloFacadeLocal {
     Profilo getProfilo(String email);
 
     int checkEmailEsistente(String email);
-    
+     
     int count();
 
     

@@ -63,6 +63,19 @@
             
         </script>
 <!--END FACEBOOK LOGIN-->
+
+<!--EMAIL DI REGISTRAZIONE GIA' PRESENTE-->
+    <script type="text/javascript">
+        function sameEmail(){
+            var xhttp = new XMLHttpRequest();
+            var res=xhttp.responseText;
+            var same="same";
+            if(res===same){
+                
+            }
+        }
+    </script>
+
         <div class="header" id="home">
             <div class="container">
                 <div class="logo">

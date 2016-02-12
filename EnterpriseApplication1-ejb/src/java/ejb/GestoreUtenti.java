@@ -211,5 +211,19 @@ public class GestoreUtenti {
 
     }
     
+    public void modificaFotoProfilo(String email, String foto){
+        Profilo p = profiloFacade.getProfilo(email);
+        p.setFoto_profilo(foto);
+        profiloFacade.edit(p);
+    }
+    
+    public void modificaInfo(String email, String data_nascita){
+        Profilo p = profiloFacade.getProfilo(email);
+        p.setData_nascita(data_nascita);
+        /*
+        p.setIdComune(localita);*/
+        profiloFacade.edit(p);
+    }
+       
 
 }

@@ -23,7 +23,7 @@ public class ProfiloFacade extends AbstractFacade<Profilo> implements ProfiloFac
     @PersistenceContext(unitName = "EnterpriseApplication1-ejbPU")
     
     private EntityManager em;
-
+    
     @Override
     protected EntityManager getEntityManager() {
         
@@ -50,6 +50,7 @@ public class ProfiloFacade extends AbstractFacade<Profilo> implements ProfiloFac
         
     }
     
+   
     @Override
     public int checkEmailEsistente(String email){
         Query q = em.createQuery("SELECT p FROM Profilo p WHERE p.email =:custEmail");

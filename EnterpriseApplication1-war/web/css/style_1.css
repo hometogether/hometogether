@@ -14,7 +14,7 @@
     width:100%;
     padding-bottom:20px;
 }
-.login_modal_header, .login_modal_footer {background: rgba(232, 150, 55, 0.6) !important;}
+.login_modal_header, .login_modal_footer {background: rgba(228, 131, 18, 0.85);}
 .modal-register-btn{margin: 4% 33% 2% 33% ;width:100%;}
 .login-modal input{height:40px; box-shadow: none; border:1px solid #ddd;}
 .modal-body-left{float:left; width:50%; padding-right:4%; border-right:4px solid #ddd;}
@@ -28,7 +28,7 @@
 .facebook, .facebook:hover{background-color: #3b5999; border:2px solid #3b5999;color:#fff;}
 .linkedin, .linkedin:hover{background-color: #007bb6; border: 2px solid #007bb6; color:#fff;}
 #social-icons-conatainer{position: relative;}
-#center-line{position: absolute;  right: 265.7px;top: 80px;background:#ddd;  border: 4px solid #DDDDDD;border-radius: 20px;}
+#center-line{position: absolute;  right: 270.0px;top: 80px;background:#ddd;  border: 4px solid #DDDDDD;border-radius: 20px;}
 .modal-login-btn{width:100%;height:40px; margin-bottom:10px;}
 #modal-launcher{margin: 30% 0 0 30%; }
 
