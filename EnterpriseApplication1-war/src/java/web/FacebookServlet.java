@@ -8,6 +8,8 @@ package web;
 
 import com.google.gson.Gson;
 import ejb.GestoreUtenti;
+import ejb.ProfiloFacade;
+import ejb.Profilo;
 import ejb.UtenteFacebook;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,16 +41,20 @@ public class FacebookServlet extends HttpServlet {
      */
      @EJB
    private GestoreUtenti gestoreUtenti;
+     @EJB
+     private ProfiloFacade profiloFacade;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession s = request.getSession();
+
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
             System.out.println("action is:"+action);
             if (true) {
                 //String username = request.getParameter("username");
+                String idSocial= request.getParameter("idSocial");
                 String nome = request.getParameter("nome");
                 String cognome = request.getParameter("cognome");
                 String email = request.getParameter("email");
@@ -59,19 +65,16 @@ public class FacebookServlet extends HttpServlet {
                 String location= request.getParameter("localita");
                 String foto = request.getParameter("foto");
                 
-                UtenteFacebook u = gestoreUtenti.loginFacebook(email, action);
-                
+                UtenteFacebook u = gestoreUtenti.loginFacebook(email, idSocial);
+                Profilo p = profiloFacade.getProfilo(email);
                 if(u != null){
-                    out.println("<!DOCTYPE html>");
-                    out.println("<html>");
-                    out.println("<head>");
-                    out.println("<title>Servlet RegistrationServlet</title>");            
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
-                    out.println("<h1>Login Successfully</h1>");
-                    out.println("</body>");
-                    out.println("</html>");
+                    s.setAttribute("nome",""+p.getNome());
+                    s.setAttribute("cognome",""+p.getCognome());
+                    s.setAttribute("email",""+p.getEmail());
+                    s.setAttribute("data",""+p.getData_nascita());
+                    s.setAttribute("sesso",""+p.getSesso());
+                    s.setAttribute("location",""+location);
+                    s.setAttribute("foto",""+p.getFoto_profilo());   
                 }else{
                     response.getWriter().write("no");
 
