@@ -15,6 +15,8 @@ var loginFinished = function (authResult) {
 
                 var id_token = authResult['id_token'];
                 var id = data['id'];
+                var email = data['emails']['0']['value'];
+                var idgoogle = data['id'];
                 xhr.open('POST', 'GoogleServlet');
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onload = function () {
@@ -55,7 +57,7 @@ var loginFinished = function (authResult) {
                         $('#foto_profilo').val(data['image']['url']);
 
                         $('#tipo_registrazione').val('2');
-                        $('#id_social').val(id);
+                        $('#idSocial').val(id);
 
                         $("#div_password").remove();
                         $("#div_r_password").remove();
@@ -63,7 +65,7 @@ var loginFinished = function (authResult) {
                     }
 
                 };
-                xhr.send('action=loginGoogle&token=' + id_token + '&id=' + id);
+                xhr.send('action=loginGoogle&token=' + id_token + '&id=' + id + '&email=' + email + '&idgoogle=' + idgoogle);
             });
         }
 

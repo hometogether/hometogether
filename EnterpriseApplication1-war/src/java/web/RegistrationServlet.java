@@ -117,7 +117,7 @@ public class RegistrationServlet extends HttpServlet {
                     }
                 } else if (tipo_registrazione.equals("2")) {
                     String idSocial = request.getParameter("idSocial");
-                    
+                    System.out.println("idgoogle:"+idSocial);
                     int res = gestoreUtenti.aggiungiUserGoogle(nome, cognome, idSocial, email, r_email, data_nascita, sesso, foto);
                     if (res == 0) {
                         //List<UtenteGoogle> lista = gestoreUtenti.getUserGoogle();

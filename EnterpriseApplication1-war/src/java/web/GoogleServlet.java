@@ -84,6 +84,7 @@ public class GoogleServlet extends HttpServlet {
                         if (u!=null){
                             System.out.println("son loggato!");
                         } else {
+                            System.out.println("non sono loggato!");
                             out.println("0");
                         }
                     } else {
