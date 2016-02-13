@@ -14,18 +14,25 @@
         <link href="css/bootstrap_1.min.css" rel='stylesheet' type='text/css' />
         <link href="css/bootstrap-theme_1.css" rel='stylesheet' type='text/css' />
         <link href="css/ProfileStyle.css" rel='stylesheet' type='text/css' />
+        <link href="css/style_1.css" rel='stylesheet' type='text/css' />
 
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="js/Facebook.js"></script>
+        
         <!--CSS-->
         <%
             HttpSession s = request.getSession();
         %>
         
         <title>Profile Page</title>
-        
+        <!--MODAL PER SHOW IMMAGINE PROFILO-->
+        <%@include file="modal-immagineProfilo.jsp"%>
+        <!--MODAL PER LA MODIFICA DELLE INFO UTENTE-->
+        <%@include file="modal-modInfo.jsp"%>
+        <!--MODAL PER LA MODIFICA DEGLI INTERESSI-->
+        <%@include file="modal-interessi.jsp"%>
     </head>
     
     <body>
@@ -118,24 +125,7 @@
                                                 </div>
                                                 <a href="#" data-toggle="modal" data-target="#avatar-modal"><img src="<%=(String)s.getAttribute("foto")%>" class="avatar profile-image-avatar" alt="avatar"/></a>
                                             </div>
-                                                
-                                                <div class="modal fade" id="avatar-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            </div>
-                                                        <div class="modal-body" style="text-align: center">
-                                                            <img src="<%=(String)s.getAttribute("foto")%>" alt="avatar" style="width: 70%"/>
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                            <div class="modal-footer login_modal_footer">
-                                                            </div>
-                                                    </div>
-                                                    </div>
-                                            </div>
-                                                
-                                                
+   
                                               <br>
                                               <div class="panel panel-info">
                                                 <div class="panel-heading colored">
@@ -155,39 +145,17 @@
                                                         </div>
 
                                                         <div class="panel-footer">
-                                                            <button class="borderless-btn" style="text-align: center;color: black" data-toggle="modal" data-target="#mod-info-modal">
-                                                                <i class="glyphicon glyphicon-cog"></i> Modifica le tue informazioni
-                                                            </button>
+                                                            <div class="btn-group" role="group"> 
+                                                                <button class="  btn-secodary borderless-btn" style="text-align: center;color: black" data-toggle="modal" data-target="#mod-info-modal">
+                                                                    <i class="glyphicon glyphicon-info-sign"></i> Informazioni
+                                                                </button>
+                                                                <button class=" btn-secodary borderless-btn" style="text-align: center;color: black" data-toggle="modal" data-target="#mod-interessi">
+                                                                    <i class="glyphicon glyphicon-music"></i> Interessi
+                                                                </button>
+                                                            </div>
+                                                            
                                                         </div>
                                                         
-                                                        <div class="modal fade" id="mod-info-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                            <h3 style="text-align: center">MODIFICA LE INFORMAZIONI SU DI TE</h3>
-                                                                        </div>
-                                                                        <form action="ProfileServlet" role="form" method="POST">
-                                                                            <div class="modal-body" style="text-align: center">
-                                                                                <div class="input-group col-md-6 col-xs-6 col-sm-6">
-                                                                                    <span class="input-group-addon">Località attuale</span><input class="form-control" type="text" id="localita" name="localita" placeholder="Dove vivi?"/>
-                                                                                </div>
-                                                                                <br>
-                                                                                <div class="input-group col-md-6 col-xs-6 col-sm-6">
-                                                                                    <span class="input-group-addon">Data di nascita</span><input class="form-control" type="date" id="data_nascita" name="data_nascita" placeholder="Quando sei nato?"/>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="clearfix"></div>
-                                                                            <div class="modal-footer login_modal_footer">
-                                                                                <input type="hidden" name="action" value="mod_info">
-                                                                                <button type="submit" class="btn btn-primary form-group" >Conferma</button>
-                                                                            </div>
-                                                                        </form>
-                                                                        
-                                                                        
-                                                                </div>
-                                                                </div>
-                                                        </div>
                                                         
                                                     </div>
 
