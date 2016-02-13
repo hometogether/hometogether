@@ -189,6 +189,59 @@ public class Profilo implements Serializable {
     public void setIdComune(int idComune) {
         this.idComune = idComune;
     }
+    
+    private String occupazione;
+    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    public String getOccupazione() {
+        return occupazione;
+    }
+
+    public void setOccupazione(String Occupazione) {
+        this.occupazione = Occupazione;
+    }
+    
+        private String formazione;
+
+    /**
+     * Get the value of formazione
+     *
+     * @return the value of formazione
+     */
+    public String getFormazione() {
+        return formazione;
+    }
+
+    /**
+     * Set the value of formazione
+     *
+     * @param formazione new value of formazione
+     */
+    public void setFormazione(String formazione) {
+        this.formazione = formazione;
+    }
+    
+        private String telefono;
+
+    /**
+     * Get the value of telefono
+     *
+     * @return the value of telefono
+     */
+    public String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * Set the value of telefono
+     *
+     * @param telefono new value of telefono
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+
 }
