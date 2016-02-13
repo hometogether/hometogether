@@ -59,30 +59,26 @@ public class LoginServlet extends HttpServlet {
                 System.out.println("prima della query loginutente");
                 UtenteApp u = gestoreUtenti.loginUtente(email, password);
                 if (u != null) {
-                    //List<Utente> lista = gestoreUtenti.getUsers();
-                    //Utente[] arLibro = lista.toArray(new Utente[lista.size()]);
-                    //String gsonList = buildGson(lista);
                     HttpSession session = request.getSession();
-                    session.setAttribute("id", u.getId());
-                    session.setAttribute("id profilo", u.getIdProfilo());
-                    //session.setAttribute("cognome", u.getCognome());
-                    //session.setAttribute("username", u.getUsername());
-                    //session.setAttribute("tipo", u.getTipo());
-                    //session.setAttribute("email", u.getEmail());
-                    //session.setAttribute("foto_profilo", u.getFoto_profilo());
-                    //sessione.setId(u.getId());
-                    /*sessione.setNome(u.getNome());
-                     sessione.setCognome(u.getCognome());
-                     sessione.setUsername(u.getUsername());
-                     sessione.setTipo(u.getTipo());
-                     sessione.setEmail(u.getEmail());
-                     sessione.setFoto_profilo(u.getFoto_profilo());*/
-                   // System.out.println("attributi:"+s.getAttribute("idSessione"));
+                    session.setAttribute("id", u.getIdProfilo());
+                    session.setAttribute("email", u.getEmail());
+                    
+                    Profilo p = profiloFacade.getProfilo(email);
+                    session.setAttribute("nome",""+p.getNome());
+                    session.setAttribute("cognome",""+p.getCognome());
+                    session.setAttribute("email",""+p.getEmail());
+                    session.setAttribute("data",""+p.getData_nascita());
+                    session.setAttribute("sesso",""+p.getSesso());
+                  //  s.setAttribute("location",""+location);
+                    session.setAttribute("foto",""+p.getFoto_profilo()); 
+                    
+                     
 
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/profile.jsp");
                     rd.forward(request, response);
 
                 } else {
+                    //GESTIRE ERRORE
                     out.println("<!DOCTYPE html>");
                     out.println("<html>");
                     out.println("<head>");
