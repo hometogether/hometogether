@@ -691,6 +691,13 @@
             </div>
         </div>
         <!--end-contact-->
+        
+        <!--START GOOGLE FORM -->
+        <form id="googleForm" action="LoginServlet"  role="form" method="post">
+            <input type="hidden" name="action" value="loginSocial">
+        </form>
+        
+        <!-- END GOOGLE FORM-->
         <!--start-footer-->
         <div class="footer">
             <div class="container">

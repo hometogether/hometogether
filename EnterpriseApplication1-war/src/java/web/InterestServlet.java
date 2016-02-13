@@ -25,8 +25,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Andrea22
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "IterestServlet", urlPatterns = {"/InterestServlet"})
+public class InterestServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,32 +46,19 @@ public class LoginServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
             System.out.println("action is:"+action);
-            if (action.equals("login")) {
+            //if (action.equals("add")) {
                 //String username = request.getParameter("username");
-                String email = request.getParameter("email");
-                String password = request.getParameter("password");
-                System.out.println("prima della query loginutente");
-                UtenteApp u = gestoreUtenti.loginUtente(email, password);
-                if (u != null){
+               // String nomeinteresse = request.getParameter("nomeinteresse");
+                
+                //String u = gestoreInteressi.aggiungiInteresse(idProfilo,nomeinteresse);
+                /*if (u != null){
                     //List<Utente> lista = gestoreUtenti.getUsers();
                     //Utente[] arLibro = lista.toArray(new Utente[lista.size()]);
                     //String gsonList = buildGson(lista);
                     HttpSession session = request.getSession();
                     session.setAttribute("id", u.getId());
                     session.setAttribute("id profilo", u.getIdProfilo());
-                    //session.setAttribute("cognome", u.getCognome());
-                    //session.setAttribute("username", u.getUsername());
-                    //session.setAttribute("tipo", u.getTipo());
-                    //session.setAttribute("email", u.getEmail());
-                    //session.setAttribute("foto_profilo", u.getFoto_profilo());
-                    //sessione.setId(u.getId());
-                    /*sessione.setNome(u.getNome());
-                    sessione.setCognome(u.getCognome());
-                    sessione.setUsername(u.getUsername());
-                    sessione.setTipo(u.getTipo());
-                    sessione.setEmail(u.getEmail());
-                    sessione.setFoto_profilo(u.getFoto_profilo());*/
-                   // System.out.println("attributi:"+s.getAttribute("idSessione"));
+                    
                     
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
                     rd.forward(request,response);
@@ -88,17 +75,11 @@ public class LoginServlet extends HttpServlet {
                     out.println("</html>");
                 }
                 
-            } else if (action.equals("loginSocial")) {
-                HttpSession session = request.getSession();
-                if (session != null) {
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/profile.jsp");
-                    rd.forward(request,response);
-                } else {
-                    //RIMANDO A PAGINA DI ERRORE
-                }
-            } else {
+            } else if (action.equals("add")) {
+            
+            }else {
                 System.out.println("Action OTHER");
-            }
+            }*/
             
         }
     }

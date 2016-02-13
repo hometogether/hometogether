@@ -62,6 +62,8 @@ var loginFinished = function (authResult) {
                         $("#div_password").remove();
                         $("#div_r_password").remove();
 
+                    } else if (xhr.responseText.trim() === "1"){
+                        $('#googleForm').submit();
                     }
 
                 };

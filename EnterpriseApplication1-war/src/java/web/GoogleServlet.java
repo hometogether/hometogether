@@ -17,6 +17,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import ejb.GestoreUtenti;
+import ejb.Profilo;
+import ejb.ProfiloFacade;
 import ejb.UtenteGoogle;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,11 +29,13 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -51,7 +55,8 @@ public class GoogleServlet extends HttpServlet {
      */
     @EJB
     private GestoreUtenti gestoreUtenti;
-
+    @EJB
+     private ProfiloFacade profiloFacade;
     // private Sessione sessione = new Sessione();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, GeneralSecurityException {
@@ -81,8 +86,24 @@ public class GoogleServlet extends HttpServlet {
                         String email = request.getParameter("email");
                         String idgoogle = request.getParameter("idgoogle");
                         UtenteGoogle u = gestoreUtenti.loginGoogle(email, idgoogle);
+                        Profilo p = profiloFacade.getProfilo(email);
                         if (u!=null){
                             System.out.println("son loggato!");
+                            
+                            HttpSession session = request.getSession();
+                            session.setAttribute("id", u.getIdProfilo());
+                            session.setAttribute("idgoogle", u.getIdGoogle());
+                            session.setAttribute("email", u.getEmail());
+                            session.setAttribute("nome",""+p.getNome());
+                            session.setAttribute("cognome",""+p.getCognome());
+                            session.setAttribute("email",""+p.getEmail());
+                            session.setAttribute("data",""+p.getData_nascita());
+                            session.setAttribute("sesso",""+p.getSesso());
+                            //session.setAttribute("location",""+p.get);
+                            session.setAttribute("foto",""+p.getFoto_profilo());
+                            out.println("1");
+                            
+                            
                         } else {
                             System.out.println("non sono loggato!");
                             out.println("0");

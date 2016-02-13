@@ -6,10 +6,12 @@
 package ejb;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -244,4 +246,27 @@ public class Profilo implements Serializable {
     }
 
 
+    @ManyToMany
+    private List<Interesse> interessi;
+
+    /**
+     * Get the value of interessi
+     *
+     * @return the value of interessi
+     */
+    public List<Interesse> getInteressi() {
+        return interessi;
+    }
+
+    /**
+     * Set the value of interessi
+     *
+     * @param interessi new value of interessi
+     */
+    public void setInteressi(List<Interesse> interessi) {
+        this.interessi = interessi;
+    }
+
+    
+    
 }
