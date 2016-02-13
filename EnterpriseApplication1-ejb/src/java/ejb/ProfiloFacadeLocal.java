@@ -28,6 +28,8 @@ public interface ProfiloFacadeLocal {
     List<Profilo> findRange(int[] range);
 
     Profilo getProfilo(String email);
+    
+    Profilo getProfilo(Long idProfilo);
 
     int checkEmailEsistente(String email);
      

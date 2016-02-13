@@ -9,13 +9,10 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.Json;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import ejb.GestoreUtenti;
 import ejb.Profilo;
 import ejb.ProfiloFacade;
@@ -25,11 +22,9 @@ import java.io.PrintWriter;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -86,7 +81,7 @@ public class GoogleServlet extends HttpServlet {
                         String email = request.getParameter("email");
                         String idgoogle = request.getParameter("idgoogle");
                         UtenteGoogle u = gestoreUtenti.loginGoogle(email, idgoogle);
-                        Profilo p = profiloFacade.getProfilo(email);
+                        //Profilo p = profiloFacade.getProfilo(email);
                         if (u!=null){
                             System.out.println("son loggato!");
                             
@@ -94,15 +89,11 @@ public class GoogleServlet extends HttpServlet {
                             session.setAttribute("id", u.getIdProfilo());
                             session.setAttribute("idgoogle", u.getIdGoogle());
                             session.setAttribute("email", u.getEmail());
-                            session.setAttribute("nome",""+p.getNome());
-                            session.setAttribute("cognome",""+p.getCognome());
-                            session.setAttribute("email",""+p.getEmail());
-                            session.setAttribute("data",""+p.getData_nascita());
-                            session.setAttribute("sesso",""+p.getSesso());
-                            //session.setAttribute("location",""+p.get);
-                            session.setAttribute("foto",""+p.getFoto_profilo());
-                            out.println("1");
                             
+                            //session.setAttribute("location",""+p.get);
+                            
+                            
+                            out.println("1");
                             
                         } else {
                             System.out.println("non sono loggato!");
@@ -112,111 +103,11 @@ public class GoogleServlet extends HttpServlet {
                         System.out.println("id utente e id del token non uguali");
                         out.println("-1");
                     }
-              //if (payload.getHostedDomain().equals("localhost:8080/")
-                    // If multiple clients access the backend server:
-                 /*&& Arrays.asList(ANDROID_CLIENT_ID, IOS_CLIENT_ID).contains(payload.getAuthorizedParty())*//*) {*/
-
-                    /*System.out.println(payload.getUnknownKeys());
-                     Map<String, Object> map = payload.getUnknownKeys();
-                     for (Map.Entry<String, Object> entry : map.entrySet()) {
-                     System.out.println(entry.getKey()+":"+entry.getValue());
-                     }*/
-
-                //System.out.println("User email: " + idToken.toString());
-                    /*} else {
-                     System.out.println("Invalid ID token.");
-                     }*/
+             
                 } else {
                     System.out.println("Invalid ID token.");
                     out.println("-1");
                 }
-
-                /*  
-                
-                
-                
-                
-                 //String username = request.getParameter("username");
-                 String id = request.getParameter("id");
-                 String email = request.getParameter("email");
-                 String nome = request.getParameter("nome");
-                 String cognome = request.getParameter("cognome");
-                 String sesso = request.getParameter("sesso");
-
-                 String foto_profilo = request.getParameter("foto_profilo");
-                 String token = request.getParameter("token");
-
-                 System.out.println("id:"+id);
-                 System.out.println("sesso:"+sesso);
-                 System.out.println("nome:"+nome);
-                 System.out.println("cognome:"+cognome);
-
-                
-                
-                 Utente u = gestoreUtenti.loginUtente(email,token);
-                
-                 if (u != null){
-                 //List<Utente> lista = gestoreUtenti.getUsers();
-                 //Utente[] arLibro = lista.toArray(new Utente[lista.size()]);
-                 //String gsonList = buildGson(lista);
-                 HttpSession session = request.getSession();
-                 session.setAttribute("id", u.getId());
-                 session.setAttribute("nome", u.getNome());
-                 session.setAttribute("cognome", u.getCognome());
-                 session.setAttribute("username", u.getUsername());
-                 session.setAttribute("tipo", u.getTipo());
-                 session.setAttribute("email", u.getEmail());
-                 session.setAttribute("foto_profilo", u.getFoto_profilo());
-                 //sessione.setId(u.getId());
-                 /*sessione.setNome(u.getNome());
-                 sessione.setCognome(u.getCognome());
-                 sessione.setUsername(u.getUsername());
-                 sessione.setTipo(u.getTipo());
-                 sessione.setEmail(u.getEmail());
-                 sessione.setFoto_profilo(u.getFoto_profilo());*/
-                   // System.out.println("attributi:"+s.getAttribute("idSessione"));
-                   /* System.out.println("sto per andare in home.jsp!");
-                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
-                 rd.forward(request,response);
-                    
-                 } else  {
-                 //bisogna registrare l'utente!
-                    
-
-                 String giorno = "01";
-                 String mese = "01";
-                 String anno = "1980";
-                
-                 int res = gestoreUtenti.aggiungiUser(nome, cognome, token, token, email, email, giorno, mese, anno, sesso);
-                
-                 if (res == 0){
-                 List<Utente> lista = gestoreUtenti.getUsers();
-                 String gsonList = buildGson(lista);
-
-                 out.println("<!DOCTYPE html>");
-                 out.println("<html>");
-                 out.println("<head>");
-                 out.println("<title>Servlet RegistrationServlet</title>");            
-                 out.println("</head>");
-                 out.println("<body>");
-                 out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
-                 out.println("<h1>"+gsonList+"</h1>");
-                 out.println("</body>");
-                 out.println("</html>");
-                 } else  {
-                 out.println("<!DOCTYPE html>");
-                 out.println("<html>");
-                 out.println("<head>");
-                 out.println("<title>Servlet RegistrationServlet</title>");            
-                 out.println("</head>");
-                 out.println("<body>");
-                 out.println("<h1>Errore!</h1>");
-                 out.println("</body>");
-                 out.println("</html>");
-                 }
-                
-                
-                 }*/
             } else {
                 System.out.println("Action OTHER");
             }

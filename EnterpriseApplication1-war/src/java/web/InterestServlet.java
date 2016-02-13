@@ -6,6 +6,7 @@
 package web;
 
 import com.google.gson.Gson;
+import ejb.GestoreInteressi;
 import ejb.GestoreUtenti;
 import ejb.UtenteApp;
 import ejb.UtenteGoogle;
@@ -38,7 +39,7 @@ public class InterestServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @EJB
-    private GestoreUtenti gestoreUtenti;
+    private GestoreInteressi gestoreInteressi;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -46,56 +47,34 @@ public class InterestServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
             System.out.println("action is:"+action);
-            //if (action.equals("add")) {
-                //String username = request.getParameter("username");
-               // String nomeinteresse = request.getParameter("nomeinteresse");
+            if (action.equals("add")) {
+                HttpSession session = request.getSession();
+                System.out.println("entro in action add");
+                Long idProfilo = (Long) session.getAttribute("id");
+
+                String nomeinteresse = request.getParameter("nomeinteresse");
+                nomeinteresse = nomeinteresse.toLowerCase();
+                int res = gestoreInteressi.aggiungiInteresse(idProfilo, nomeinteresse);
                 
-                //String u = gestoreInteressi.aggiungiInteresse(idProfilo,nomeinteresse);
-                /*if (u != null){
-                    //List<Utente> lista = gestoreUtenti.getUsers();
-                    //Utente[] arLibro = lista.toArray(new Utente[lista.size()]);
-                    //String gsonList = buildGson(lista);
-                    HttpSession session = request.getSession();
-                    session.setAttribute("id", u.getId());
-                    session.setAttribute("id profilo", u.getIdProfilo());
-                    
-                    
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
-                    rd.forward(request,response);
-                    
-                } else  {
-                    out.println("<!DOCTYPE html>");
-                    out.println("<html>");
-                    out.println("<head>");
-                    out.println("<title>Servlet RegistrationServlet</title>");            
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<h1>Errore!</h1>");
-                    out.println("</body>");
-                    out.println("</html>");
+                System.out.println("supero aggiungi interesse, res = "+res);
+
+
+                if (res == 0){
+                    System.out.println("pronto a tornare nella jsp");
+                    out.println("0");
+                } else {
+                    out.println("-1");
                 }
                 
-            } else if (action.equals("add")) {
-            
-            }else {
+                
+               
+            } else {
+                out.println("-1");
                 System.out.println("Action OTHER");
-            }*/
-            
+            }
         }
     }
     
-    private String buildGson(List<UtenteGoogle> u) {
-
-        Gson gson = new Gson();
-        String json = gson.toJson(u);
-
-        if (json == null) {
-            System.out.println("servlet buildGson: NULL");
-        } else {
-            System.out.println("servlet buildGson: NOT NULL  " + json);
-        }
-        return json;
-    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

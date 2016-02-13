@@ -63,4 +63,18 @@ public class InteresseFacade extends AbstractFacade<Interesse> implements Intere
         }
         
     }*/
+
+    @Override
+    public Interesse getInteresse(String nomeinteresse) {
+        Query q = em.createQuery("SELECT i FROM Interesse i WHERE i.nome =:custNome");
+        q.setParameter("custNome", nomeinteresse);
+        List l = q.getResultList();
+        System.out.println(l);
+        if (l.isEmpty()){
+            return null;
+        } else {
+            Interesse i = em.find(Interesse.class, ((Interesse)l.get(0)).getId());
+            return i;
+        }
+    }
 }

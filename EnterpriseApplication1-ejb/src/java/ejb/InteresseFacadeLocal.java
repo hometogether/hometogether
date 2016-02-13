@@ -33,5 +33,7 @@ public interface InteresseFacadeLocal {
      
     int count();
 
+    public Interesse getInteresse(String nomeinteresse);
+
     
 }

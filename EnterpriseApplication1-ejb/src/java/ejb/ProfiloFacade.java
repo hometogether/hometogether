@@ -49,7 +49,21 @@ public class ProfiloFacade extends AbstractFacade<Profilo> implements ProfiloFac
         }
         
     }
-    
+    @Override
+    public Profilo getProfilo(Long idProfilo){
+        //Query q = em.createNativeQuery(query);
+        Query q = em.createQuery("SELECT p FROM Profilo p WHERE p.id =:custProfilo");
+        q.setParameter("custProfilo", idProfilo);
+        List l = q.getResultList();
+        System.out.println(l);
+        if (l.isEmpty()){
+            return null;
+        } else {
+            Profilo p = em.find(Profilo.class, ((Profilo)l.get(0)).getId());
+            return p;
+        }
+        
+    }
    
     @Override
     public int checkEmailEsistente(String email){
