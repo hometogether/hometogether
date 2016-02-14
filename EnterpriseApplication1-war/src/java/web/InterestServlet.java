@@ -57,7 +57,7 @@ public class InterestServlet extends HttpServlet {
                 int res = gestoreInteressi.aggiungiInteresse(idProfilo, nomeinteresse);
                 
                 System.out.println("supero aggiungi interesse, res = "+res);
-
+                
 
                 if (res == 0){
                     System.out.println("pronto a tornare nella jsp");

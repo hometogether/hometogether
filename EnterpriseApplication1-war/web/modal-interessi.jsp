@@ -27,7 +27,7 @@
             $(document).on("click", "#add", function () {
                 var item = $('input[name=additem]').val();
                 if (item !== "") {
-                    $('#ulInteressi').append('<li><div class="btn-group"><button class="btn-secondary borderless-btn" style="text-align: center;color: black">' + item + ' <button id="remove" type="button" class="btn-secondary close">&times;</button></button></div></li>');
+                    $('#ulinteressi').append('<li><div class="btn-group"><button class="btn-secondary borderless-btn" style="text-align: center;color: black">' + item + ' <button id="remove" type="button" class="btn-secondary close">&times;</button></button></div></li>');
                     $('#addinput').val('');
                 }
 
@@ -66,11 +66,21 @@
                         </div>
                         <div id='todolist'>
                             <c:forEach items="${interessi}" var="interesse">
-                                <div id="${interesse.id}">
+                                <ul id="ulInteressi">  
+                                    <li id="${interesse.id}">
+                                        <div class="btn-group">
+                                            <form action="InterestServlet" role="form" method="post">
+                                                <button class="btn-secondary borderless-btn" style="text-align: center;color: black"> ${interesse.nome}</button>
+                                                <button id="remove" type="button" class="btn-secondary close" onClick="rimuoviInteresse(${interesse.id})">&times;</button>
+                                            </form>
+                                        </div>
+                                    </li>     
+                                </ul>
+                                <!--<div id="${interesse.id}">
                                     <form action="InterestServlet" role="form" method="post">
                                         <button type="button" class="btn btn-default" onClick="rimuoviInteresse(${interesse.id})">${interesse.nome}</button>
                                     </form>
-                                </div>
+                                </div>-->
                             </c:forEach>
 
                         </div>
