@@ -68,6 +68,7 @@ public class FacebookServlet extends HttpServlet {
                 UtenteFacebook u = gestoreUtenti.loginFacebook(email, idSocial);
                 Profilo p = profiloFacade.getProfilo(email);
                 if(u != null){
+                    s.setAttribute("id", u.getIdProfilo());
                     s.setAttribute("nome",""+p.getNome());
                     s.setAttribute("cognome",""+p.getCognome());
                     s.setAttribute("email",""+p.getEmail());
