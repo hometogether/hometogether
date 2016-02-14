@@ -19,6 +19,11 @@
 
 
         $(document).ready(function () {
+            $('#additem').hide();
+            $(document).on("click","#showAddinput",function(){
+                $('#additem').show();
+                $('#showAddinput').hide();
+            });
             $(document).on("click", "#add", function () {
                 var item = $('input[name=additem]').val();
                 if (item !== "") {
@@ -45,13 +50,18 @@
                     <br/>
                     <div class="clearfix"></div>
                     <div>
-                        <div id='additem'>
+                        <a class="btn icon-btn btn-success" id="showAddinput">
+                        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
+                        Add
+                        </a>
+                        <div id="additem">
                             <form action="InterestServlet" role="form" method="post">
-
-                                <input type='text' name='nomeinteresse' id="nomeinteresse">
-
-                                <button id="add" type="button" class="btn btn-default" onClick="aggiungiInteresse()">Aggiungi interesse</button>
-
+                                 <div class="input-group col-lg-6 col-md-6 col-sm-6">
+                                    <input type="text" name='nomeinteresse' class="form-control" id="nomeinteresse" placeholder="Nuovo interesse..." style="height: 2%">
+                                    <span class="input-group-btn">
+                                      <button id="add" class="btn btn-default" type="button" onClick="aggiungiInteresse()">Aggiungi interesse</button>
+                                    </span>
+                                 </div>
                             </form>
                         </div>
                         <div id='todolist'>
