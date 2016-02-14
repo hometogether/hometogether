@@ -14,7 +14,7 @@ function aggiungiInteresse() {
             //jQuery.noConflict();
             $("#nomeinteresse").val('');
 
-            $('#ulInteressi').append('<li id="${interesse.id}"><div class="btn-group"><form action="InterestServlet" role="form" method="post"><button class="btn-secondary borderless-btn" style="text-align: center;color: black">' + nomeinteresse + '</button><button id="remove" type="button" class="btn-secondary close" onClick="rimuoviInteresse(' + id + ')">&times;</button></form></div></li>');
+            $('#ulInteressi').append('<li id="'+id+'"><div class="btn-group"><form action="InterestServlet" role="form" method="post"><button class="btn-secondary borderless-btn" style="text-align: center;color: black">' + nomeinteresse + '</button><button id="remove" type="button" class="btn-secondary close" onClick="rimuoviInteresse(' + id + ')">&times;</button></form></div></li>');
 
 
         } else {

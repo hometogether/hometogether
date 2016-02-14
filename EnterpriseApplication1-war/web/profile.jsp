@@ -3,10 +3,10 @@
     Created on : 29-gen-2016, 15.34.19
     Author     : Antonio
 --%>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!--CSS-->

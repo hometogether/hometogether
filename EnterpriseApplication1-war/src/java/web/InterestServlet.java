@@ -44,8 +44,12 @@ public class InterestServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
+
             String action = request.getParameter("action");
+            
             System.out.println("action is:"+action);
             if (action.equals("add")) {
                 HttpSession session = request.getSession();

@@ -56,6 +56,7 @@ public class GoogleServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, GeneralSecurityException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
             if (action.equals("loginGoogle")) {

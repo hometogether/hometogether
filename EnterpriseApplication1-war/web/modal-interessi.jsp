@@ -3,15 +3,16 @@
     Created on : 13-feb-2016, 10.05.35
     Author     : Antonio
 --%>
-
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.lang.reflect.Array"%>
 <%@page import="ejb.Interesse"%>
 <%@page import="ejb.Interesse"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html>    <meta charset="utf-8"/>
+
+<html lang="it">
+
     <script src="js/interessi.js"></script>
     <script src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
