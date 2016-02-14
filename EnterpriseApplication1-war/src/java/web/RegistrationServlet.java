@@ -6,14 +6,21 @@
 package web;
 
 import com.google.gson.Gson;
+import static com.sun.faces.facelets.util.Path.context;
+import ejb.Comune;
+import ejb.GestoreComuni;
 import ejb.GestoreUtenti;
 import ejb.UtenteApp;
 import ejb.UtenteFacebook;
 import ejb.UtenteGoogle;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +45,8 @@ public class RegistrationServlet extends HttpServlet {
      */
     @EJB
     private GestoreUtenti gestoreUtenti;
-
+    @EJB
+    private GestoreComuni gestoreComuni;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -55,6 +63,11 @@ public class RegistrationServlet extends HttpServlet {
                 String foto = request.getParameter("foto_profilo");
                 String tipo_registrazione = request.getParameter("tipo_registrazione");
 
+                ServletContext context=getServletContext();  
+                List<Comune> list = (List<Comune>) context.getAttribute("list");
+                
+                System.out.println("regione del primo comune della lista:"+list.get(0).getProvincia().getRegione().getNome());
+                
                 if (tipo_registrazione.equals("0")) {
                     String password = request.getParameter("password");
                     String r_password = request.getParameter("r_password");
@@ -89,10 +102,10 @@ public class RegistrationServlet extends HttpServlet {
                 } else if (tipo_registrazione.equals("1")) {
                     String idSocial = request.getParameter("idSocial");
                     
+
                     int res = gestoreUtenti.aggiungiUserFacebook(nome, cognome, idSocial, email, r_email, data_nascita, sesso, foto);
                     if (res == 0) {
                         List<UtenteFacebook> lista = gestoreUtenti.getUserFacebook();
-                        String gsonList = buildGson(lista);
 
                         out.println("<!DOCTYPE html>");
                         out.println("<html>");
@@ -101,7 +114,7 @@ public class RegistrationServlet extends HttpServlet {
                         out.println("</head>");
                         out.println("<body>");
                         out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
-                        out.println("<h1>" + gsonList + "</h1>");
+                        out.println("<h1>ti sei registrato!</h1>");
                         out.println("</body>");
                         out.println("</html>");
                     } else {
@@ -153,19 +166,6 @@ public class RegistrationServlet extends HttpServlet {
         }
     }
 
-    private String buildGson(List<UtenteFacebook> u) {
-
-        Gson gson = new Gson();
-        String json = gson.toJson(u);
-
-        if (json == null) {
-            System.out.println("servlet buildGson: NULL");
-        } else {
-            System.out.println("servlet buildGson: NOT NULL  " + json);
-        }
-        return json;
-    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
     /**
@@ -206,4 +206,10 @@ public class RegistrationServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    
+
+   
+
+    
+    
 }
