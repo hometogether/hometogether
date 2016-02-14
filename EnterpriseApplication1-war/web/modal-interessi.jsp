@@ -15,7 +15,7 @@
     <script src="js/interessi.js"></script>
     <script src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
         $(document).ready(function () {
@@ -56,7 +56,11 @@
                         </div>
                         <div id='todolist'>
                             <c:forEach items="${interessi}" var="interesse">
-                                <ul id="${interesse.id}">${interesse.nome}</ul>
+                                <div id="${interesse.id}">
+                                    <form action="InterestServlet" role="form" method="post">
+                                        <button type="button" class="btn btn-default" onClick="rimuoviInteresse(${interesse.id})">${interesse.nome}</button>
+                                    </form>
+                                </div>
                             </c:forEach>
 
                         </div>

@@ -34,36 +34,6 @@ public class InteresseFacade extends AbstractFacade<Interesse> implements Intere
         super(Interesse.class);
     }
     
-    /*@Override
-    public Profilo getProfilo(String email){
-        //Query q = em.createNativeQuery(query);
-        Query q = em.createQuery("SELECT p FROM Profilo p WHERE p.email =:custEmail");
-        q.setParameter("custEmail", email);
-        List l = q.getResultList();
-        System.out.println(l);
-        if (l.isEmpty()){
-            return null;
-        } else {
-            Profilo p = em.find(Profilo.class, ((Profilo)l.get(0)).getId());
-            return p;
-        }
-        
-    }
-    
-   
-    @Override
-    public int checkEmailEsistente(String email){
-        Query q = em.createQuery("SELECT p FROM Profilo p WHERE p.email =:custEmail");
-        q.setParameter("custEmail", email);
-        List l = q.getResultList();
-        if (l.isEmpty()){
-            return 0;
-        } else {
-            return -1;
-        }
-        
-    }*/
-
     @Override
     public Interesse getInteresse(String nomeinteresse) {
         Query q = em.createQuery("SELECT i FROM Interesse i WHERE i.nome =:custNome");
@@ -77,4 +47,19 @@ public class InteresseFacade extends AbstractFacade<Interesse> implements Intere
             return i;
         }
     }
+    
+    @Override
+    public Interesse getInteresse(Long idinteresse) {
+        Query q = em.createQuery("SELECT i FROM Interesse i WHERE i.id =:custId");
+        q.setParameter("custId", idinteresse);
+        List l = q.getResultList();
+        System.out.println(l);
+        if (l.isEmpty()){
+            return null;
+        } else {
+            Interesse i = em.find(Interesse.class, ((Interesse)l.get(0)).getId());
+            return i;
+        }
+    }
+    
 }

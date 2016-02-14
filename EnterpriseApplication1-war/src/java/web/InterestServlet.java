@@ -68,7 +68,27 @@ public class InterestServlet extends HttpServlet {
                 
                 
                
-            } else {
+            } else if (action.equals("remove")) {
+                HttpSession session = request.getSession();
+                Long idProfilo = (Long) session.getAttribute("id");
+                System.out.println("entro in action remove");
+                Long idInteresse =  Long.parseLong(request.getParameter("idinteresse"));
+               
+                int res = gestoreInteressi.rimuoviInteresse(idProfilo, idInteresse);
+                
+                System.out.println("supero rimuovi interesse, res = "+res);
+
+
+                if (res == 0){
+                    System.out.println("pronto a tornare nella jsp");
+                    out.println("0");
+                } else {
+                    out.println("-1");
+                }
+                
+                
+               
+            }else {
                 out.println("-1");
                 System.out.println("Action OTHER");
             }

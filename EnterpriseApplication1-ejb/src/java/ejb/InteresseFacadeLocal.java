@@ -35,5 +35,7 @@ public interface InteresseFacadeLocal {
 
     public Interesse getInteresse(String nomeinteresse);
 
+    public Interesse getInteresse(Long idinteresse);
+
     
 }
