@@ -25,16 +25,16 @@ public class GestoreInteressi {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    public int aggiungiInteresse(Long idProfilo, String nomeinteresse) {
+    public String aggiungiInteresse(Long idProfilo, String nomeinteresse) {
+        //il tipo di ritorno è una Stringa, perché in alcuni casi dovremo tornare un Long (tipo non primitivo) e in altri un int.
         System.out.println("entro in agggiungiInteresse");
         System.out.println("nome interesse:" + nomeinteresse);
-
         if (idProfilo == null || nomeinteresse == null) {
             System.out.println("Errore: id Profilo = 0 o nome interesse non valido");
             System.out.println("idProfilo=" + idProfilo);
             System.out.println("nomeinteresse=" + nomeinteresse);
 
-            return -1;
+            return "-1";
         } else {
             Interesse interesse = interesseFacade.getInteresse(nomeinteresse);
             System.out.println("supero il get Interesse. interesse = " + interesse);
@@ -64,10 +64,10 @@ public class GestoreInteressi {
                 profiloFacade.edit(p);
                 System.out.println("supero l'edit");
 
-                return 0;
+                return ""+interesse.getId();
             } else {
                 System.out.println("non devo fare niente, l'interesse è già associato!");
-                return 0; //da cambiare...
+                return "-1"; //da cambiare...
             }
         }
 

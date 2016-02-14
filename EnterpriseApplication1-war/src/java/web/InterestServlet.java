@@ -54,14 +54,14 @@ public class InterestServlet extends HttpServlet {
 
                 String nomeinteresse = request.getParameter("nomeinteresse");
                 nomeinteresse = nomeinteresse.toLowerCase();
-                int res = gestoreInteressi.aggiungiInteresse(idProfilo, nomeinteresse);
+                String res = gestoreInteressi.aggiungiInteresse(idProfilo, nomeinteresse);
                 
                 System.out.println("supero aggiungi interesse, res = "+res);
                 
 
-                if (res == 0){
+                if (!res.equals("-1")){
                     System.out.println("pronto a tornare nella jsp");
-                    out.println("0");
+                    out.println(res);
                 } else {
                     out.println("-1");
                 }
