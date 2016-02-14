@@ -100,7 +100,7 @@ public class GestoreInteressi {
             //dobbiamo controllare che l'interesse non sia già associato all'user
             boolean contain = interessi.contains(interesse);
 
-            if (contain == false) {
+            if (contain) {
                 interessi.remove(interesse);
                 p.setInteressi(interessi);
                 profiloFacade.edit(p);
