@@ -14,7 +14,7 @@ function aggiungiInteresse() {
             //jQuery.noConflict();
             $("#nomeinteresse").val('');
             var lowerinteressi = nomeinteresse.toLowerCase();
-            $('#ulInteressi').append('<li id="'+id+'"><div class="btn-group"><form action="InterestServlet" role="form" method="post"><button class="btn-secondary borderless-btn" style="text-align: center;color: black">' + lowerinteressi + '</button><button id="remove" type="button" class="btn-secondary close" onClick="rimuoviInteresse(' + id + ')">&times;</button></form></div></li>');
+            $('#ulInteressi').append('<li id="'+id+'"><div class="btn-group"><form action="InterestServlet" role="form" method="post"><div class="btn-interest"><button class=" btn btn-secondary borderless-btn btn-link" title="'+lowerinteressi+'" style="text-align: center;color: black;overflow: hidden;text-overflow: ellipsis;max-width: 90%"> '+lowerinteressi+'</button><button id="remove" type="button" class="btn-secondary close" onClick="rimuoviInteresse('+id+')">&times;</button></div></form></div></li>');
 
 
         } else {

@@ -100,6 +100,23 @@ div.the-buttons
         padding: 1px 15px 3px 2px;
         border-radius:50px;
     }
+    
+    .btn-interest{
+        display:inline-block;
+        color:#444;
+        height: 30px;
+        border:1px solid orange;
+        border-radius: 4px;
+        background:rgba(228, 131, 18, 0.2);
+        box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+        cursor:pointer;
+        vertical-align:middle;
+        max-width: 100px;
+        padding: 0;
+        margin-bottom: 10px;
+        
+    }
+    
   
   #white-camera{
       color: whitesmoke;

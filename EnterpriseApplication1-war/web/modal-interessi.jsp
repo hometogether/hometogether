@@ -66,17 +66,20 @@
                             </form>
                         </div>
                         <div id='todolist'>
-                            <ul id="ulInteressi"> 
+                            <br>
+                            <ul id="ulInteressi" class="list-inline"> 
                             <c:forEach items="${interessi}" var="interesse">
                                  
-                                    <li id="${interesse.id}">
-                                        <div class="btn-group">
-                                            <form action="InterestServlet" role="form" method="post">
-                                                <button class="btn-secondary borderless-btn" style="text-align: center;color: black"> ${interesse.nome}</button>
-                                                <button id="remove" type="button" class="btn-secondary close" onClick="rimuoviInteresse(${interesse.id})">&times;</button>
-                                            </form>
-                                        </div>
-                                    </li>     
+                                <li id="${interesse.id}">
+                                    <div class="btn-group">
+                                        <form action="InterestServlet" role="form" method="post">
+                                            <div class="btn-interest">
+                                               <button class=" btn btn-secondary borderless-btn btn-link" title="${interesse.nome}" style="text-align: center;color: black;overflow: hidden;text-overflow: ellipsis;max-width: 90%"> ${interesse.nome}</button>
+                                               <button id="remove" type="button" class="btn-secondary close" onClick="rimuoviInteresse(${interesse.id})">&times;</button> 
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>     
                                 
                                 <!--<div id="${interesse.id}">
                                     <form action="InterestServlet" role="form" method="post">
