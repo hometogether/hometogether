@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -17,6 +18,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class UtenteFacebook implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,7 +31,6 @@ public class UtenteFacebook implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
 
     private String idFacebook;
 
@@ -40,18 +41,28 @@ public class UtenteFacebook implements Serializable {
     public void setIdFacebook(String idFacebook) {
         this.idFacebook = idFacebook;
     }
-    
-    private Long idProfilo;
 
-    public Long getIdProfilo() {
-        return idProfilo;
+    @OneToOne
+    private Profilo profilo;
+
+    /**
+     * Get the value of profilo
+     *
+     * @return the value of profilo
+     */
+    public Profilo getProfilo() {
+        return profilo;
     }
 
-    public void setIdProfilo(Long idProfilo) {
-        this.idProfilo = idProfilo;
+    /**
+     * Set the value of profilo
+     *
+     * @param profilo new value of profilo
+     */
+    public void setProfilo(Profilo profilo) {
+        this.profilo = profilo;
     }
 
-  
     private String email;
 
     public String getEmail() {
@@ -61,11 +72,6 @@ public class UtenteFacebook implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-
-
-  
-    
 
     @Override
     public int hashCode() {
@@ -91,5 +97,5 @@ public class UtenteFacebook implements Serializable {
     public String toString() {
         return "ejb.UtenteFb[ id=" + id + " ]";
     }
-    
+
 }

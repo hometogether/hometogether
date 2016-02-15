@@ -15,27 +15,41 @@
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
         <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
         <link href="css/style.css" rel='stylesheet' type='text/css' />
-        
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic' rel='stylesheet' type='text/css'>
         <script type="text/javascript" src="js/googleLogin.js"></script>
+        <script type="text/javascript" src="js/comuni.js"></script>
+
         <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <script src="js/jquery-1.11.0.min.js"></script>
         <!---- start-smoth-scrolling---->
         <script type="text/javascript" src="js/move-top.js"></script>
         <script type="text/javascript" src="js/easing.js"></script>
         <script type='text/javascript' src='js/jquery.simple-text-rotator.min.js'></script>
-        
-        
+
+
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Philosopher' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/style_1.css" />
         <link rel="stylesheet" href="css/font-awesome.min.css"/>
+        <!--autocomplete-->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/resources/demos/style.css">
         
         
+        
+        
+        
+        
+        
+        
+        
+        <!--fine autocomplete-->
+
         <link rel="stylesheet" href="css/simpletextrotator.css" type="text/css">
 
         <script type="text/javascript">
@@ -52,7 +66,7 @@
             });
 
         </script>
-        
+
         <!---- start-smoth-scrolling---->
     </head>
     <body>
@@ -60,21 +74,21 @@
         <div id="fb-root"></div>
 
         <script src="js/Facebook.js">
-            
-        </script>
-<!--END FACEBOOK LOGIN-->
 
-<!--EMAIL DI REGISTRAZIONE GIA' PRESENTE-->
-    <script type="text/javascript">
-        function sameEmail(){
-            var xhttp = new XMLHttpRequest();
-            var res=xhttp.responseText;
-            var same="same";
-            if(res===same){
-                
+        </script>
+        <!--END FACEBOOK LOGIN-->
+
+        <!--EMAIL DI REGISTRAZIONE GIA' PRESENTE-->
+        <script type="text/javascript">
+            function sameEmail() {
+                var xhttp = new XMLHttpRequest();
+                var res = xhttp.responseText;
+                var same = "same";
+                if (res === same) {
+
+                }
             }
-        }
-    </script>
+        </script>
 
         <div class="header" id="home">
             <div class="container">
@@ -96,7 +110,7 @@
                 </div>
                 <!--MODAL LOGIN E REGISTRAZIONE-->
                 <%@include file="modal-login.jsp"%>
-                
+
                 <!-- script-for-menu -->
                 <script>
                     $("span.menu").click(function () {
@@ -143,7 +157,7 @@
                                 </div>
 
                                 <div class="col-md-6 feature-main" id="iscriviti">
-                                    <form action="RegistrationServlet"  role="form" method="post">
+                                    <form id="registrationform" action="RegistrationServlet" method="post">
                                         <h3>Iscriviti</h3>
                                         <br>
                                         <input type="hidden" name="action" value="registration">
@@ -179,12 +193,15 @@
 
                                         <div class="form-group col-lg-12">
                                             <!--<label>Password</label>-->
-                                            <input type="text" name="localita" class="form-control" id="localita" placeholder="Inserisci la tua località">
+                                            <div class="ui-widget">
+                                                <!--<label for="localita"></label>-->
+                                                <input type="text" name="localita" class="form-control" id="localita" placeholder="Inserisci la tua località" onkeyup="autocompile()">
+                                            </div>
                                         </div>
-                                            <input type="hidden" name="idSocial" class="form-control" id="idSocial" >
-                                            <input type="hidden" name="foto_profilo" class="form-control" id="foto_profilo" >
-                                            <input type="hidden" name="tipo_registrazione" class="form-control" id="tipo_registrazione" value="0">
-                                            
+                                        <input type="hidden" name="idSocial" class="form-control" id="idSocial" >
+                                        <input type="hidden" name="foto_profilo" class="form-control" id="foto_profilo" >
+                                        <input type="hidden" name="tipo_registrazione" class="form-control" id="tipo_registrazione" value="0">
+
                                         <h4 style="color: white">Data di nascita</h4>
                                         <br>
                                         <div class="form-group col-lg-12">
@@ -211,7 +228,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-12">
-                                            <button type="submit" class="btn btn-primary form-group col-lg-4" style="font-size: 150%; background-color: red;  ">Iscriviti</button>
+                                            <button type="button" class="btn btn-primary form-group col-lg-4" style="font-size: 150%; background-color: red; " onClick="checkComune()">Iscriviti</button>
                                         </div>
                                     </form>
 
@@ -691,12 +708,12 @@
             </div>
         </div>
         <!--end-contact-->
-        
+
         <!--START GOOGLE FORM -->
         <form id="socialForm" action="RedirectServlet"  role="form" method="post">
             <input type="hidden" name="action" value="loginSocial">
         </form>
-        
+
         <!-- END GOOGLE FORM-->
         <!--start-footer-->
         <div class="footer">

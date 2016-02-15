@@ -67,16 +67,16 @@ public class FacebookServlet extends HttpServlet {
                 String foto = request.getParameter("foto");
                 
                 UtenteFacebook u = gestoreUtenti.loginFacebook(email, idSocial);
-                Profilo p = profiloFacade.getProfilo(email);
+                //Profilo p = profiloFacade.getProfilo(email);
                 if(u != null){
-                    s.setAttribute("id", u.getIdProfilo());
-                    s.setAttribute("nome",""+p.getNome());
-                    s.setAttribute("cognome",""+p.getCognome());
-                    s.setAttribute("email",""+p.getEmail());
-                    s.setAttribute("data",""+p.getData_nascita());
-                    s.setAttribute("sesso",""+p.getSesso());
+                    s.setAttribute("id", u.getProfilo().getId());
+                    s.setAttribute("nome",""+u.getProfilo().getNome());
+                    s.setAttribute("cognome",""+u.getProfilo().getCognome());
+                    s.setAttribute("email",""+u.getProfilo().getEmail());
+                    s.setAttribute("data",""+u.getProfilo().getData_nascita());
+                    s.setAttribute("sesso",""+u.getProfilo().getSesso());
                     s.setAttribute("location",""+location);
-                    s.setAttribute("foto",""+p.getFoto_profilo());
+                    s.setAttribute("foto",""+u.getProfilo().getFoto_profilo());
                     
                 }else{
                     response.getWriter().write("no");

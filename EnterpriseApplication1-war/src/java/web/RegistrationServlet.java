@@ -45,7 +45,7 @@ public class RegistrationServlet extends HttpServlet {
      */
     @EJB
     private GestoreUtenti gestoreUtenti;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -62,7 +62,7 @@ public class RegistrationServlet extends HttpServlet {
                 String sesso = request.getParameter("sesso");
                 String foto = request.getParameter("foto_profilo");
                 String tipo_registrazione = request.getParameter("tipo_registrazione");
-                 if (tipo_registrazione.equals("0")) {
+                if (tipo_registrazione.equals("0")) {
                     String password = request.getParameter("password");
                     String r_password = request.getParameter("r_password");
                     System.out.println(data_nascita);
@@ -95,7 +95,6 @@ public class RegistrationServlet extends HttpServlet {
                     }
                 } else if (tipo_registrazione.equals("1")) {
                     String idSocial = request.getParameter("idSocial");
-                    
 
                     int res = gestoreUtenti.aggiungiUserFacebook(nome, cognome, idSocial, email, r_email, data_nascita, sesso, foto);
                     if (res == 0) {
@@ -124,7 +123,7 @@ public class RegistrationServlet extends HttpServlet {
                     }
                 } else if (tipo_registrazione.equals("2")) {
                     String idSocial = request.getParameter("idSocial");
-                    System.out.println("idgoogle:"+idSocial);
+                    System.out.println("idgoogle:" + idSocial);
                     int res = gestoreUtenti.aggiungiUserGoogle(nome, cognome, idSocial, email, r_email, data_nascita, sesso, foto);
                     if (res == 0) {
                         //List<UtenteGoogle> lista = gestoreUtenti.getUserGoogle();
@@ -153,6 +152,48 @@ public class RegistrationServlet extends HttpServlet {
                     }
                 }
 
+            } else if (action.equals("autocompileComune")) {
+                ServletContext context = getServletContext();
+                List<Comune> list = (List<Comune>) context.getAttribute("list");
+
+                String nomeDigitato = request.getParameter("comune").toLowerCase();
+                String res = "";
+                int cont = 0;
+                if (nomeDigitato != null) {
+                    for (int i = 0; i < list.size() && cont < 5; i++) {
+                        if ((list.get(i).getNome().toLowerCase()).startsWith(nomeDigitato)) {
+                            res += list.get(i).getNome() + "_";
+                            cont++;
+                        }
+
+                    }
+                    out.println(res);
+                } else {
+                    out.println("-1");
+                }
+
+            } else if (action.equals("checkComune")) {
+                ServletContext context = getServletContext();
+                List<Comune> list = (List<Comune>) context.getAttribute("list");
+
+                String comune = request.getParameter("comune").toLowerCase();
+                boolean trovato = false;
+                if (comune != null) {
+                    for (int i = 0; i < list.size() && trovato == false; i++) {
+                        if ((list.get(i).getNome().toLowerCase()).equals(comune)) {
+                            trovato = true;
+                        }
+
+                    }
+                    if (trovato) {
+                        out.println("0");
+                    } else {
+                        out.println("-1");
+                    }
+                } else {
+                    out.println("-1");
+                }
+
             } else {
                 System.out.println("Action OTHER");
             }
@@ -161,7 +202,6 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -200,10 +240,4 @@ public class RegistrationServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
-
-   
-
-    
-    
 }
