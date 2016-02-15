@@ -693,7 +693,7 @@
         <!--end-contact-->
         
         <!--START GOOGLE FORM -->
-        <form id="googleForm" action="LoginServlet"  role="form" method="post">
+        <form id="socialForm" action="RedirectServlet"  role="form" method="post">
             <input type="hidden" name="action" value="loginSocial">
         </form>
         

@@ -45,8 +45,7 @@ public class RegistrationServlet extends HttpServlet {
      */
     @EJB
     private GestoreUtenti gestoreUtenti;
-    @EJB
-    private GestoreComuni gestoreComuni;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -63,13 +62,7 @@ public class RegistrationServlet extends HttpServlet {
                 String sesso = request.getParameter("sesso");
                 String foto = request.getParameter("foto_profilo");
                 String tipo_registrazione = request.getParameter("tipo_registrazione");
-
-                ServletContext context=getServletContext();  
-                List<Comune> list = (List<Comune>) context.getAttribute("list");
-                
-                System.out.println("regione del primo comune della lista:"+list.get(0).getProvincia().getRegione().getNome());
-                
-                if (tipo_registrazione.equals("0")) {
+                 if (tipo_registrazione.equals("0")) {
                     String password = request.getParameter("password");
                     String r_password = request.getParameter("r_password");
                     System.out.println(data_nascita);

@@ -76,36 +76,10 @@ public class FacebookServlet extends HttpServlet {
                     s.setAttribute("data",""+p.getData_nascita());
                     s.setAttribute("sesso",""+p.getSesso());
                     s.setAttribute("location",""+location);
-                    s.setAttribute("foto",""+p.getFoto_profilo());   
+                    s.setAttribute("foto",""+p.getFoto_profilo());
+                    
                 }else{
                     response.getWriter().write("no");
-
-                  /*int res = gestoreUtenti.aggiungiUtente(nome, cognome, email, giorno, mese, anno, sesso,foto,location);
-                    if (res == 0){
-                        List<UtenteFb> lista = gestoreUtenti.getUsers();
-                        String gsonList = buildGson(lista);
-
-                        out.println("<!DOCTYPE html>");
-                        out.println("<html>");
-                        out.println("<head>");
-                        out.println("<title>Servlet RegistrationServlet</title>");            
-                        out.println("</head>");
-                        out.println("<body>");
-                        out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
-                        out.println("<h1>"+gsonList+"</h1>");
-                        out.println("</body>");
-                        out.println("</html>");
-                    } else  {
-                        out.println("<!DOCTYPE html>");
-                        out.println("<html>");
-                        out.println("<head>");
-                        out.println("<title>Servlet RegistrationServlet</title>");            
-                        out.println("</head>");
-                        out.println("<body>");
-                        out.println("<h1>Errore!</h1>");
-                        out.println("</body>");
-                        out.println("</html>");
-                    } */ 
                 }
                 
                 

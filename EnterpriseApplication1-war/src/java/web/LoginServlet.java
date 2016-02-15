@@ -75,7 +75,7 @@ public class LoginServlet extends HttpServlet {
                     
                      
 
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/profile.jsp");
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
                     rd.forward(request, response);
 
                 } else {
@@ -91,27 +91,8 @@ public class LoginServlet extends HttpServlet {
                     out.println("</html>");
                 }
 
-            } else if (action.equals("loginSocial")) {
-                HttpSession session = request.getSession();
-                if (session != null) {
-                    
-
-                    Profilo p = profiloFacade.getProfilo((String)session.getAttribute("email"));
-                    session.setAttribute("nome", "" + p.getNome());
-                    session.setAttribute("cognome", "" + p.getCognome());
-                    session.setAttribute("email", "" + p.getEmail());
-                    session.setAttribute("data", "" + p.getData_nascita());
-                    session.setAttribute("sesso", "" + p.getSesso());
-                    request.setAttribute("interessi", p.getInteressi());
-
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/profile.jsp");
-                    rd.forward(request, response);
-
-                } else {
-                    //RIMANDO A PAGINA DI ERRORE
-                }
             } else {
-                System.out.println("Action OTHER");
+                
             }
 
         }

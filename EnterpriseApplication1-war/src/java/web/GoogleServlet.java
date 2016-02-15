@@ -51,8 +51,10 @@ public class GoogleServlet extends HttpServlet {
     @EJB
     private GestoreUtenti gestoreUtenti;
     @EJB
-     private ProfiloFacade profiloFacade;
+    private ProfiloFacade profiloFacade;
+
     // private Sessione sessione = new Sessione();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, GeneralSecurityException {
         response.setContentType("text/html;charset=UTF-8");
@@ -68,10 +70,10 @@ public class GoogleServlet extends HttpServlet {
                         .setAudience(Arrays.asList("914513079502-evc4u51vs3mijtfebssfqr0mjpk7cs2l.apps.googleusercontent.com"))
                         .build();
 
-            // (Receive idTokenString by HTTPS POST)
+                // (Receive idTokenString by HTTPS POST)
                 String idTokenString = request.getParameter("token");
                 System.out.println("idTokenString:" + idTokenString);
-              //  System.out.println("verifier is:" + verifier.toString());
+                //  System.out.println("verifier is:" + verifier.toString());
                 GoogleIdToken idToken = verifier.verify(idTokenString);
 
                 if (idToken != null) {
@@ -82,20 +84,25 @@ public class GoogleServlet extends HttpServlet {
                         String email = request.getParameter("email");
                         String idgoogle = request.getParameter("idgoogle");
                         UtenteGoogle u = gestoreUtenti.loginGoogle(email, idgoogle);
-                        //Profilo p = profiloFacade.getProfilo(email);
-                        if (u!=null){
+                        Profilo p = profiloFacade.getProfilo(email);
+                        if (u != null) {
                             System.out.println("son loggato!");
-                            
-                            HttpSession session = request.getSession();
-                            session.setAttribute("id", u.getIdProfilo());
-                            session.setAttribute("idgoogle", u.getIdGoogle());
-                            session.setAttribute("email", u.getEmail());
-                            
+
+                            HttpSession s = request.getSession();
+
+                            s.setAttribute("id", u.getIdProfilo());
+                            s.setAttribute("idgoogle", u.getIdGoogle());
+                            s.setAttribute("nome", "" + p.getNome());
+                            s.setAttribute("cognome", "" + p.getCognome());
+                            s.setAttribute("email", "" + p.getEmail());
+                            s.setAttribute("data", "" + p.getData_nascita());
+                            s.setAttribute("sesso", "" + p.getSesso());
+                            //s.setAttribute("location", "" + p.getLocation());
+                            s.setAttribute("foto", "" + p.getFoto_profilo());
                             //session.setAttribute("location",""+p.get);
-                            
-                            
+
                             out.println("1");
-                            
+
                         } else {
                             System.out.println("non sono loggato!");
                             out.println("0");
@@ -104,7 +111,7 @@ public class GoogleServlet extends HttpServlet {
                         System.out.println("id utente e id del token non uguali");
                         out.println("-1");
                     }
-             
+
                 } else {
                     System.out.println("Invalid ID token.");
                     out.println("-1");
@@ -130,7 +137,6 @@ public class GoogleServlet extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-
     /**
      * Handles the HTTP <code>GET</code> method.
      *

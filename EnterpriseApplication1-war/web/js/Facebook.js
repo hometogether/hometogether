@@ -74,8 +74,7 @@ window.fbAsyncInit = function() {
                                     $('#login-modal').modal('hide');
                                     $('#iscriviti').remove();
                                     $('#login-link').remove();
-                                    window.location.href = "/EnterpriseApplication1-war/profile.jsp";
-                                    $('#iscriviti-link').html("<a href='#'>"+nome+"<span>  </span><img src='"+photo+"'alt='Foto profilo' class='img-rounded' height='20%' width='20%'/><a>");
+                                    $('#socialForm').submit();
                                 }
                             }
                           };

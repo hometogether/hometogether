@@ -66,8 +66,9 @@
                             </form>
                         </div>
                         <div id='todolist'>
+                            <ul id="ulInteressi"> 
                             <c:forEach items="${interessi}" var="interesse">
-                                <ul id="ulInteressi">  
+                                 
                                     <li id="${interesse.id}">
                                         <div class="btn-group">
                                             <form action="InterestServlet" role="form" method="post">
@@ -76,14 +77,14 @@
                                             </form>
                                         </div>
                                     </li>     
-                                </ul>
+                                
                                 <!--<div id="${interesse.id}">
                                     <form action="InterestServlet" role="form" method="post">
                                         <button type="button" class="btn btn-default" onClick="rimuoviInteresse(${interesse.id})">${interesse.nome}</button>
                                     </form>
                                 </div>-->
                             </c:forEach>
-
+                            </ul>
                         </div>
                     </div>																												
                     <div class="clearfix"></div>
