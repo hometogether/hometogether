@@ -54,7 +54,7 @@
     </servlet-mapping>
     <listener>
         <listener-class>
-             web.ContextServlet 
+            web.ContextServlet 
         </listener-class>
     </listener>
     <servlet-mapping>
@@ -65,4 +65,16 @@
         <servlet-name>NavBarServlet</servlet-name>
         <url-pattern>/NavBarServlet</url-pattern>
     </servlet-mapping>
+    
+    
+    <filter>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
 </web-app>

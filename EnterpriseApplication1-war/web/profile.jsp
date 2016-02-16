@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
     <head>
+        <BASE href="http://localhost:8080/EnterpriseApplication1-war/">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!--CSS-->
         <link href="css/bootstrap_1.css" rel='stylesheet' type='text/css' />
