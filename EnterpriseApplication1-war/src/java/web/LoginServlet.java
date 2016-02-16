@@ -61,17 +61,17 @@ public class LoginServlet extends HttpServlet {
                 UtenteApp u = gestoreUtenti.loginUtente(email, password);
                 if (u != null) {
                     HttpSession session = request.getSession();
-                    session.setAttribute("id", u.getIdProfilo());
+                    session.setAttribute("id", u.getProfilo().getId());
                     session.setAttribute("email", u.getEmail());
                     
-                    Profilo p = profiloFacade.getProfilo(email);
-                    session.setAttribute("nome",""+p.getNome());
-                    session.setAttribute("cognome",""+p.getCognome());
-                    session.setAttribute("email",""+p.getEmail());
-                    session.setAttribute("data",""+p.getData_nascita());
-                    session.setAttribute("sesso",""+p.getSesso());
+                    //Profilo p = profiloFacade.getProfilo(email);
+                    session.setAttribute("nome",""+u.getProfilo().getNome());
+                    session.setAttribute("cognome",""+u.getProfilo().getCognome());
+                    session.setAttribute("email",""+u.getProfilo().getEmail());
+                    session.setAttribute("data",""+u.getProfilo().getData_nascita());
+                    session.setAttribute("sesso",""+u.getProfilo().getSesso());
                   //  s.setAttribute("location",""+location);
-                    session.setAttribute("foto",""+p.getFoto_profilo()); 
+                    session.setAttribute("foto",""+u.getProfilo().getFoto_profilo()); 
                     
                      
 

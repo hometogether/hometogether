@@ -59,10 +59,10 @@ public class GestoreUtenti {
         p.setFoto_profilo("");
         profiloFacade.create(p);
         Profilo profilo = profiloFacade.getProfilo(email);
-        Long idProfilo = profilo.getId();
+       // Long idProfilo = profilo.getId();
         UtenteApp u = new UtenteApp();
         u.setPassword(password);
-        u.setIdProfilo(idProfilo);
+        u.setProfilo(profilo);
         u.setEmail(email);
 
        // UtenteApp u = new UtenteApp();
@@ -104,10 +104,10 @@ public class GestoreUtenti {
         p.setFoto_profilo(foto);
         profiloFacade.create(p);
         Profilo profilo = profiloFacade.getProfilo(email);
-        Long idProfilo = profilo.getId();
+        //Long idProfilo = profilo.getId();
         UtenteGoogle u = new UtenteGoogle();
         u.setIdGoogle(idGoogle);
-        u.setIdProfilo(idProfilo);
+        u.setProfilo(profilo);
         u.setEmail(email);
 
        // UtenteApp u = new UtenteApp();
@@ -149,10 +149,10 @@ public class GestoreUtenti {
         p.setFoto_profilo(foto);
         profiloFacade.create(p);
         Profilo profilo = profiloFacade.getProfilo(email);
-        Long idProfilo = profilo.getId();
+        //Long idProfilo = profilo.getId();
         UtenteFacebook u = new UtenteFacebook();
         u.setIdFacebook(idFacebook);
-        u.setIdProfilo(idProfilo);
+        u.setProfilo(profilo);
         u.setEmail(email);
 
        // UtenteApp u = new UtenteApp();

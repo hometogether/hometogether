@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -70,27 +71,29 @@ public class UtenteGoogle implements Serializable {
         this.email = email;
     }
 
-    private long idProfilo;
+    @OneToOne
+    private Profilo profilo;
 
     /**
-     * Get the value of idProfilo
+     * Get the value of profilo
      *
-     * @return the value of idProfilo
+     * @return the value of profilo
      */
-    public long getIdProfilo() {
-        return idProfilo;
+    public Profilo getProfilo() {
+        return profilo;
     }
 
     /**
-     * Set the value of idProfilo
+     * Set the value of profilo
      *
-     * @param idProfilo new value of idProfilo
+     * @param profilo new value of profilo
      */
-    public void setIdProfilo(long idProfilo) {
-        this.idProfilo = idProfilo;
+    public void setProfilo(Profilo profilo) {
+        this.profilo = profilo;
     }
     
     
+
 
     @Override
     public int hashCode() {

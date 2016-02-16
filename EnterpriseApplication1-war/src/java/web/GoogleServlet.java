@@ -84,21 +84,21 @@ public class GoogleServlet extends HttpServlet {
                         String email = request.getParameter("email");
                         String idgoogle = request.getParameter("idgoogle");
                         UtenteGoogle u = gestoreUtenti.loginGoogle(email, idgoogle);
-                        Profilo p = profiloFacade.getProfilo(email);
+                        //Profilo p = profiloFacade.getProfilo(email);
                         if (u != null) {
                             System.out.println("son loggato!");
 
                             HttpSession s = request.getSession();
 
-                            s.setAttribute("id", u.getIdProfilo());
+                            s.setAttribute("id", u.getProfilo().getId());
                             s.setAttribute("idgoogle", u.getIdGoogle());
-                            s.setAttribute("nome", "" + p.getNome());
-                            s.setAttribute("cognome", "" + p.getCognome());
-                            s.setAttribute("email", "" + p.getEmail());
-                            s.setAttribute("data", "" + p.getData_nascita());
-                            s.setAttribute("sesso", "" + p.getSesso());
+                            s.setAttribute("nome", "" + u.getProfilo().getNome());
+                            s.setAttribute("cognome", "" + u.getProfilo().getCognome());
+                            s.setAttribute("email", "" + u.getProfilo().getEmail());
+                            s.setAttribute("data", "" + u.getProfilo().getData_nascita());
+                            s.setAttribute("sesso", "" + u.getProfilo().getSesso());
                             //s.setAttribute("location", "" + p.getLocation());
-                            s.setAttribute("foto", "" + p.getFoto_profilo());
+                            s.setAttribute("foto", "" + u.getProfilo().getFoto_profilo());
                             //session.setAttribute("location",""+p.get);
 
                             out.println("1");
