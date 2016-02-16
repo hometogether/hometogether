@@ -7,7 +7,7 @@
 function showResult() {
     var xhr = new XMLHttpRequest();
     var utente = $("#ric_utente").val();
-    xhr.open("POST", "RedirectServlet", true);
+    xhr.open("POST", "NavBarServlet", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send('action=searchUtente&ric_utente=' + utente);
     console.log(xhr.responseText);

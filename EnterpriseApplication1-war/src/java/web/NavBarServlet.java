@@ -48,7 +48,7 @@ public class NavBarServlet extends HttpServlet {
                     }
                     out.println(name);
                 }else{
-                
+                    out.println(-1);
                 }
                 
                 
