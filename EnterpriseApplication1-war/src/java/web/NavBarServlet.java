@@ -11,18 +11,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Antonio
  */
-public class RedirectServlet extends HttpServlet {
+public class NavBarServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,34 +32,28 @@ public class RedirectServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @EJB
-    private ProfiloFacade profiloFacade;
-
+    ProfiloFacade profiloFacade;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
-        HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
-            if (action.equals("goProfile")) {
-                Profilo p = profiloFacade.getProfilo((String) session.getAttribute("email"));
-
-                request.setAttribute("interessi", p.getInteressi());
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/profile.jsp");
-                rd.forward(request, response);
-            } else if (action.equals("loginSocial")) {
-
-                if (session != null) {
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
-                    rd.forward(request, response);
-
-                } else {
-                    //errore
+            if(action.equals("searchUtente")){
+                String nomeDigitato=(String)  request.getParameter("ric_utente");
+                if(nomeDigitato!= null){
+                   List<Profilo> res = profiloFacade.getProfilo(nomeDigitato, "Maira");
+                   String name="";
+                    for(int i=0;i<res.size();i++){
+                        name=res.get(i).getNome();
+                    }
+                    out.println(name);
+                }else{
+                
                 }
-            } else{
-                //gestione erroi
-            } 
-            /* TODO output your page here. You may use following sample code. */
-
+                
+                
+                response.getWriter().write("Andrea");
+            }
         }
     }
 

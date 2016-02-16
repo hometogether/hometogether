@@ -185,19 +185,16 @@
                                             <!--<label>Password</label>-->
                                             <input type="password" name="password" class="form-control" id="password" value="" placeholder="Nuova password">
                                         </div>
-
+                         
                                         <div class="form-group col-lg-12" id="div_r_password">
                                             <!--<label>Password</label>-->
                                             <input type="password" name="r_password" class="form-control" id="r_password" placeholder="Reinserisci la password">
                                         </div>
-
-                                        <div class="form-group col-lg-12">
-                                            <!--<label>Password</label>-->
-                                            <div class="ui-widget">
-                                                <!--<label for="localita"></label>-->
-                                                <input type="text" name="localita" class="form-control" id="localita" placeholder="Inserisci la tua località" onkeyup="autocompile()">
-                                            </div>
+                                        
+                                        <div class="form-group col-lg-12" id="div_password">
+                                            <input type="text" name="localita" class="form-control" id="localita" placeholder="Dove vivi?" onkeyup="autocompile()">
                                         </div>
+                                        
                                         <input type="hidden" name="idSocial" class="form-control" id="idSocial" >
                                         <input type="hidden" name="foto_profilo" class="form-control" id="foto_profilo" >
                                         <input type="hidden" name="tipo_registrazione" class="form-control" id="tipo_registrazione" value="0">
