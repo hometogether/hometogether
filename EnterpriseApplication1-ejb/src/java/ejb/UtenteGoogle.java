@@ -91,6 +91,8 @@ public class UtenteGoogle implements Serializable {
     public void setProfilo(Profilo profilo) {
         this.profilo = profilo;
     }
+    
+    
 
 
     @Override

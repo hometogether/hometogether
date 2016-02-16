@@ -32,6 +32,10 @@
         <servlet-name>RedirectServlet</servlet-name>
         <servlet-class>web.RedirectServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NavBarServlet</servlet-name>
+        <servlet-class>web.NavBarServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationServlet</servlet-name>
         <url-pattern>/RegistrationServlet</url-pattern>
@@ -56,6 +60,10 @@
     <servlet-mapping>
         <servlet-name>RedirectServlet</servlet-name>
         <url-pattern>/RedirectServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NavBarServlet</servlet-name>
+        <url-pattern>/NavBarServlet</url-pattern>
     </servlet-mapping>
     
     
