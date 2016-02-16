@@ -159,7 +159,7 @@ public class RegistrationServlet extends HttpServlet {
                 String nomeDigitato = request.getParameter("comune").toLowerCase();
                 String res = "";
                 int cont = 0;
-                if (nomeDigitato != null) {
+                if (nomeDigitato != null && list != null) {
                     for (int i = 0; i < list.size() && cont < 5; i++) {
                         if ((list.get(i).getNome().toLowerCase()).startsWith(nomeDigitato)) {
                             res += list.get(i).getNome() + "_";
@@ -178,7 +178,7 @@ public class RegistrationServlet extends HttpServlet {
 
                 String comune = request.getParameter("comune").toLowerCase();
                 boolean trovato = false;
-                if (comune != null) {
+                if (comune != null && list != null) {
                     for (int i = 0; i < list.size() && trovato == false; i++) {
                         if ((list.get(i).getNome().toLowerCase()).equals(comune)) {
                             trovato = true;

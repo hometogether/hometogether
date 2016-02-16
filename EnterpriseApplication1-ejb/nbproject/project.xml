@@ -11,6 +11,7 @@
             <included-library dirs="200">file.reference.google-api-client-1.21.0.jar</included-library>
             <included-library dirs="200">file.reference.google-http-client-1.21.0.jar</included-library>
             <included-library dirs="200">file.reference.google-http-client-jackson2-1.21.0.jar</included-library>
+            <included-library dirs="200">file.reference.urlrewritefilter-4.0.3.jar</included-library>
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>

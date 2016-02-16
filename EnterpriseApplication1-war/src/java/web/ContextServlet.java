@@ -5,20 +5,12 @@
  */
 package web;
 
-import com.google.gson.Gson;
-import static com.sun.faces.facelets.util.Path.context;
 import ejb.Comune;
 import ejb.GestoreComuni;
 import ejb.GestoreUtenti;
-import ejb.UtenteApp;
-import ejb.UtenteFacebook;
-import ejb.UtenteGoogle;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletException;
@@ -105,7 +97,7 @@ public class ContextServlet extends HttpServlet implements ServletContextListene
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sce.getServletContext().removeAttribute("list");
     }
 
     
