@@ -10,7 +10,10 @@ function showResult() {
     xhr.open("POST", "NavBarServlet", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send('action=searchUtente&ric_utente=' + utente);
-    console.log(xhr.responseText);
+    xhr.onload = function () {
+       console.log(xhr.responseText); 
+    };
+    
 }
 
 

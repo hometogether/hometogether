@@ -35,7 +35,8 @@ public class NavBarServlet extends HttpServlet {
     ProfiloFacade profiloFacade;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/plain");
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         try (PrintWriter out = response.getWriter()) {
             if(action.equals("searchUtente")){
@@ -46,13 +47,10 @@ public class NavBarServlet extends HttpServlet {
                     for(int i=0;i<res.size();i++){
                         name=res.get(i).getNome();
                     }
-                    out.println(name);
+                    out.write(name);
                 }else{
-                    out.println(-1);
+                    out.write("no");
                 }
-                
-                
-                response.getWriter().write("Andrea");
             }
         }
     }
