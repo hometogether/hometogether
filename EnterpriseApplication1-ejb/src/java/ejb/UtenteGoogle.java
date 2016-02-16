@@ -89,6 +89,8 @@ public class UtenteGoogle implements Serializable {
     public void setIdProfilo(long idProfilo) {
         this.idProfilo = idProfilo;
     }
+    
+    
 
     @Override
     public int hashCode() {
