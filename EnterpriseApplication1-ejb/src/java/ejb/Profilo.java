@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -52,7 +53,7 @@ public class Profilo implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     private String nome;
 
     /**
@@ -191,12 +192,11 @@ public class Profilo implements Serializable {
     public void setIdComune(int idComune) {
         this.idComune = idComune;
     }
-    
+
     private String occupazione;
-    
+
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-
     public String getOccupazione() {
         return occupazione;
     }
@@ -204,8 +204,8 @@ public class Profilo implements Serializable {
     public void setOccupazione(String Occupazione) {
         this.occupazione = Occupazione;
     }
-    
-        private String formazione;
+
+    private String formazione;
 
     /**
      * Get the value of formazione
@@ -224,8 +224,8 @@ public class Profilo implements Serializable {
     public void setFormazione(String formazione) {
         this.formazione = formazione;
     }
-    
-        private String telefono;
+
+    private String telefono;
 
     /**
      * Get the value of telefono
@@ -244,7 +244,6 @@ public class Profilo implements Serializable {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
 
     @ManyToMany
     private List<Interesse> interessi;
@@ -267,6 +266,25 @@ public class Profilo implements Serializable {
         this.interessi = interessi;
     }
 
-    
-    
+    @OneToMany
+    private List<Profilo> following;
+
+    /**
+     * Get the value of following
+     *
+     * @return the value of following
+     */
+    public List<Profilo> getFollowing() {
+        return following;
+    }
+
+    /**
+     * Set the value of following
+     *
+     * @param following new value of following
+     */
+    public void setFollowing(List<Profilo> following) {
+        this.following = following;
+    }
+
 }
