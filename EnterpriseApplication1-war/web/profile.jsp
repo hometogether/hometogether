@@ -132,10 +132,20 @@
                                               <c:if test="${profilo.id != id}"> 
                                                 
                                                         <form action="ProfileServlet" method="post" id="upload" enctype="multipart/form-data">
-
-                                                            
-                                                            <button id="followbuton" type="button" class="btn btn-primary form-group" onClick="follow(${profilo.id})">Follow</button>
-                                                        
+                                                            <button id="followbuton" type="button" class="btn btn-primary form-group" onClick="    
+                                                            <c:if test="${profilo.id != id}">
+                                                                ${amici}
+                                                                <c:choose>
+                                                                    <c:when test="${amici==1}">
+                                                                        
+                                                                        eliminafollow(${profilo.id})">Stop Follow
+                                                                    </c:when>    
+                                                                    <c:otherwise>
+                                                                        follow(${profilo.id})">Follow
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </c:if>
+                                                            </button>
                                                         </form>
                                                             
                                                         

@@ -249,4 +249,25 @@ public class GestoreUtenti {
 
     }
 
+    public int eliminaFollowing(Profilo personalProfile, Profilo followProfile) {
+        List<Profilo> following = personalProfile.getFollowing();
+
+        //il compare con la lista in questo caso non va, perché Profilo è un oggetto composto da ulteriori
+        //oggetti, e il compare è semplicemente un .equals (più o meno).
+        Long idfollow = followProfile.getId();
+       
+        for (int i = 0; i < following.size(); i++) {
+             System.out.println("nome di un mio following:"+following.get(i).getNome());
+            if (following.get(i).getId() == idfollow) {
+                following.remove(i);
+                personalProfile.setFollowing(following);
+                profiloFacade.edit(personalProfile);
+                System.out.println("Abbiamo eliminato il follow!");
+                return 0;
+            }
+        }
+        return -1;
+        
+    }
+
 }

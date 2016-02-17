@@ -93,6 +93,18 @@ public class ProfileServlet extends HttpServlet {
                     out.println("-1");
                 }
 
+            } else if (action.equals("eliminafollow")) {
+                Long idfollow = new Long(request.getParameter("id"));
+                Long id = (Long)(s.getAttribute("id"));
+                Profilo personalProfile = profiloFacade.getProfilo(id);
+                Profilo followProfile = profiloFacade.getProfilo(idfollow);
+                int res = gestoreUtenti.eliminaFollowing(personalProfile, followProfile);
+                if (res == 0) {
+                    out.println("0");
+                } else {
+                    out.println("-1");
+                }
+
             } else {
                 //GESTIRE ERRORE
             }

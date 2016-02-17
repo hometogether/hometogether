@@ -50,11 +50,35 @@ public class RedirectServlet extends HttpServlet {
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/profile.jsp");
                 rd.forward(request, response);
             } else if (action.equals("goUserProfile")) {
-                
+
                 Long idprofile = new Long(request.getParameter("idprofile"));
                 Profilo p = profiloFacade.getProfilo(idprofile);
                 if (p != null) {
+
+                    Profilo personalProfile = profiloFacade.getProfilo((Long) (session.getAttribute("id")));
+                    List<Profilo> listafollowing = personalProfile.getFollowing();
+                    boolean trovato = false;
+                    System.out.println("id dell'amico:"+idprofile);
+                    for (int i = 0; i < listafollowing.size() && trovato == false; i++) {
+                        System.out.println("id:"+i+": "+listafollowing.get(i).getId());
+                        if (listafollowing.get(i).getId().equals(idprofile)) {
+                            System.out.println("trovato!");
+                            trovato = true;
+                        }
+                    }
+                    if (trovato) {
+                        System.out.println("trovato! è un amico");
+                        request.setAttribute("amici", 1);
+
+                    } else {
+                        System.out.println("non è un amico...");
+
+                        request.setAttribute("amici", 0);
+
+                    }
+
                     request.setAttribute("profilo", p);
+
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/profile.jsp");
                     rd.forward(request, response);
                 } else {
