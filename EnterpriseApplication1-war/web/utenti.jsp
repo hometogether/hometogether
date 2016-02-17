@@ -21,7 +21,7 @@
     <body>
         
         <%@include file="navbar.jsp" %>
-        <div class="content col-md-12">
+        <div class="content col-md-12 ">
             <br><br><br>
             <div class="container col-md-2" style="background: yellow">
                 <h3>DESTRA</h3> 
