@@ -18,77 +18,78 @@ import javax.persistence.Query;
  */
 @Stateless
 @LocalBean
-public class ProfiloFacade extends AbstractFacade<Profilo> implements ProfiloFacadeLocal{
+public class ProfiloFacade extends AbstractFacade<Profilo> implements ProfiloFacadeLocal {
 
     @PersistenceContext(unitName = "EnterpriseApplication1-ejbPU")
-    
+
     private EntityManager em;
-    
+
     @Override
     protected EntityManager getEntityManager() {
-        
+
         return em;
     }
 
     public ProfiloFacade() {
         super(Profilo.class);
     }
-    
+
     @Override
-    public Profilo getProfilo(String email){
+    public Profilo getProfilo(String email) {
         //Query q = em.createNativeQuery(query);
         Query q = em.createQuery("SELECT p FROM Profilo p WHERE p.email =:custEmail");
         q.setParameter("custEmail", email);
         List l = q.getResultList();
         System.out.println(l);
-        if (l.isEmpty()){
+        if (l.isEmpty()) {
             return null;
         } else {
-            Profilo p = em.find(Profilo.class, ((Profilo)l.get(0)).getId());
+            Profilo p = em.find(Profilo.class, ((Profilo) l.get(0)).getId());
             return p;
         }
-        
+
     }
+
     @Override
-    public Profilo getProfilo(Long idProfilo){
+    public Profilo getProfilo(Long idProfilo) {
         //Query q = em.createNativeQuery(query);
         Query q = em.createQuery("SELECT p FROM Profilo p WHERE p.id =:custProfilo");
-        System.out.println("id profilo:"+idProfilo);
+        System.out.println("id profilo:" + idProfilo);
         q.setParameter("custProfilo", idProfilo);
         List l = q.getResultList();
         System.out.println(l);
-        if (l.isEmpty()){
+        if (l.isEmpty()) {
             return null;
         } else {
-            Profilo p = em.find(Profilo.class, ((Profilo)l.get(0)).getId());
+            Profilo p = em.find(Profilo.class, ((Profilo) l.get(0)).getId());
             return p;
         }
-        
+
     }
-    
+
     @Override
-    public List getProfiloUtente(String nomeDigitato){
+    public List getProfiloUtente(String nomeDigitato) {
         Query q = em.createQuery("SELECT p FROM Profilo p WHERE (LOWER(CONCAT(p.cognome,' ',p.nome)) LIKE :searchString) OR"
                 + "(LOWER(CONCAT(p.nome,' ',p.cognome)) LIKE :searchString )");
-        q.setParameter("searchString", nomeDigitato + "%");
+        q.setParameter("searchString", "%" + nomeDigitato + "%");
         List l = q.getResultList();
-        if (l.isEmpty()){
+        if (l.isEmpty()) {
             return null;
-        }else{
+        } else {
             return l;
         }
     }
-   
+
     @Override
-    public int checkEmailEsistente(String email){
+    public int checkEmailEsistente(String email) {
         Query q = em.createQuery("SELECT p FROM Profilo p WHERE p.email =:custEmail");
         q.setParameter("custEmail", email);
         List l = q.getResultList();
-        if (l.isEmpty()){
+        if (l.isEmpty()) {
             return 0;
         } else {
             return -1;
         }
-        
+
     }
 }
