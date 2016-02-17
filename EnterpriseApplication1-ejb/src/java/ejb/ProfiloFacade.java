@@ -68,7 +68,7 @@ public class ProfiloFacade extends AbstractFacade<Profilo> implements ProfiloFac
     
     @Override
     public List getProfiloUtente(String nomeDigitato){
-        Query q = em.createQuery("SELECT p FROM Profilo p WHERE LOWER(CONCAT(p.nome,' ',p.cognome)) LIKE :searchString ");
+        Query q = em.createQuery("SELECT p FROM Profilo p WHERE LOWER(CONCAT(p.nome,' ',p.cognome)) LIKE :searchString");
         q.setParameter("searchString", "%" + nomeDigitato + "%");
         List l = q.getResultList();
         if (l.isEmpty()){

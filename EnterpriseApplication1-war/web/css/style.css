@@ -6,7 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 html, body{
     font-size: 100%;
-	background: whitesmoke;//rgba(228, 131, 18, 0.6);
+	background: rgba(228, 131, 18, 0.6);
 	font-family: fabrik;
 }
 @font-face {
