@@ -14,7 +14,6 @@
         <link href="css/bootstrap_1.min.css" rel='stylesheet' type='text/css' />
         <link href="css/bootstrap-theme_1.css" rel='stylesheet' type='text/css' />
         <link href="css/ProfileStyle.css" rel='stylesheet' type='text/css' />
-        <link href="css/style_1.css" rel='stylesheet' type='text/css' />
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <title>Utenti trovati</title>
