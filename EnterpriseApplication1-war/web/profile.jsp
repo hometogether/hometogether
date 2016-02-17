@@ -35,6 +35,8 @@
         <%@include file="modal-modInfo.jsp"%>
         <!--MODAL PER LA MODIFICA DEGLI INTERESSI-->
         <%@include file="modal-interessi.jsp"%>
+        <!--MODAL PER LA VISUALIZZAZIONE DEI FOLLOWING-->
+        <%@include file="modal-following.jsp"%>
     </head>
     
     <body>
@@ -96,7 +98,9 @@
                                                                 <button class="  btn-secodary borderless-btn" style="text-align: center;color: black" data-toggle="modal" data-target="#mod-info-modal">
                                                                     <i class="glyphicon glyphicon-info-sign"></i> Informazioni
                                                                 </button>
-                                                                
+                                                                <button class="  btn-secodary borderless-btn" style="text-align: center;color: black" data-toggle="modal" data-target="#following-modal">
+                                                                    <i class="glyphicon glyphicon-user"></i> Following
+                                                                </button>
                                                                 </c:if>
                                                                 <button class=" btn-secodary borderless-btn" style="text-align: center;color: black" data-toggle="modal" data-target="#mod-interessi">
                                                                     <i class="glyphicon glyphicon-music"></i> Interessi
