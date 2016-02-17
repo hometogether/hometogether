@@ -76,7 +76,11 @@ public class ProfileServlet extends HttpServlet {
                 String location = request.getParameter("localita");
                 String data = request.getParameter("data_nascita");
                 String email = (String) (s.getAttribute("email"));
-                gestoreUtenti.modificaInfo(email, data);
+                String formazione= request.getParameter("formazione");
+                String occupazione= request.getParameter("occupazione");
+                String telefono= request.getParameter("telefono");
+                Profilo p =gestoreUtenti.modificaInfo(email, data,formazione,occupazione,telefono);
+                request.setAttribute("profilo", p);
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/profile.jsp");
                 rd.forward(request, response);
             } else if (action.equals("follow")) {

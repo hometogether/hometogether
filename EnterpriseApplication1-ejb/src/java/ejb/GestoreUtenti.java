@@ -218,12 +218,24 @@ public class GestoreUtenti {
         profiloFacade.edit(p);
     }
 
-    public void modificaInfo(String email, String data_nascita) {
+    public Profilo modificaInfo(String email, String data_nascita, String formazione, String occupazione, String numero_tel) {
         Profilo p = profiloFacade.getProfilo(email);
-        p.setData_nascita(data_nascita);
+        if(!data_nascita.equals("")){
+            p.setData_nascita(data_nascita);
+        }else if(!formazione.equals("")){
+            p.setFormazione(formazione);
+        }else if(!occupazione.equals("")){
+            p.setOccupazione(occupazione);
+        }else if(!numero_tel.equals("")){
+            p.setTelefono(numero_tel);
+        }
+        
         /*
          p.setIdComune(localita);*/
+        
         profiloFacade.edit(p);
+        return p;
+       
     }
 
     public int aggiungiFollowing(Profilo personalProfile, Profilo followProfile) {

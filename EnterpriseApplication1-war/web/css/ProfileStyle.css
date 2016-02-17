@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 html, body{
     font-size: 100%;
-    background:	orange;
+    background:	whitesmoke;//orange;
     font-family: fabrik;
 }
 @font-face {
@@ -212,6 +212,8 @@ input[type="color"]:focus,
 }
 .profile-image-avatar{
     width:100%;
+    min-height: 100px;
+    min-width: 100px;
     max-width: 270px;
     max-height: 254px;
     height: auto;

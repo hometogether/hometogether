@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,15 +43,17 @@ public class NavBarServlet extends HttpServlet {
             if(action.equals("searchUtente")){
                 String nomeDigitato=(String)  request.getParameter("ric_utente");
                 if(nomeDigitato!= null){
-                   List<Profilo> res = profiloFacade.getProfilo(nomeDigitato, "Maira");
+                   List<Profilo> res = profiloFacade.getProfiloUtente(nomeDigitato.toLowerCase());
+                   request.setAttribute("utente", res);
                    String name="";
                     for(int i=0;i<res.size();i++){
-                        name=res.get(i).getNome();
+                        name=res.get(i).getNome()+" "+ res.get(i).getCognome();
+                        
                     }
-                    out.write(name);
-                }else{
-                    out.write("no");
+                   
                 }
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/utenti.jsp");
+                rd.forward(request, response);
             }
         }
     }

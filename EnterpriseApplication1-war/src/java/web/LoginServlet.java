@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
                 if (u != null) {
                     HttpSession session = request.getSession();
                     session.setAttribute("id", u.getProfilo().getId());
-                    session.setAttribute("email", u.getEmail());
+                    
                     
                     //Profilo p = profiloFacade.getProfilo(email);
                     session.setAttribute("nome",""+u.getProfilo().getNome());
@@ -70,6 +70,9 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("email",""+u.getProfilo().getEmail());
                     session.setAttribute("data",""+u.getProfilo().getData_nascita());
                     session.setAttribute("sesso",""+u.getProfilo().getSesso());
+                    session.setAttribute("formazione",u.getProfilo().getFormazione());
+                    session.setAttribute("occupazione",u.getProfilo().getOccupazione());
+                    session.setAttribute("telefono",u.getProfilo().getTelefono());
                   //  s.setAttribute("location",""+location);
                     session.setAttribute("foto",""+u.getProfilo().getFoto_profilo()); 
                     
