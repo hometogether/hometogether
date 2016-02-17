@@ -16,7 +16,6 @@
     <script src="js/interessi.js"></script>
     <script src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
         $(document).ready(function () {
@@ -51,10 +50,12 @@
                     <br/>
                     <div class="clearfix"></div>
                     <div>
+                        <c:if test="${profilo.id == id}">
                         <a class="btn icon-btn btn-success" id="showAddinput">
                         <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
                         Add
                         </a>
+                        
                         <div id="additem">
                             <form action="InterestServlet" role="form" method="post">
                                  <div class="input-group col-lg-6 col-md-6 col-sm-6">
@@ -65,17 +66,20 @@
                                  </div>
                             </form>
                         </div>
+                        </c:if>
                         <div id='todolist'>
                             <br>
                             <ul id="ulInteressi" class="list-inline"> 
-                            <c:forEach items="${interessi}" var="interesse">
+                            <c:forEach items="${profilo.interessi}" var="interesse">
                                  
                                 <li id="${interesse.id}">
                                     <div class="btn-group">
                                         <form action="InterestServlet" role="form" method="post">
                                             <div class="btn-interest">
                                                <button class=" btn btn-secondary borderless-btn btn-link" title="${interesse.nome}" style="text-align: center;color: black;overflow: hidden;text-overflow: ellipsis;max-width: 90%"> ${interesse.nome}</button>
-                                               <button id="remove" type="button" class="btn-secondary close" onClick="rimuoviInteresse(${interesse.id})">&times;</button> 
+                                               <c:if test="${profilo.id == id}">
+                                                   <button id="remove" type="button" class="btn-secondary close" onClick="rimuoviInteresse(${interesse.id})">&times;</button> 
+                                               </c:if>
                                             </div>
                                         </form>
                                     </div>

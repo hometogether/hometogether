@@ -20,9 +20,7 @@
         <script src="js/Facebook.js"></script>
         
         <!--CSS-->
-        <%
-            HttpSession s = request.getSession();
-        %>
+        
         <title>HOME Page</title>
     </head>
     <body>

@@ -6,6 +6,7 @@
 package web;
 
 import ejb.GestoreUtenti;
+import ejb.Profilo;
 import ejb.ProfiloFacade;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,49 +44,59 @@ public class ProfileServlet extends HttpServlet {
      */
     @EJB
     private GestoreUtenti gestoreUtenti;
+    @EJB
+    private ProfiloFacade profiloFacade;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        HttpSession s= request.getSession();
+        HttpSession s = request.getSession();
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
-            if(action.equals("add_profile_image")){
-                String email= (String)s.getAttribute("email");
+            if (action.equals("add_profile_image")) {
+                String email = (String) s.getAttribute("email");
                 Part filePart = request.getPart("nomeFile");
-                InputStream filecontent=filePart.getInputStream();
-                FileOutputStream prova = new FileOutputStream("C:\\Users\\Antonio\\Documents\\NetBeansProjects\\EnterpriseApplication1\\EnterpriseApplication1-war\\web\\profile_img\\"+filePart.getSubmittedFileName());
+                InputStream filecontent = filePart.getInputStream();
+                FileOutputStream prova = new FileOutputStream("C:\\Users\\Antonio\\Documents\\NetBeansProjects\\EnterpriseApplication1\\EnterpriseApplication1-war\\web\\profile_img\\" + filePart.getSubmittedFileName());
                 int read = 0;
                 final byte[] bytes = new byte[1024];
 
                 while ((read = filecontent.read(bytes)) != -1) {
                     prova.write(bytes, 0, read);
                 }
-                String foto="profile_img/"+filePart.getSubmittedFileName();
+                String foto = "profile_img/" + filePart.getSubmittedFileName();
                 gestoreUtenti.modificaFotoProfilo(email, foto);
-                s.setAttribute("foto","profile_img/"+filePart.getSubmittedFileName());
+                s.setAttribute("foto", "profile_img/" + filePart.getSubmittedFileName());
                 filecontent.close();
                 prova.close();
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/profile.jsp");
-                rd.forward(request,response);
-            }else if(action.equals("mod_info")){
-                String location= request.getParameter("localita");
-                String data= request.getParameter("data_nascita");
-                String email= (String)(s.getAttribute("email"));
-                gestoreUtenti.modificaInfo(email,data);
+                rd.forward(request, response);
+            } else if (action.equals("mod_info")) {
+                String location = request.getParameter("localita");
+                String data = request.getParameter("data_nascita");
+                String email = (String) (s.getAttribute("email"));
+                gestoreUtenti.modificaInfo(email, data);
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/profile.jsp");
-                rd.forward(request,response);
+                rd.forward(request, response);
+            } else if (action.equals("follow")) {
+                Long idfollow = new Long(request.getParameter("id"));
+                Long id = (Long)(s.getAttribute("id"));
+                System.out.println("id request:"+request.getParameter("id"));
+                System.out.println("id sessione:"+s.getAttribute("id"));
+                Profilo personalProfile = profiloFacade.getProfilo(id);
+                Profilo followProfile = profiloFacade.getProfilo(idfollow);
+                int res = gestoreUtenti.aggiungiFollowing(personalProfile, followProfile);
+                if (res == 0) {
+                    out.println("0");
+                } else {
+                    out.println("-1");
+                }
+
+            } else {
+                //GESTIRE ERRORE
             }
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProfileServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProfileServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
         }
     }
 

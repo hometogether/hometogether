@@ -8,6 +8,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
     <head>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
         <BASE href="http://localhost:8080/EnterpriseApplication1-war/">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!--CSS-->
@@ -19,14 +21,13 @@
 
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="js/profile.js"></script>
+
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="js/Facebook.js"></script>
-        
         <!--CSS-->
-        <%
-            HttpSession s = request.getSession();
-        %>
         
+        
+
         <title>Profile Page</title>
         <!--MODAL PER SHOW IMMAGINE PROFILO-->
         <%@include file="modal-immagineProfilo.jsp"%>
@@ -55,6 +56,7 @@
                                           <div class="col-md-3 col-sm-4 col-xs-4" style="background: #fff">
                                             <br>
                                             <div class="text-center img_container">
+                                                <c:if test="${profilo.id == id}">
                                                 <div class="the-buttons col-md-3 col-sm-4 col-xs-4">
                                                     <form action="ProfileServlet" method="post" id="upload" enctype="multipart/form-data">
                                                         <i class="glyphicon glyphicon-camera" id="white-camera"></i>
@@ -65,32 +67,37 @@
                                                         <input id="action" type="hidden" value="add_profile_image" name="action" class="form-control"/>
                                                     </form>
                                                 </div>
-                                                <a href="#" data-toggle="modal" data-target="#avatar-modal"><img src="<%=(String)s.getAttribute("foto")%>" class="avatar profile-image-avatar" alt="avatar"/></a>
+                                                </c:if>
+                                                
+                                                <a href="#" data-toggle="modal" data-target="#avatar-modal"><img src="${profilo.foto_profilo}" class="avatar profile-image-avatar" alt="avatar"/></a>
                                             </div>
    
                                               <br>
                                               <div class="panel panel-info">
                                                 <div class="panel-heading colored">
-                                                            Su di te
+                                                             Su di te
                                                         </div>
 
                                                         <div class="panel-body">
-                                                            Vive a <span><%=(String)s.getAttribute("location")%></span>
+                                                            Vive a <span></span>
                                                         </div>
 
                                                         <div class="panel-body">
-                                                            Lavora presso
+                                                            Lavora presso <span>${profilo.occupazione}</span>
                                                         </div>
 
                                                         <div class="panel-body">
-                                                            Nato il <span><%=(String)s.getAttribute("data")%></span>
+                                                            Nato il <span>${profilo.data_nascita}</span>
                                                         </div>
 
                                                         <div class="panel-footer">
                                                             <div class="btn-group" role="group"> 
+                                                                <c:if test="${profilo.id == id}">
                                                                 <button class="  btn-secodary borderless-btn" style="text-align: center;color: black" data-toggle="modal" data-target="#mod-info-modal">
                                                                     <i class="glyphicon glyphicon-info-sign"></i> Informazioni
                                                                 </button>
+                                                                
+                                                                </c:if>
                                                                 <button class=" btn-secodary borderless-btn" style="text-align: center;color: black" data-toggle="modal" data-target="#mod-interessi">
                                                                     <i class="glyphicon glyphicon-music"></i> Interessi
                                                                 </button>
@@ -120,8 +127,22 @@
                                                     </ul>
                                           </div>
                                           <div  class="col-md-9 col-sm-6 col-xs-8" style="position: relative; left: 8px">
-                                              <a style="color:black"><h1><%=(String)s.getAttribute("nome")%><span> </span><%=(String)s.getAttribute("cognome")%></h1></a>
-                                              <h3>Torino,Piemonte,Italia</h3>
+                                              
+                                              <a style="color:black"><h1>${profilo.nome}<span> </span>${profilo.cognome}</h1></a>
+                                              <c:if test="${profilo.id != id}"> 
+                                                
+                                                        <form action="ProfileServlet" method="post" id="upload" enctype="multipart/form-data">
+
+                                                            
+                                                            <button id="followbuton" type="button" class="btn btn-primary form-group" onClick="follow(${profilo.id})">Follow</button>
+                                                        
+                                                        </form>
+                                                            
+                                                        
+                                                
+                                              </c:if>
+                                              
+                                              <h3>Catania</h3>
                                           </div>
                                           <!-- edit form column -->
                                           <div class="col-md-9 col-sm-7 col-xs-8 personal-info" style="background: #fff; position: relative; left: 8px;">

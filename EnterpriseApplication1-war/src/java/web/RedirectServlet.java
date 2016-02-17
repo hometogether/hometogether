@@ -44,10 +44,22 @@ public class RedirectServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             if (action.equals("goProfile")) {
                 Profilo p = profiloFacade.getProfilo((String) session.getAttribute("email"));
-
-                request.setAttribute("interessi", p.getInteressi());
+                request.setAttribute("profilo", p);
+                System.out.println("foto:" + p.getFoto_profilo());
+                //request.setAttribute("interessi", p.getInteressi());
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/profile.jsp");
                 rd.forward(request, response);
+            } else if (action.equals("goUserProfile")) {
+                
+                Long idprofile = new Long(request.getParameter("idprofile"));
+                Profilo p = profiloFacade.getProfilo(idprofile);
+                if (p != null) {
+                    request.setAttribute("profilo", p);
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/profile.jsp");
+                    rd.forward(request, response);
+                } else {
+                    //GESTIRE ERRORE
+                }
             } else if (action.equals("loginSocial")) {
 
                 if (session != null) {
@@ -57,9 +69,9 @@ public class RedirectServlet extends HttpServlet {
                 } else {
                     //errore
                 }
-            } else{
+            } else {
                 //gestione erroi
-            } 
+            }
             /* TODO output your page here. You may use following sample code. */
 
         }

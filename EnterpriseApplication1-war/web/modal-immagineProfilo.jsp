@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+        
+
     <div class="modal fade" id="avatar-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
@@ -14,7 +16,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
             <div class="modal-body" style="text-align: center">
-                <img src="<%=(String)s.getAttribute("foto")%>" alt="avatar" style="width: 70%"/>
+                <img src="${foto}" alt="avatar" style="width: 70%"/>
                 </div>
                 <div class="clearfix"></div>
                 <div class="modal-footer login_modal_footer">

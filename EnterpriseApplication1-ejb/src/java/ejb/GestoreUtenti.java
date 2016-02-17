@@ -22,7 +22,7 @@ public class GestoreUtenti {
     private UtenteGoogleFacadeLocal utenteGoogleFacade;
     @EJB
     private UtenteAppFacadeLocal utenteAppFacade;
-     @EJB
+    @EJB
     private UtenteFacebookFacadeLocal utenteFacebookFacade;
     @EJB
     private ProfiloFacadeLocal profiloFacade;
@@ -59,7 +59,7 @@ public class GestoreUtenti {
         p.setFoto_profilo("");
         profiloFacade.create(p);
         Profilo profilo = profiloFacade.getProfilo(email);
-       // Long idProfilo = profilo.getId();
+        // Long idProfilo = profilo.getId();
         UtenteApp u = new UtenteApp();
         u.setPassword(password);
         u.setProfilo(profilo);
@@ -76,7 +76,7 @@ public class GestoreUtenti {
 
         return 0;
     }
-    
+
     public int aggiungiUserGoogle(String nome, String cognome, String idGoogle, String email, String r_email, String data_nascita, String sesso, String foto) {
         System.out.println("entro in aggiungi user, con la persistance spettacolari!!!wowowow");
         if (nome == null || cognome == null || idGoogle == null || email == null
@@ -121,11 +121,11 @@ public class GestoreUtenti {
 
         return 0;
     }
-    
-    public int aggiungiUserFacebook(String nome, String cognome, String idFacebook, String email, String r_email, String data_nascita, String sesso,String foto) {
-        
+
+    public int aggiungiUserFacebook(String nome, String cognome, String idFacebook, String email, String r_email, String data_nascita, String sesso, String foto) {
+
         if (nome == null || cognome == null || idFacebook == null || email == null
-                || r_email == null || data_nascita == null || sesso == null || foto==null) {
+                || r_email == null || data_nascita == null || sesso == null || foto == null) {
             System.out.println("Non sono stati compilati tutti i campi!");
             return -1;
         } else if (!email.equals(r_email)) {
@@ -166,18 +166,19 @@ public class GestoreUtenti {
 
         return 0;
     }
-    
 
     public List<UtenteApp> getUsers() {
         List<UtenteApp> listaUser = utenteAppFacade.findAll();
 
         return listaUser;
     }
+
     public List<UtenteFacebook> getUserFacebook() {
         List<UtenteFacebook> listaUser = utenteFacebookFacade.findAll();
 
         return listaUser;
     }
+
     public List<UtenteGoogle> getUserGoogle() {
         List<UtenteGoogle> listaUser = utenteGoogleFacade.findAll();
 
@@ -192,7 +193,7 @@ public class GestoreUtenti {
         return u;
 
     }
-    
+
     public UtenteGoogle loginGoogle(String email, String idGoogle) {
         System.out.println("entro in loginUtente");
 
@@ -201,7 +202,7 @@ public class GestoreUtenti {
         return u;
 
     }
-    
+
     public UtenteFacebook loginFacebook(String email, String idFacebook) {
         System.out.println("entro in loginUtente");
 
@@ -210,20 +211,42 @@ public class GestoreUtenti {
         return u;
 
     }
-    
-    public void modificaFotoProfilo(String email, String foto){
+
+    public void modificaFotoProfilo(String email, String foto) {
         Profilo p = profiloFacade.getProfilo(email);
         p.setFoto_profilo(foto);
         profiloFacade.edit(p);
     }
-    
-    public void modificaInfo(String email, String data_nascita){
+
+    public void modificaInfo(String email, String data_nascita) {
         Profilo p = profiloFacade.getProfilo(email);
         p.setData_nascita(data_nascita);
         /*
-        p.setIdComune(localita);*/
+         p.setIdComune(localita);*/
         profiloFacade.edit(p);
     }
+
+    public int aggiungiFollowing(Profilo personalProfile, Profilo followProfile) {
+        List<Profilo> following = personalProfile.getFollowing();
+
+        //il compare con la lista in questo caso non va, perché Profilo è un oggetto composto da ulteriori
+        //oggetti, e il compare è semplicemente un .equals (più o meno).
+        Long idfollow = followProfile.getId();
        
+        for (int i = 0; i < following.size(); i++) {
+             System.out.println("nome di un mio following:"+following.get(i).getNome());
+            if (following.get(i).getId() == idfollow) {
+                System.out.println("Il soggetto segue già l'utente.");
+                return -1;
+            }
+        }
+
+        following.add(followProfile);
+        personalProfile.setFollowing(following);
+        profiloFacade.edit(personalProfile);
+        System.out.println("aggiungo il nuovo Follow");
+        return 0;
+
+    }
 
 }

@@ -53,6 +53,7 @@ public class ProfiloFacade extends AbstractFacade<Profilo> implements ProfiloFac
     public Profilo getProfilo(Long idProfilo){
         //Query q = em.createNativeQuery(query);
         Query q = em.createQuery("SELECT p FROM Profilo p WHERE p.id =:custProfilo");
+        System.out.println("id profilo:"+idProfilo);
         q.setParameter("custProfilo", idProfilo);
         List l = q.getResultList();
         System.out.println(l);

@@ -38,9 +38,9 @@
         <to>/RedirectServlet?action=goProfile</to>
     
     </rule>
-    <outbound-rule match-type="regex">
-        <from>^/RedirectServlet\?action=(.*)</from>
-        <to>/RedirectServlet/$1</to>
+    <outbound-rule>
+        <from>^/RedirectServlet?action=goProfile</from>
+        <to>/RedirectServlet/asd</to>
         
     </outbound-rule>
     
