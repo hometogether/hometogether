@@ -81,7 +81,7 @@
                                                         </div>
 
                                                         <div class="panel-body">
-                                                            Vive a <span></span>
+                                                            Vive a <span>${profilo.comune.nome}</span>
                                                         </div>
 
                                                         <div class="panel-body">

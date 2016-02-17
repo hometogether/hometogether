@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -173,25 +174,27 @@ public class Profilo implements Serializable {
         this.foto_profilo = foto_profilo;
     }
 
-    private int idComune;
+    @ManyToOne
+        private Comune comune;
 
     /**
-     * Get the value of idComune
+     * Get the value of comune
      *
-     * @return the value of idComune
+     * @return the value of comune
      */
-    public int getIdComune() {
-        return idComune;
+    public Comune getComune() {
+        return comune;
     }
 
     /**
-     * Set the value of idComune
+     * Set the value of comune
      *
-     * @param idComune new value of idComune
+     * @param comune new value of comune
      */
-    public void setIdComune(int idComune) {
-        this.idComune = idComune;
+    public void setComune(Comune comune) {
+        this.comune = comune;
     }
+
 
     private String occupazione;
 

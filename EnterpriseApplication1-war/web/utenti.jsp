@@ -44,30 +44,32 @@
                             <div class="col-md-6">
                                 <h3>${utente.nome}<span> </span>${utente.cognome}</h3>
                             </div>
-                            <div class="col-md-6" style="text-align: right;">
-                                <button id="followbuton${utente.id}" type="button" class="btn btn-success" onClick=" 
-                                        <c:set var="amici" value="0" /> 
-                                        <c:forEach var="following" items="${profilo.following}">
-                                            <c:if test="${following.id == utente.id}">
-                                                <c:set var="amici" value="1" /> 
-                                            </c:if>
-                                        </c:forEach>
-                                        <c:choose>
-                                            <c:when test="${amici==1}">
-                                                eliminafollow(${utente.id})">Stop Follow
-                                            </c:when>    
-                                            <c:otherwise>
-                                                follow(${utente.id})">Follow
-                                            </c:otherwise>
-                                        </c:choose>
-                                            
-                                        
-                                        
-                                    
-                                </button>
-                            </div>
+                            <c:if test="${utente.id != id}">
+                                <div class="col-md-6" style="text-align: right;">
+                                    <button id="followbuton${utente.id}" type="button" class="btn btn-success" onClick=" 
+                                            <c:set var="amici" value="0" /> 
+                                            <c:forEach var="following" items="${profilo.following}">
+                                                <c:if test="${following.id == utente.id}">
+                                                    <c:set var="amici" value="1" /> 
+                                                </c:if>
+                                            </c:forEach>
+                                            <c:choose>
+                                                <c:when test="${amici==1}">
+                                                    eliminafollow(${utente.id})">Stop Follow
+                                                </c:when>    
+                                                <c:otherwise>
+                                                    follow(${utente.id})">Follow
+                                                </c:otherwise>
+                                            </c:choose>
+
+
+
+
+                                    </button>
+                                </div>
+                            </c:if>
                             <div class="col-md-12">
-                                <span>Vive a</span> 
+                                <span>Vive a ${utente.comune.nome}</span> 
                                 <p>Lavora presso ${utente.occupazione}</p> 
                             </div>
                         </div> 

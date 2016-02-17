@@ -29,7 +29,7 @@ public class GestoreUtenti {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    public int aggiungiUser(String nome, String cognome, String password, String r_password, String email, String r_email, String data_nascita, String sesso) {
+    public int aggiungiUser(String nome, String cognome, String password, String r_password, String email, String r_email, String data_nascita, String sesso, Comune comune) {
         System.out.println("entro in aggiungi user, con la persistance spettacolari!!!wowowow");
         if (nome == null || cognome == null || password == null || r_password == null || email == null
                 || r_email == null || data_nascita == null || sesso == null) {
@@ -55,7 +55,7 @@ public class GestoreUtenti {
         p.setData_nascita(data_nascita);
         p.setSesso(sesso);
         p.setTipo(0);
-        p.setIdComune(0); //da sistemare
+        p.setComune(comune);
         p.setFoto_profilo("");
         profiloFacade.create(p);
         Profilo profilo = profiloFacade.getProfilo(email);
@@ -77,7 +77,7 @@ public class GestoreUtenti {
         return 0;
     }
 
-    public int aggiungiUserGoogle(String nome, String cognome, String idGoogle, String email, String r_email, String data_nascita, String sesso, String foto) {
+    public int aggiungiUserGoogle(String nome, String cognome, String idGoogle, String email, String r_email, String data_nascita, String sesso, String foto, Comune comune) {
         System.out.println("entro in aggiungi user, con la persistance spettacolari!!!wowowow");
         if (nome == null || cognome == null || idGoogle == null || email == null
                 || r_email == null || data_nascita == null || sesso == null) {
@@ -100,7 +100,7 @@ public class GestoreUtenti {
         p.setData_nascita(data_nascita);
         p.setSesso(sesso);
         p.setTipo(0);
-        p.setIdComune(0); //da sistemare
+        p.setComune(comune);
         p.setFoto_profilo(foto);
         profiloFacade.create(p);
         Profilo profilo = profiloFacade.getProfilo(email);
@@ -122,7 +122,7 @@ public class GestoreUtenti {
         return 0;
     }
 
-    public int aggiungiUserFacebook(String nome, String cognome, String idFacebook, String email, String r_email, String data_nascita, String sesso, String foto) {
+    public int aggiungiUserFacebook(String nome, String cognome, String idFacebook, String email, String r_email, String data_nascita, String sesso, String foto, Comune comune) {
 
         if (nome == null || cognome == null || idFacebook == null || email == null
                 || r_email == null || data_nascita == null || sesso == null || foto == null) {
@@ -145,7 +145,7 @@ public class GestoreUtenti {
         p.setData_nascita(data_nascita);
         p.setSesso(sesso);
         p.setTipo(0);
-        p.setIdComune(0); //da sistemare
+        p.setComune(comune);
         p.setFoto_profilo(foto);
         profiloFacade.create(p);
         Profilo profilo = profiloFacade.getProfilo(email);

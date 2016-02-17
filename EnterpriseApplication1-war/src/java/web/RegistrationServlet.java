@@ -62,12 +62,29 @@ public class RegistrationServlet extends HttpServlet {
                 String sesso = request.getParameter("sesso");
                 String foto = request.getParameter("foto_profilo");
                 String tipo_registrazione = request.getParameter("tipo_registrazione");
+                
+                String localita = request.getParameter("localita").toLowerCase();
+                System.out.println("localita:"+localita);
+                Comune comune=null;
+                ServletContext context = getServletContext();
+                List<Comune> list = (List<Comune>) context.getAttribute("list");
+                boolean trovato = false;
+                for (int i = 0; i < list.size() && trovato == false; i++) {
+                    if ((list.get(i).getNome().toLowerCase()).equals(localita)) {
+                        
+                        System.out.println("comune trovato!");
+                        comune=list.get(i);
+                        trovato = true;
+                    }
+
+                }
+                
                 if (tipo_registrazione.equals("0")) {
                     String password = request.getParameter("password");
                     String r_password = request.getParameter("r_password");
                     System.out.println(data_nascita);
                     System.out.println(sesso);
-                    int res = gestoreUtenti.aggiungiUser(nome, cognome, password, r_password, email, r_email, data_nascita, sesso);
+                    int res = gestoreUtenti.aggiungiUser(nome, cognome, password, r_password, email, r_email, data_nascita, sesso, comune);
                     if (res == 0) {
                         List<UtenteApp> lista = gestoreUtenti.getUsers();
                         //String gsonList = buildGson(lista);
@@ -96,7 +113,7 @@ public class RegistrationServlet extends HttpServlet {
                 } else if (tipo_registrazione.equals("1")) {
                     String idSocial = request.getParameter("idSocial");
 
-                    int res = gestoreUtenti.aggiungiUserFacebook(nome, cognome, idSocial, email, r_email, data_nascita, sesso, foto);
+                    int res = gestoreUtenti.aggiungiUserFacebook(nome, cognome, idSocial, email, r_email, data_nascita, sesso, foto, comune);
                     if (res == 0) {
                         List<UtenteFacebook> lista = gestoreUtenti.getUserFacebook();
 
@@ -124,7 +141,7 @@ public class RegistrationServlet extends HttpServlet {
                 } else if (tipo_registrazione.equals("2")) {
                     String idSocial = request.getParameter("idSocial");
                     System.out.println("idgoogle:" + idSocial);
-                    int res = gestoreUtenti.aggiungiUserGoogle(nome, cognome, idSocial, email, r_email, data_nascita, sesso, foto);
+                    int res = gestoreUtenti.aggiungiUserGoogle(nome, cognome, idSocial, email, r_email, data_nascita, sesso, foto, comune);
                     if (res == 0) {
                         //List<UtenteGoogle> lista = gestoreUtenti.getUserGoogle();
                         //String gsonList = buildGson(lista);
