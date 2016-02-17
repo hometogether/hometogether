@@ -21,7 +21,7 @@
 
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="js/profile.js"></script>
+        <script src="js/following.js"></script>
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <!--CSS-->
@@ -136,9 +136,9 @@
                                               <c:if test="${profilo.id != id}"> 
                                                 
                                                         <form action="ProfileServlet" method="post" id="upload" enctype="multipart/form-data">
-                                                            <button id="followbuton" type="button" class="btn btn-primary form-group" onClick="    
+                                                               
                                                             <c:if test="${profilo.id != id}">
-                                                                ${amici}
+                                                                <button id="followbuton${profilo.id}" type="button" class="btn btn-success" onClick=" 
                                                                 <c:choose>
                                                                     <c:when test="${amici==1}">
                                                                         
@@ -148,8 +148,9 @@
                                                                         follow(${profilo.id})">Follow
                                                                     </c:otherwise>
                                                                 </c:choose>
+                                                                </button>
                                                             </c:if>
-                                                            </button>
+                                                            
                                                         </form>
                                                             
                                                         

@@ -9,8 +9,8 @@ function follow(id) {
         if (xhr.responseText.trim() === "0") {
             console.log("sto seguendo l'utente!");
             
-            $("#followbuton").html('Stop Follow');
-            $("#followbuton").attr("onclick","eliminafollow("+id+")");
+            $("#followbuton"+id).html('Stop Follow');
+            $("#followbuton"+id).attr("onclick","eliminafollow("+id+")");
             
         } else {
             console.log("errore!");
@@ -31,8 +31,8 @@ function eliminafollow(id) {
         if (xhr.responseText.trim() === "0") {
             console.log("ho eliminato l'utente!");
             
-            $("#followbuton").html('Follow');
-            $("#followbuton").attr("onclick","follow("+id+")");
+            $("#followbuton"+id).html('Follow');
+            $("#followbuton"+id).attr("onclick","follow("+id+")");
             
         } else {
             console.log("errore!");

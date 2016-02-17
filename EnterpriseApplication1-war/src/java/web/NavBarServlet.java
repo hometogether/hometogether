@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,6 +39,7 @@ public class NavBarServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/plain");
         request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
         String action = request.getParameter("action");
         try (PrintWriter out = response.getWriter()) {
             if(action.equals("searchUtente")){
@@ -45,13 +47,19 @@ public class NavBarServlet extends HttpServlet {
                 if(nomeDigitato!= null){
                    List<Profilo> res = profiloFacade.getProfiloUtente(nomeDigitato.toLowerCase());
                    request.setAttribute("utente", res);
-                   String name="";
+                   System.out.println("arrivo");
+                   System.out.println(session.getAttribute("email"));
+                   Profilo p = profiloFacade.getProfilo((String) session.getAttribute("email"));
+                   request.setAttribute("profilo", p);
+                   
+                   /*String name="";
                     for(int i=0;i<res.size();i++){
                         name=res.get(i).getNome()+" "+ res.get(i).getCognome();
                         
-                    }
+                    }*/
                    
                 }
+                
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/utenti.jsp");
                 rd.forward(request, response);
             }

@@ -286,5 +286,16 @@ public class Profilo implements Serializable {
     public void setFollowing(List<Profilo> following) {
         this.following = following;
     }
+    
+    
+   /* public int isFollowing(Long idprofilouser) {
+        
+        for (int i=0; i<following.size();i++){
+            if (idprofilouser.equals(following.get(i).getId())){
+                return 1;
+            }
+        }
+        return 0;
+    }*/
 
 }
