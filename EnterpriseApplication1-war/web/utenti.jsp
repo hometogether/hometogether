@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,8 +16,69 @@
         <link href="css/bootstrap-theme_1.css" rel='stylesheet' type='text/css' />
         <link href="css/ProfileStyle.css" rel='stylesheet' type='text/css' />
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="js/following.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+               var i=0;
+               var length = '${fn:length(utente)}';
+                    $(window).scroll(function() {
+                            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+                                    var page = $("#lista").attr("rel");
+                                    
+                                    $('#ric_utente').val('nascondo i primi '+page);
+                                    
+                                    if(i<length){
+                                        $('#list').append("<div id='div${commentLoop.index}' class='col-md-12' style='padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;'>"+$("#div"+i).html()+"</div>");
+                                        ++i;
+                                    }
+                                    $("#list").attr("rel", ++page);
+                            }
+                    });
+            });
+           /* $(window).scroll(function () {
+                if ($(window).scrollTop() >= 100) {
+                   //Add something at the end of the page
+                   var length = '${fn:length(utente)}';
+                    //$("#div7").css('visibility','hidden');
+                    for(i=0; i<3; i++) {
+                        $("#div"+i).fadeOut();
+                      }
+                }else{
+                    for(i=0; i>3; i++) {
+                        $("#div"+i).css('visible','hidden');
+                      }
+                      for(i=0; i<3; i++) {
+                        $("#div"+i).fadeIn();
+                      }
+                }
+             });+/
+            /*$(window).scroll(function() {
+                var length = '${fn:length(utente)}';
+                var j=0;
+                $('#ric_utente').val(length-(length-2));
+                while(j<length){
+                   if ($(this).scrollTop() > 30*j ){
+                      for(i=0; i<2*j; i++) {
+                        $("#div"+i).fadeOut();
+                      }
+                      $('#ric_utente').val('nascondo i primi '+j);
+                      j++;
+                }else{
+                   for(i=0; i<2; i++) {
+                        $("#div"+i).fadeIn();
+                      }
+                      for(i=0; i>2; i++) {
+                        $("#div"+i).fadeOut();
+                      }
+                      j++;
+                      
+                } 
+                }
+                
+            });*/
+        </script>
 
         <title>Utenti trovati</title>
     </head>
@@ -28,10 +90,10 @@
             <div class="container col-md-2" style="background: yellow">
                 <h3>DESTRA</h3> 
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8" id="list" rel="1">
                 <br>
-                <c:forEach var="utente" items="${utente}">
-                  <div class="col-md-12" style="padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;">
+                <c:forEach var="utente" items="${utente}" varStatus="commentLoop">
+                    <div id="div${commentLoop.index}" class="col-md-12" style="padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;">
                     <div class="col-md-10" style="background: white;  border-radius: 2px; padding: 2% 2% 2% 0%;box-shadow: 0px 0px 1px #888;">
                         <div class="col-md-3">
                             <form action="RedirectServlet" role="form" method="get">    
