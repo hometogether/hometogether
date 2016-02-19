@@ -19,7 +19,90 @@
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="js/following.js"></script>
+        <!--<script src="js/search.js"></script>-->
         <script type="text/javascript">
+            $(document).ready(function() {
+         $(window).scroll(function() {
+                 if($(window).scrollTop() + $(window).height() === $(document).height()) {
+                        var xhr = new XMLHttpRequest();
+                        var utente = $("#ric_utente").val();
+                        xhr.open("POST", "NavBarServlet", true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.send('action=searchAjax&ric_utente=' + utente);
+                        xhr.onload = function () {
+                            var values=jQuery.parseJSON(xhr.responseText);
+                            var id = '${id}';
+                            var res="";
+                            var amici=0;
+                            
+                            
+                            for(var i=0; i<5;i++){
+                                
+                              res+=('<div id="div'+values[i].id+'" class="col-md-12" style="padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;">'+
+                            '<div class="col-md-10" style="background: white;  border-radius: 2px; padding: 2% 2% 2% 0%;box-shadow: 0px 0px 1px #888;">'+
+                                '<div class="col-md-3">'+
+                                    '<form action="RedirectServlet" role="form" method="get">'+    
+                                        '<input type="hidden" name="action" value="goUserProfile">'+
+                                        '<input type="hidden" name="idprofile" value="'+values[i].id+'">'+
+                                        '<button class="borderless-btn"><img src="'+values[i].foto_profilo+'" class="avatar profile-image-avatar" style="border: 0px solid; box-shadow: 0px 0px 5px #888;"/></button>'+
+                                    '</form>'+
+                                '</div>'+
+                                '<div class="col-md-9">'+
+                                    '<div class="col-md-6">'+
+                                        '<h3>'+values[i].nome+'<span> </span>'+values[i].cognome+'</h3>'+
+                                    '</div>');
+                                    if (values[i].id != id){
+                                        res+='<div class="col-md-6" style="text-align: right;">'+
+                                            '<button id="followbuton'+values[i].id+'" type="button" class="btn btn-success" onClick=" ';
+                                           
+                                     var idUtente;
+                                     var idFollowing;
+                                     <c:set var="idUtente" value= 'values[i].id' />
+                                       idUtente=<c:out value='${idUtente}'/>;
+                                    <c:forEach var="following" items="${profilo.following}">
+                                        
+                                        <c:set var="idFollowing" value='${following.id}' />
+                                        idFollowing=('${idFollowing}');   
+                                        
+                                        if(idUtente==idFollowing){
+                                            amici=1;
+                                        }
+                                            
+                                        
+                                    </c:forEach>
+                                        
+                                    if (amici ===1){
+                                        res+=' eliminafollow('+values[i].id+')">Stop Follow';
+                                    } else {
+                                        res+='follow('+values[i].id+')">Follow';
+                                    }
+                                    amici=0;
+                                    res+= 
+
+                                    '</button>'+
+                                '</div>';
+                            
+                                        
+                                    }
+                                    res+='<div class="col-md-12">'+
+                                '<span>Vive a '+values[i].comune.nome+'</span>'+ 
+                                '<p>Lavora presso '+values[i].occupazione+'</p>'+ 
+                            '</div>'+
+                        '</div>'+ 
+                    '</div>'+
+
+                '</div>';
+                                    $('#list').append(res);
+                                    res="";
+                                }
+                            
+                           
+                        };
+                 }
+         });
+ });
+        </script>
+       <!-- <script type="text/javascript">
             $(document).ready(function() {
                var i=0;
                var length = '${fn:length(utente)}';
@@ -27,7 +110,7 @@
                             if($(window).scrollTop() + $(window).height() == $(document).height()) {
                                     var page = $("#lista").attr("rel");
                                     
-                                    $('#ric_utente').val('nascondo i primi '+page);
+                                    $('#ric_utente').val('nascondo i primi '+length);
                                     
                                     if(i<length){
                                         $('#list').append("<div id='div${commentLoop.index}' class='col-md-12' style='padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;'>"+$("#div"+i).html()+"</div>");
@@ -78,7 +161,7 @@
                 }
                 
             });*/
-        </script>
+        </script>-->
 
         <title>Utenti trovati</title>
     </head>

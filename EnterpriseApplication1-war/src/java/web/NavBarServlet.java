@@ -5,8 +5,10 @@
  */
 package web;
 
+import com.google.gson.Gson;
 import ejb.Profilo;
 import ejb.ProfiloFacade;
+import ejb.UtenteGoogle;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -62,8 +64,24 @@ public class NavBarServlet extends HttpServlet {
                 
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/utenti.jsp");
                 rd.forward(request, response);
+            }else if(action.equals("searchAjax")){
+                String nomeDigitato=(String)  request.getParameter("ric_utente");
+                List<Profilo> res = profiloFacade.getProfiloUtente(nomeDigitato.toLowerCase());
+                out.println(buildGson(res));
             }
         }
+    }
+    private String buildGson(List<Profilo> u) {
+
+        Gson gson = new Gson();
+        String json = gson.toJson(u);
+
+        if (json == null) {
+            System.out.println("servlet buildGson: NULL");
+        } else {
+            System.out.println("servlet buildGson: NOT NULL  " + json);
+        }
+        return json;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
