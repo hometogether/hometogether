@@ -95,7 +95,7 @@
                                    
                                   
                                 }
-                                $('#list').append("<div class='col-md-12' style='padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;'><div class='col-md-10'style='text-align: center;background: rgba(228, 131, 18, 0.1);  border-radius: 2px; padding: 0% 0% 0% 0%;box-shadow: 0px 0px 1px #888;' id='loader'><img src='images/ajax-loader.gif'/></div></div>").fadeIn("slow").delay(2000).queue(function (next) {
+                                $('#list').append("<div class='col-md-12' id='loader' style='padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;'><div class='col-md-10'style='text-align: center;background: rgba(228, 131, 18, 0.1);  border-radius: 2px; padding: 0% 0% 0% 0%;box-shadow: 0px 0px 1px #888;'><img src='images/ajax-loader.gif'/></div></div>").fadeIn("slow").delay(2000).queue(function (next) {
                                     $('#loader').fadeOut();
                                     $('#list').append(res);
                                     res="";
