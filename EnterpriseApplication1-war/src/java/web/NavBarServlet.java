@@ -47,7 +47,7 @@ public class NavBarServlet extends HttpServlet {
             if(action.equals("searchUtente")){
                 String nomeDigitato=(String)  request.getParameter("ric_utente");
                 if(nomeDigitato!= null){
-                   List<Profilo> res = profiloFacade.getProfiloUtente(nomeDigitato.toLowerCase(),0);
+                   List<Profilo> res = profiloFacade.getProfiloUtente(nomeDigitato.toLowerCase(),(Long) (session.getAttribute("id")),0);
                    request.setAttribute("utente", res);
                    System.out.println("arrivo");
                    System.out.println(session.getAttribute("email"));
@@ -67,7 +67,7 @@ public class NavBarServlet extends HttpServlet {
             }else if(action.equals("searchAjax")){
                 String nomeDigitato=(String)  request.getParameter("ric_utente");
                 int offset =Integer.parseInt(request.getParameter("offset"));
-                List<Profilo> res = profiloFacade.getProfiloUtente(nomeDigitato.toLowerCase(),offset);
+                List<Profilo> res = profiloFacade.getProfiloUtente(nomeDigitato.toLowerCase(),(Long) (session.getAttribute("id")),offset);
                 out.println(buildGson(res));
             }
         }

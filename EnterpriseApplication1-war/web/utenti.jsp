@@ -37,8 +37,10 @@
                             var values=jQuery.parseJSON(xhr.responseText);
                             var id = '${id}';
                             var amici=0; 
+                            console.log ("values.length"+values.length);
                             for(var i=0; i<values.length;i++){
-                                
+                              console.log ("nome:"+values[i].nome);
+                              
                               res+=('<div id="div'+values[i].id+'" class="col-md-12" style="padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;">'+
                             '<div class="col-md-10" style="background: white;  border-radius: 2px; padding: 2% 2% 2% 0%;box-shadow: 0px 0px 1px #888;">'+
                                 '<div class="col-md-3">'+
@@ -85,9 +87,12 @@
                             
                                         
                                     }
-                                    res+='<div class="col-md-12">'+
-                                '<span>Vive a '+values[i].comune.nome+'</span>'+ 
-                                '<p>Lavora presso '+values[i].occupazione+'</p>'+ 
+                                    res+='<div class="col-md-12">';
+                                    if (values[i].comune!=null){
+                                        res+='<span>Vive a '+values[i].comune.nome+'</span>';
+                                    }
+                                    
+                                res+= '<p>Lavora presso '+values[i].occupazione+'</p>'+ 
                             '</div>'+
                         '</div>'+ 
                     '</div>'+
