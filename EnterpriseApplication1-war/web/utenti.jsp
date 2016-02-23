@@ -21,21 +21,21 @@
         <script src="js/following.js"></script>
         <!--<script src="js/search.js"></script>-->
         <script type="text/javascript">
+            var offset = 5;
+            var res="";
             $(document).ready(function() {
+                
          $(window).scroll(function() {
                  if($(window).scrollTop() + $(window).height() === $(document).height()) {
                         var xhr = new XMLHttpRequest();
                         var utente = $("#ric_utente").val();
                         xhr.open("POST", "NavBarServlet", true);
                         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                        xhr.send('action=searchAjax&ric_utente=' + utente);
+                        xhr.send('action=searchAjax&ric_utente=' + utente+'&offset='+offset);
                         xhr.onload = function () {
                             var values=jQuery.parseJSON(xhr.responseText);
                             var id = '${id}';
-                            var res="";
-                            var amici=0;
-                            
-                            
+                            var amici=0; 
                             for(var i=0; i<5;i++){
                                 
                               res+=('<div id="div'+values[i].id+'" class="col-md-12" style="padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;">'+
@@ -91,77 +91,23 @@
                         '</div>'+ 
                     '</div>'+
 
-                '</div>';
+                '</div>';           
+                                   
+                                  
+                                }
+                                $('#list').append("<div class='col-md-12' style='padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;'><div class='col-md-10'style='text-align: center;background: rgba(228, 131, 18, 0.1);  border-radius: 2px; padding: 0% 0% 0% 0%;box-shadow: 0px 0px 1px #888;' id='loader'><img src='images/ajax-loader.gif'/></div></div>").fadeIn("slow").delay(2000).queue(function (next) {
+                                    $('#loader').fadeOut();
                                     $('#list').append(res);
                                     res="";
-                                }
-                            
-                           
+                                    next();
+                                }); 
+                                
                         };
+                        offset+=5;
                  }
          });
  });
         </script>
-       <!-- <script type="text/javascript">
-            $(document).ready(function() {
-               var i=0;
-               var length = '${fn:length(utente)}';
-                    $(window).scroll(function() {
-                            if($(window).scrollTop() + $(window).height() == $(document).height()) {
-                                    var page = $("#lista").attr("rel");
-                                    
-                                    $('#ric_utente').val('nascondo i primi '+length);
-                                    
-                                    if(i<length){
-                                        $('#list').append("<div id='div${commentLoop.index}' class='col-md-12' style='padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;'>"+$("#div"+i).html()+"</div>");
-                                        ++i;
-                                    }
-                                    $("#list").attr("rel", ++page);
-                            }
-                    });
-            });
-           /* $(window).scroll(function () {
-                if ($(window).scrollTop() >= 100) {
-                   //Add something at the end of the page
-                   var length = '${fn:length(utente)}';
-                    //$("#div7").css('visibility','hidden');
-                    for(i=0; i<3; i++) {
-                        $("#div"+i).fadeOut();
-                      }
-                }else{
-                    for(i=0; i>3; i++) {
-                        $("#div"+i).css('visible','hidden');
-                      }
-                      for(i=0; i<3; i++) {
-                        $("#div"+i).fadeIn();
-                      }
-                }
-             });+/
-            /*$(window).scroll(function() {
-                var length = '${fn:length(utente)}';
-                var j=0;
-                $('#ric_utente').val(length-(length-2));
-                while(j<length){
-                   if ($(this).scrollTop() > 30*j ){
-                      for(i=0; i<2*j; i++) {
-                        $("#div"+i).fadeOut();
-                      }
-                      $('#ric_utente').val('nascondo i primi '+j);
-                      j++;
-                }else{
-                   for(i=0; i<2; i++) {
-                        $("#div"+i).fadeIn();
-                      }
-                      for(i=0; i>2; i++) {
-                        $("#div"+i).fadeOut();
-                      }
-                      j++;
-                      
-                } 
-                }
-                
-            });*/
-        </script>-->
 
         <title>Utenti trovati</title>
     </head>
@@ -170,10 +116,12 @@
         <%@include file="navbar.jsp" %>
         <div class="content col-md-12 ">
             <br><br><br>
-            <div class="container col-md-2" style="background: yellow">
-                <h3>DESTRA</h3> 
+            <div class="container col-md-2" style="background: yellow" >
+                <h3>DESTRA</h3>
+                
             </div>
             <div class="col-md-8" id="list" rel="1">
+                
                 <br>
                 <c:forEach var="utente" items="${utente}" varStatus="commentLoop">
                     <div id="div${commentLoop.index}" class="col-md-12" style="padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;">
@@ -221,7 +169,7 @@
                     </div>
 
                 </div>  
-                </c:forEach> 
+                </c:forEach>
             </div>
             <div class="col-md-2" style="background: blue">
                 <h3>SINISTRA</h3>

@@ -31,7 +31,7 @@ public interface ProfiloFacadeLocal {
     
     Profilo getProfilo(Long idProfilo);
     
-    List getProfiloUtente(String nomeDigitato);
+    List getProfiloUtente(String nomeDigitato, int offset);
 
     int checkEmailEsistente(String email);
      
