@@ -31,6 +31,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import utility.Constants;
 
 /**
  *
@@ -67,7 +68,7 @@ public class GoogleServlet extends HttpServlet {
                 NetHttpTransport transport = new NetHttpTransport();
 
                 GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-                        .setAudience(Arrays.asList("914513079502-evc4u51vs3mijtfebssfqr0mjpk7cs2l.apps.googleusercontent.com"))
+                        .setAudience(Arrays.asList(Constants.ID_GOOGLE))
                         .build();
 
                 // (Receive idTokenString by HTTPS POST)

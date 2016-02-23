@@ -4,6 +4,7 @@
     Author     : Antonio
 --%>
 
+<%@page import="utility.Constants"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -21,7 +22,7 @@
         <script src="js/following.js"></script>
         <!--<script src="js/search.js"></script>-->
         <script type="text/javascript">
-            var offset = 5;
+            var offset = <%=Constants.LIMIT%>;;
             var res="";
             $(document).ready(function() {
                 
@@ -36,7 +37,7 @@
                             var values=jQuery.parseJSON(xhr.responseText);
                             var id = '${id}';
                             var amici=0; 
-                            for(var i=0; i<5;i++){
+                            for(var i=0; i<values.length;i++){
                                 
                               res+=('<div id="div'+values[i].id+'" class="col-md-12" style="padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;">'+
                             '<div class="col-md-10" style="background: white;  border-radius: 2px; padding: 2% 2% 2% 0%;box-shadow: 0px 0px 1px #888;">'+
