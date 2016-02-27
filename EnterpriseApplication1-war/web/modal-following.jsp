@@ -24,42 +24,20 @@
                     <h2 class="modal-title" id="myModalLabel" style="color : white">Lista Following</h2>
                 </div>
                 <div class="modal-body login-modal">
-                    
-                    <div class="clearfix"></div>
-                    <div>
-                        <div id='todolist'>
-                            <br>
-                            <ul id="ulFollowing" class="list-inline"> 
-                            <c:forEach items="${profilo.following}" var="utente">
-                                <div class="col-md-12" style="padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;">
-                                    <div class="col-md-10" style="background: white;  border-radius: 2px; padding: 2% 2% 2% 0%;box-shadow: 0px 0px 1px #888;">
-                                        <div class="col-md-3">
-                                            <form action="RedirectServlet" role="form" method="get">    
-                                                <input type="hidden" name="action" value="goUserProfile">
-                                                <input type="hidden" name="idprofile" value="${utente.id}">
-                                                <button class="borderless-btn"><img src="${utente.foto_profilo}" class="avatar profile-image-avatar" style="border: 0px solid; box-shadow: 0px 0px 5px #888;"/></button>
-                                            </form>
-                                        </div>
-                                        
-                                        <div class="col-md-9">
-                                            <div class="col-md-6">
-                                                <h3>${utente.nome}<span> </span>${utente.cognome}</h3>
-                                            </div>
-                                            
-                                            <div class="col-md-12">
-                                                <span>Vive a</span>
-                                                <p>Lavora presso</p>
-                                            </div>
-                                        </div> 
-                                    </div>
-
-                                </div>
-                                
-                            </c:forEach>
-                            </ul>
-                        </div>
-                    </div>																												
-                    <div class="clearfix"></div>
+                        
+                    <ul id="ulFollowing" class="list-inline">                 
+                    <c:forEach items="${profilo.following}" var="utente">
+                        <li class="list-group-item col-md-4 col-sm-4 col-lg-4 " style="text-align: center; border: transparent; margin: 0% 0% 0% 32%;">
+                            <form action="RedirectServlet" role="form" method="get">    
+                                <input type="hidden" name="action" value="goUserProfile">
+                                <input type="hidden" name="idprofile" value="${utente.id}">
+                                <button class="borderless-btn btn-link" style="color: #000"><span class="pull-xs-right"><img src="${utente.foto_profilo}" class="avatar img-circle" style="box-shadow: 0px 0px 2px orangered; " alt="avatar" height='40px' width='40px'/></span>
+                                    ${utente.nome}<span> </span>${utente.cognome}</button>
+                            </form>
+                        </li>
+                    </c:forEach>
+                    </ul>
+                        																									
                 </div>
                 <div class="clearfix"></div>
                 <div class="modal-footer login_modal_footer">

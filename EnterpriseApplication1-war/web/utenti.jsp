@@ -22,12 +22,15 @@
         <script src="js/following.js"></script>
         <!--<script src="js/search.js"></script>-->
         <script type="text/javascript">
-            var offset = <%=Constants.LIMIT%>;;
-            var res="";
-            $(document).ready(function() {
-                
+        var offset = <%=Constants.LIMIT%>;;
+        var res="";
+        var bool = true;
+        $(document).ready(function() {       
          $(window).scroll(function() {
-                 if($(window).scrollTop() + $(window).height() === $(document).height()) {
+                 if($(window).scrollTop() + $(window).height() === $(document).height() && bool===true) {
+                        bool=false;
+                        $('#list').append("<div class='col-md-12' id='loader' style='padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;'><div class='col-md-10'style='text-align: center;background: rgba(228, 131, 18, 0.1);  border-radius: 2px; padding: 0% 0% 0% 0%;box-shadow: 0px 0px 1px #888;'><img src='images/ajax-loader.gif'/></div></div>").fadeIn("slow");
+                        $("html, body").animate({ scrollTop: $('#loader').offset().top }, 1500);
                         var xhr = new XMLHttpRequest();
                         var utente = $("#ric_utente").val();
                         xhr.open("POST", "NavBarServlet", true);
@@ -37,77 +40,83 @@
                             var values=jQuery.parseJSON(xhr.responseText);
                             var id = '${id}';
                             var amici=0; 
-                            console.log ("values.length"+values.length);
-                            for(var i=0; i<values.length;i++){
-                              console.log ("nome:"+values[i].nome);
-                              
-                              res+=('<div id="div'+values[i].id+'" class="col-md-12" style="padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;">'+
-                            '<div class="col-md-10" style="background: white;  border-radius: 2px; padding: 2% 2% 2% 0%;box-shadow: 0px 0px 1px #888;">'+
-                                '<div class="col-md-3">'+
-                                    '<form action="RedirectServlet" role="form" method="get">'+    
-                                        '<input type="hidden" name="action" value="goUserProfile">'+
-                                        '<input type="hidden" name="idprofile" value="'+values[i].id+'">'+
-                                        '<button class="borderless-btn"><img src="'+values[i].foto_profilo+'" class="avatar profile-image-avatar" style="border: 0px solid; box-shadow: 0px 0px 5px #888;"/></button>'+
-                                    '</form>'+
-                                '</div>'+
-                                '<div class="col-md-9">'+
-                                    '<div class="col-md-6">'+
-                                        '<h3>'+values[i].nome+'<span> </span>'+values[i].cognome+'</h3>'+
-                                    '</div>');
-                                    if (values[i].id != id){
-                                        res+='<div class="col-md-6" style="text-align: right;">'+
-                                            '<button id="followbuton'+values[i].id+'" type="button" class="btn btn-success" onClick=" ';
-                                           
-                                     var idUtente;
-                                     var idFollowing;
-                                     <c:set var="idUtente" value= 'values[i].id' />
-                                       idUtente=<c:out value='${idUtente}'/>;
-                                    <c:forEach var="following" items="${profilo.following}">
-                                        
-                                        <c:set var="idFollowing" value='${following.id}' />
-                                        idFollowing=('${idFollowing}');   
-                                        
-                                        if(idUtente==idFollowing){
-                                            amici=1;
-                                        }
-                                            
-                                        
-                                    </c:forEach>
-                                        
-                                    if (amici ===1){
-                                        res+=' eliminafollow('+values[i].id+')">Stop Follow';
-                                    } else {
-                                        res+='follow('+values[i].id+')">Follow';
-                                    }
-                                    amici=0;
-                                    res+= 
+                            if(values===null){
+                                    $('#loader').fadeOut("slow").remove();
+                                    $(window).unbind('scroll');
+                            }else{
+                                for(var i=0; i<values.length;i++){
+                               res+=('<div id="div'+values[i].id+'" class="col-md-12" style="padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;">'+
+                              '<div class="col-md-10" style="background: white;  border-radius: 2px; padding: 2% 2% 2% 0%;box-shadow: 0px 0px 1px #888;">'+
+                                  '<div class="col-md-3">'+
+                                      '<form action="RedirectServlet" role="form" method="get">'+    
+                                          '<input type="hidden" name="action" value="goUserProfile">'+
+                                          '<input type="hidden" name="idprofile" value="'+values[i].id+'">'+
+                                          '<button class="borderless-btn"><img src="'+values[i].foto_profilo+'" class="avatar profile-image-avatar" style="border: 0px solid; box-shadow: 0px 0px 5px #888;"/></button>'+
+                                      '</form>'+
+                                  '</div>'+
+                                  '<div class="col-md-9">'+
+                                      '<div class="col-md-6">'+
+                                          '<h3>'+values[i].nome+'<span> </span>'+values[i].cognome+'</h3>'+
+                                      '</div>');
+                                      if (values[i].id != id){
+                                          res+='<div class="col-md-6" style="text-align: right;">'+
+                                              '<button id="followbuton'+values[i].id+'" type="button" class="btn btn-success" onClick=" ';
 
-                                    '</button>'+
-                                '</div>';
-                            
-                                        
-                                    }
-                                    res+='<div class="col-md-12">';
-                                    if (values[i].comune!=null){
-                                        res+='<span>Vive a '+values[i].comune.nome+'</span>';
-                                    }
-                                    
-                                res+= '<p>Lavora presso '+values[i].occupazione+'</p>'+ 
-                            '</div>'+
-                        '</div>'+ 
-                    '</div>'+
+                                       var idUtente;
+                                       var idFollowing;
+                                       <c:set var="idUtente" value= 'values[i].id' />
+                                         idUtente=<c:out value='${idUtente}'/>;
+                                      <c:forEach var="following" items="${profilo.following}">
 
-                '</div>';           
-                                   
-                                  
-                                }
-                                $('#list').append("<div class='col-md-12' id='loader' style='padding: 0% 0% 0% 15%;border: 1px solid whitesmoke;border-radius: 2px;'><div class='col-md-10'style='text-align: center;background: rgba(228, 131, 18, 0.1);  border-radius: 2px; padding: 0% 0% 0% 0%;box-shadow: 0px 0px 1px #888;'><img src='images/ajax-loader.gif'/></div></div>").fadeIn("slow").delay(2000).queue(function (next) {
-                                    $('#loader').fadeOut();
-                                    $('#list').append(res);
-                                    res="";
-                                    next();
-                                }); 
+                                          <c:set var="idFollowing" value='${following.id}' />
+                                          idFollowing=('${idFollowing}');   
+
+                                          if(idUtente==idFollowing){
+                                              amici=1;
+                                          }
+
+
+                                      </c:forEach>
+
+                                      if (amici ===1){
+                                          res+=' eliminafollow('+values[i].id+')">Stop Follow';
+                                      } else {
+                                          res+='follow('+values[i].id+')">Follow';
+                                      }
+                                      amici=0;
+                                      res+= 
+
+                                      '</button>'+
+                                  '</div>';
+
+
+                                      }
+                                      res+='<div class="col-md-12">';
+                                      if (values[i].comune!=null){
+                                          res+='<span>Vive a '+values[i].comune.nome+'</span>';
+                                      }
+
+                                  res+= '<p>Lavora presso '+values[i].occupazione+'</p>'+ 
+                              '</div>'+
+                          '</div>'+ 
+                      '</div>'+
+
+                  '</div>';           
+
+
+                                  }
                                 
+                                
+                                $('#list').delay(1000).queue(function (next) {
+                                    $('#loader').fadeOut("slow").remove();
+                                    $('#list').append(res).fadeIn("slow");
+                                    res="";
+                                    bool=true;
+                                    next();
+                                });
+                                
+                                    
+                            }      
                         };
                         offset+=5;
                  }

@@ -61,7 +61,7 @@
                             <li><a href="#"><i class="glyphicon glyphicon-inbox"></i></a></li>
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background: transparent; padding-top: 7%;">
-                                <img src="${foto}" class="profile-image img-circle"><b class="caret"></b></a>
+                                <img src="${profilo.foto_profilo}" class="profile-image img-circle"><b class="caret"></b></a>
 
                                 <ul class="dropdown-menu colored-link">
                                 <li><form role="form" action="RedirectServlet" method="get"><input type="hidden" name="action" value="goProfile"><button type="submit" class="btn btn-link borderless-btn" style="color: black; padding-left: 7%"><i class="glyphicon glyphicon-pushpin"></i><span> </span>Profilo</button></form></li>

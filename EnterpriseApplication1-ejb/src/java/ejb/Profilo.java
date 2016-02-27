@@ -7,6 +7,7 @@ package ejb;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -153,8 +154,8 @@ public class Profilo implements Serializable {
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
-
-    private String foto_profilo;
+    
+    private String foto_profilo="profile_img/default-profile.png";
 
     /**
      * Get the value of foto_profilo

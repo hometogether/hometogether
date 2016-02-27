@@ -18,6 +18,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -26,6 +27,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -50,6 +52,7 @@ public class RegistrationServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        HttpSession session= request.getSession();
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
             System.out.println("action is:" + action);
@@ -86,19 +89,8 @@ public class RegistrationServlet extends HttpServlet {
                     System.out.println(sesso);
                     int res = gestoreUtenti.aggiungiUser(nome, cognome, password, r_password, email, r_email, data_nascita, sesso, comune);
                     if (res == 0) {
-                        List<UtenteApp> lista = gestoreUtenti.getUsers();
-                        //String gsonList = buildGson(lista);
-
-                        out.println("<!DOCTYPE html>");
-                        out.println("<html>");
-                        out.println("<head>");
-                        out.println("<title>Servlet RegistrationServlet</title>");
-                        out.println("</head>");
-                        out.println("<body>");
-                        out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
-                        //out.println("<h1>" + gsonList + "</h1>");
-                        out.println("</body>");
-                        out.println("</html>");
+                        RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
+                        rd.forward(request, response);
                     } else {
                         out.println("<!DOCTYPE html>");
                         out.println("<html>");
@@ -117,16 +109,8 @@ public class RegistrationServlet extends HttpServlet {
                     if (res == 0) {
                         List<UtenteFacebook> lista = gestoreUtenti.getUserFacebook();
 
-                        out.println("<!DOCTYPE html>");
-                        out.println("<html>");
-                        out.println("<head>");
-                        out.println("<title>Servlet RegistrationServlet</title>");
-                        out.println("</head>");
-                        out.println("<body>");
-                        out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
-                        out.println("<h1>ti sei registrato!</h1>");
-                        out.println("</body>");
-                        out.println("</html>");
+                        RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
+                        rd.forward(request, response);
                     } else {
                         out.println("<!DOCTYPE html>");
                         out.println("<html>");
@@ -146,16 +130,8 @@ public class RegistrationServlet extends HttpServlet {
                         //List<UtenteGoogle> lista = gestoreUtenti.getUserGoogle();
                         //String gsonList = buildGson(lista);
 
-                        out.println("<!DOCTYPE html>");
-                        out.println("<html>");
-                        out.println("<head>");
-                        out.println("<title>Servlet RegistrationServlet</title>");
-                        out.println("</head>");
-                        out.println("<body>");
-                        out.println("<h1>Servlet RegistrationServlet at " + request.getContextPath() + "</h1>");
-                        out.println("<h1>" + "aaaaaasd" + "</h1>");
-                        out.println("</body>");
-                        out.println("</html>");
+                        RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
+                        rd.forward(request, response);
                     } else {
                         out.println("<!DOCTYPE html>");
                         out.println("<html>");

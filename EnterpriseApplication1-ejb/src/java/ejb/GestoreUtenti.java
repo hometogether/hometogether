@@ -56,7 +56,7 @@ public class GestoreUtenti {
         p.setSesso(sesso);
         p.setTipo(0);
         p.setComune(comune);
-        p.setFoto_profilo("");
+        //p.setFoto_profilo("");
         profiloFacade.create(p);
         Profilo profilo = profiloFacade.getProfilo(email);
         // Long idProfilo = profilo.getId();
