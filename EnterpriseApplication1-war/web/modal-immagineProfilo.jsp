@@ -16,7 +16,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
             <div class="modal-body" style="text-align: center">
-                <img src="${foto}" alt="avatar" style="width: 70%"/>
+                <img src="${profilo.foto_profilo}" alt="avatar" style="width: 70%"/>
                 </div>
                 <div class="clearfix"></div>
                 <div class="modal-footer login_modal_footer">

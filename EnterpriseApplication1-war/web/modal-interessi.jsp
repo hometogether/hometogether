@@ -72,13 +72,13 @@
                             <ul id="ulInteressi" class="list-inline"> 
                             <c:forEach items="${profilo.interessi}" var="interesse">
                                  
-                                <li id="${interesse.id}">
+                                <li class="col-md-3"id="${interesse.id}">
                                     <div class="btn-group">
                                         <form action="InterestServlet" role="form" method="post">
                                             <div class="btn-interest">
-                                               <button class=" btn btn-secondary borderless-btn btn-link" title="${interesse.nome}" style="text-align: center;color: black;overflow: hidden;text-overflow: ellipsis;max-width: 90%"> ${interesse.nome}</button>
+                                               <button class="btn btn-secondary borderless-btn btn-link" title="${interesse.nome}" style="text-align: center;color: black;overflow: hidden;text-overflow: ellipsis;max-width: 90%"> ${interesse.nome}</button>
                                                <c:if test="${profilo.id == id}">
-                                                   <button id="remove" type="button" class="btn-secondary close" onClick="rimuoviInteresse(${interesse.id})">&times;</button> 
+                                                   <button id="remove" type="button" class="btn btn-secondary close" onClick="rimuoviInteresse(${interesse.id})">&times;</button> 
                                                </c:if>
                                             </div>
                                         </form>
