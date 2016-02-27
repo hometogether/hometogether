@@ -95,6 +95,10 @@ public class RedirectServlet extends HttpServlet {
                 } else {
                     //errore
                 }
+            }else if (action.equals("logOut")) {
+                session.invalidate();
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+                rd.forward(request, response);
             } else {
                 //gestione erroi
             }
