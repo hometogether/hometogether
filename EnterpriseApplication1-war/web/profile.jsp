@@ -92,18 +92,18 @@
                                                             Nato il <span>${profilo.data_nascita}</span>
                                                         </div>
 
-                                                        <div class="panel-footer">
+                                                        <div class="panel-footer" style="padding:3% 0 3% 0; ">
                                                             <div class="btn-group" role="group"> 
                                                                 <c:if test="${profilo.id == id}">
-                                                                <button class="  btn-secodary borderless-btn" style="text-align: center;color: black" data-toggle="modal" data-target="#mod-info-modal">
+                                                                <button class="col-md-4 btn btn-secodary borderless-btn" style="color: black;padding-left: 2px;" data-toggle="modal" data-target="#mod-info-modal">
                                                                     <i class="glyphicon glyphicon-info-sign"></i> Informazioni
                                                                 </button>
-                                                                <button class="  btn-secodary borderless-btn" style="text-align: center;color: black" data-toggle="modal" data-target="#following-modal">
-                                                                    <i class="glyphicon glyphicon-user"></i> Following
+                                                                <button class="col-md-4 btn btn-secodary borderless-btn" style="color: black;" data-toggle="modal" data-target="#following-modal">
+                                                                    <i class="  glyphicon glyphicon-user"></i>Following
                                                                 </button>
                                                                 </c:if>
-                                                                <button class=" btn-secodary borderless-btn" style="text-align: center;color: black" data-toggle="modal" data-target="#mod-interessi">
-                                                                    <i class="glyphicon glyphicon-music"></i> Interessi
+                                                                <button class="col-md-4 btn btn-secodary borderless-btn" style="color: black;" data-toggle="modal" data-target="#mod-interessi">
+                                                                    <i class="glyphicon glyphicon-music"></i>Interessi
                                                                 </button>
                                                             </div>
                                                             
@@ -157,7 +157,7 @@
                                                 
                                               </c:if>
                                               
-                                              <h3>Catania</h3>
+                                              <h3>Torino</h3>
                                           </div>
                                           <!-- edit form column -->
                                           <div class="col-md-9 col-sm-7 col-xs-8 personal-info" style="background: #fff; position: relative; left: 8px;">

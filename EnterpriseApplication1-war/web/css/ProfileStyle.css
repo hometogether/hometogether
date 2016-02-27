@@ -184,16 +184,7 @@ input[type="color"]:focus,
     color: white;
 }
 
-.dropdown ul.dropdown-menu:before {
-    content: "";
-    border-bottom: 10px solid rgba(228, 131, 18, 0.6);
-    border-right: 10px solid transparent;
-    border-left: 10px solid transparent;
-    position: absolute;
-    top: -10px;
-    right: 16px;
-    z-index: 10;
-}
+
 .dropdown ul.dropdown-menu {
     border-radius:4px;
     box-shadow:none;
