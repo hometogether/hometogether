@@ -89,7 +89,7 @@ public class RegistrationServlet extends HttpServlet {
                     System.out.println(sesso);
                     int res = gestoreUtenti.aggiungiUser(nome, cognome, password, r_password, email, r_email, data_nascita, sesso, comune);
                     if (res == 0) {
-                        RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
+                        RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
                         rd.forward(request, response);
                     } else {
                         out.println("<!DOCTYPE html>");

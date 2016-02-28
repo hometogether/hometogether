@@ -71,20 +71,23 @@
                             <br>
                             <ul id="ulInteressi" class="list-inline"> 
                             <c:forEach items="${profilo.interessi}" var="interesse">
-                                 
-                                <li class="col-md-3"id="${interesse.id}">
-                                    <div class="btn-group">
-                                        <form action="InterestServlet" role="form" method="post">
-                                            <div class="btn-interest">
-                                               <button class="btn btn-secondary borderless-btn btn-link" title="${interesse.nome}" style="text-align: center;color: black;overflow: hidden;text-overflow: ellipsis;max-width: 90%"> ${interesse.nome}</button>
-                                               <c:if test="${profilo.id == id}">
-                                                   <button id="remove" type="button" class="btn btn-secondary close" onClick="rimuoviInteresse(${interesse.id})">&times;</button> 
-                                               </c:if>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </li>     
-                                
+                                <c:if test="${profilo.id == id}">
+                                    <li class="col-md-3"id="${interesse.id}">
+                                        <div class="btn-group">
+                                            <form action="InterestServlet" role="form" method="post">
+                                                <div class="btn-interest">
+                                                   <button class="btn btn-secondary borderless-btn btn-link" title="${interesse.nome}" style="text-align: center;color: black;overflow: hidden;text-overflow: ellipsis;max-width: 90%;"> ${interesse.nome}</button>
+                                                    <button id="remove" type="button" class="btn btn-secondary close" onClick="rimuoviInteresse(${interesse.id})">&times;</button> 
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </li>     
+                                </c:if>
+                                <c:if test="${profilo.id != id}">
+                                    <li class="col-md-3"id="${interesse.id}">                                       
+                                        <button class="btn-interest borderless-btn" title="${interesse.nome}" style="text-align: center;color: black;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;min-width: 100px;"> ${interesse.nome}</button> 
+                                    </li>
+                                </c:if>
                                 <!--<div id="${interesse.id}">
                                     <form action="InterestServlet" role="form" method="post">
                                         <button type="button" class="btn btn-default" onClick="rimuoviInteresse(${interesse.id})">${interesse.nome}</button>

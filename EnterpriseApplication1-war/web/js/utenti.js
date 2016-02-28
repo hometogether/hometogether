@@ -11,6 +11,7 @@ function showResult() {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send('action=searchUtente&ric_utente=' + utente);
     xhr.onload = function () {
+       $("#ric_utente").val(utente);
        console.log(xhr.responseText); 
     };
     

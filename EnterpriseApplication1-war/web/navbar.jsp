@@ -50,7 +50,7 @@
                         <form class="navbar-form navbar-left nav-top-list search-bar-form" role="form" method="POST" action="NavBarServlet">
                             <div class="input-group col-md-12" style="text-align: center;">
                                 <input type="hidden" name="action" value="searchUtente">
-                                <input type="text" class="form-control" placeholder="La tua meta" id="ric_utente" name="ric_utente">
+                                <input type="text" class="form-control" placeholder="Cerca persone" id="ric_utente" name="ric_utente" required="yes">
                                 <div class="input-group-btn" style="text-align: left">
                                     <button class="btn btn-default" type="submit" ><i class="glyphicon glyphicon-search"></i></button>
                                 </div>

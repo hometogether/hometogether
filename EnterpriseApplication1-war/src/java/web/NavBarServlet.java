@@ -49,8 +49,7 @@ public class NavBarServlet extends HttpServlet {
                 if(nomeDigitato!= null){
                    List<Profilo> res = profiloFacade.getProfiloUtente(nomeDigitato.toLowerCase(),(Long) (session.getAttribute("id")),0);
                    request.setAttribute("utente", res);
-                   System.out.println("arrivo");
-                   System.out.println(session.getAttribute("email"));
+                   request.setAttribute("ric_utente", nomeDigitato);
                    Profilo p = profiloFacade.getProfilo((String) session.getAttribute("email"));
                    request.setAttribute("profilo", p);
                    
