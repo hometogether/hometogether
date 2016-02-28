@@ -117,6 +117,13 @@ div.the-buttons
         margin-bottom: 10px;
         
     }
+    button.btn-interest:hover{
+        max-width: 100%;
+    }
+    
+    .btn-secodary:focus{
+        outline: none;
+    }
     
   
   #white-camera{

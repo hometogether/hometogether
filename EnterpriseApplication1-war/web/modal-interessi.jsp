@@ -20,6 +20,11 @@
 
         $(document).ready(function () {
             $('#additem').hide();
+            if('${profilo.id }'!='${id}'){
+                $('#showAddinput').remove();
+                $('#additem').remove();
+                $('#space').remove();
+            }
             $(document).on("click","#showAddinput",function(){
                 $('#additem').show();
                 $('#showAddinput').hide();
@@ -37,20 +42,21 @@
         $(document).on("click", "#remove", function () {
             $(this).closest('li').remove();
         });
+        
     </script>
     <div class="modal fade" id="mod-interessi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header login_modal_header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h2 class="modal-title" id="myModalLabel" style="color : white">I tuoi interessi</h2>
+                    <h2 class="modal-title" id="myModalLabel" style="color : white">INTERESSI</h2>
                 </div>
                 <div class="modal-body login-modal">
-                    <p>Verifica e aggiungi i tuoi interessi!</p>
+                    <p>Elenco interessi!</p>
                     <br/>
                     <div class="clearfix"></div>
                     <div>
-                        <c:if test="${profilo.id == id}">
+                        
                         <a class="btn icon-btn btn-success" id="showAddinput">
                         <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
                         Add
@@ -66,9 +72,9 @@
                                  </div>
                             </form>
                         </div>
-                        </c:if>
+                        
                         <div id='todolist'>
-                            <br>
+                            <br id="space">
                             <ul id="ulInteressi" class="list-inline"> 
                             <c:forEach items="${profilo.interessi}" var="interesse">
                                 <c:if test="${profilo.id == id}">
