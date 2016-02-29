@@ -169,37 +169,28 @@
                                             </div>-->
                                               <br>
                                               <div class="panel-group">
-                                                    <div class="panel panel-info">
+                                                  <c:forEach var="diario" items="${profilo.diari}">
+                                                      <div class="panel panel-info">
                                                         <div class="panel-heading colored">
-                                                            POST
+                                                            ${diario.nome}
                                                         </div>
 
                                                         <div class="panel-body">
 
-                                                            Corpo
+                                                            Creato il ${diario.data_inizio}
 
                                                         </div>
 
                                                         <div class="panel-footer">
-                                                            Like,commenta,etc..
+                                                            Entra
                                                         </div>
 
                                                     </div>
                                                     <br>
-                                                    <div class="panel panel-info" >
-                                                        <div class="panel-heading colored">
-                                                            POST
-                                                        </div>
-
-                                                        <div class="panel-body">
-                                                            Basic panel example
-                                                        </div>
-
-                                                        <div class="panel-footer">
-                                                            Like,commenta,etc..
-                                                        </div>
-
-                                                    </div>
+                                                      
+                                                  </c:forEach>
+                                                    
+                                                    
                                               </div>
 
                                           </div>

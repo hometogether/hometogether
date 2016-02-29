@@ -47,7 +47,9 @@ public class RedirectServlet extends HttpServlet {
                 request.setAttribute("profilo", p);
                 //System.out.println("foto:" + p.getFoto_profilo());
                 //request.setAttribute("interessi", p.getInteressi());
-                
+                System.out.println("diario:"+p.getDiari());
+                System.out.println("nome diario"+p.getDiari().get(0).getNome());
+
                 
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/profile.jsp");
                 rd.forward(request, response);
